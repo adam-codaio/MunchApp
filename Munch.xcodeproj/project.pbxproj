@@ -56,15 +56,23 @@
 		D3B1E2AF1BF7EC4300AFDFD2 /* Munch */ = {
 			isa = PBXGroup;
 			children = (
-				D3B1E2B01BF7EC4300AFDFD2 /* AppDelegate.swift */,
+				D3B1E2C51BF7EC5F00AFDFD2 /* Supporting Files */,
 				D3B1E2B21BF7EC4300AFDFD2 /* ViewController.swift */,
 				D3B1E2B41BF7EC4300AFDFD2 /* Main.storyboard */,
-				D3B1E2BA1BF7EC4300AFDFD2 /* Assets.xcassets */,
-				D3B1E2BC1BF7EC4300AFDFD2 /* LaunchScreen.storyboard */,
-				D3B1E2BF1BF7EC4300AFDFD2 /* Info.plist */,
 				D3B1E2B71BF7EC4300AFDFD2 /* Munch.xcdatamodeld */,
 			);
 			path = Munch;
+			sourceTree = "<group>";
+		};
+		D3B1E2C51BF7EC5F00AFDFD2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D3B1E2B01BF7EC4300AFDFD2 /* AppDelegate.swift */,
+				D3B1E2BA1BF7EC4300AFDFD2 /* Assets.xcassets */,
+				D3B1E2BC1BF7EC4300AFDFD2 /* LaunchScreen.storyboard */,
+				D3B1E2BF1BF7EC4300AFDFD2 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
