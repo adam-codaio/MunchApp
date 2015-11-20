@@ -11,10 +11,24 @@ import UIKit
 class HomeTableViewController: UITableViewController {
 
     @IBOutlet weak var coupon: UILabel!
+    @IBOutlet weak var coupon2: UILabel!
+    @IBOutlet weak var coupon3: UILabel!
+    @IBOutlet weak var coupon4: UILabel!
+    
+    
     @IBOutlet weak var restaurant: UILabel!
+    @IBOutlet weak var restaurant2: UILabel!
+    @IBOutlet weak var restaurant3: UILabel!
+    @IBOutlet weak var restaurant4: UILabel!
+    
     @IBOutlet weak var distance: UILabel!
-    @IBOutlet weak var walkOrDrive: UISegmentedControl!
-    @IBOutlet weak var recommended: UIButton!
+    @IBOutlet weak var distance2: UILabel!
+    @IBOutlet weak var distance3: UILabel!
+    @IBOutlet weak var distance4: UILabel!
+    
+    @IBOutlet weak var sortMech: UISegmentedControl!
+    @IBOutlet weak var distanceButton: UIButton!
+
     
     private enum FontSizes: Int {
         case Primary = 14
@@ -28,10 +42,10 @@ class HomeTableViewController: UITableViewController {
     }
     
     private struct Colors {
-        static let Green = UIColor(red: 0x40, green: 0xBA, blue: 0x91, alpha: 1)
-        static let Orange = UIColor(red: 0xFF, green: 0x99, blue: 0x00, alpha: 1)
-        static let LightGray = UIColor(red: 0xF4, green: 0xF5, blue: 0xF7, alpha: 1)
-        static let DarkGray = UIColor(red: 0x8C, green: 0x86, blue: 0x8E, alpha: 1)
+        static let Green = UIColor(hex: 0x40BA91)
+        static let Orange = UIColor(hex: 0xFF9900)
+        static let LightGray = UIColor(hex: 0xF4F5F7)
+        static let DarkGray = UIColor(hex: 0x8C868E)
     }
     
     private let borderWidth = 1.0
@@ -41,12 +55,40 @@ class HomeTableViewController: UITableViewController {
         
         coupon?.text = coupon?.text!.uppercaseString
         coupon.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
+        coupon2?.text = coupon2?.text!.uppercaseString
+        coupon2.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
+        coupon3?.text = coupon3?.text!.uppercaseString
+        coupon3.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
+        coupon4?.text = coupon4?.text!.uppercaseString
+        coupon4.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
 
         restaurant.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        restaurant2.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        restaurant3.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        restaurant4.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+
+
+
         distance.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        distance?.tintColor = Colors.LightGray
+        distance2.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        distance2?.tintColor = Colors.LightGray
+        distance3.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        distance3?.tintColor = Colors.LightGray
+        distance4.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        distance4?.tintColor = Colors.LightGray
+        sortMech?.tintColor = Colors.Green
+
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    @IBAction func setLocation(sender: AnyObject) {
+//        let alert = UIAlertController(title: nil,
+//            message: "Maximum distance:",
+//            preferredStyle: .ActionSheet)
+//        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

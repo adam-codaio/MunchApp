@@ -39,41 +39,35 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0Ll-Bf-RoF">
-                                    <rect key="frame" x="160" y="8" width="265" height="28"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="huY-5S-uaa">
+                                    <rect key="frame" x="154" y="8" width="293" height="28"/>
                                     <subviews>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="6N4-nH-mBG">
-                                            <rect key="frame" x="0.0" y="0.0" width="85" height="29"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NA-m3-lHx">
+                                            <rect key="frame" x="0.0" y="0.0" width="72" height="28"/>
                                             <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <state key="normal" title="Set Distance">
+                                                <color key="titleColor" red="0.5490196078431373" green="0.52549019607843139" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="setLocation:" destination="yDk-Zc-a59" eventType="touchUpInside" id="cj2-s3-YSQ"/>
+                                            </connections>
+                                        </button>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0I0-dY-Uaf">
+                                            <rect key="frame" x="82" y="0.0" width="211" height="29"/>
                                             <segments>
-                                                <segment title="" image="walk_icon"/>
-                                                <segment title="" image="block_symbol.png"/>
+                                                <segment title="Nearby"/>
+                                                <segment title="Recommended"/>
                                             </segments>
                                         </segmentedControl>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zrS-MN-Zeq">
-                                            <rect key="frame" x="90" y="0.0" width="85" height="28"/>
-                                            <color key="backgroundColor" red="0.25098039215686274" green="0.72941176470588232" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <state key="normal" title="Nearby">
-                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zp1-7i-YUE">
-                                            <rect key="frame" x="180" y="0.0" width="85" height="28"/>
-                                            <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <state key="normal" title="Recommended">
-                                                <color key="titleColor" red="0.5490196078431373" green="0.52549019607843139" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                        </button>
                                     </subviews>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="0Ll-Bf-RoF" firstAttribute="centerX" secondItem="YUw-Ke-fHf" secondAttribute="centerX" id="FEX-w6-ShZ"/>
-                                <constraint firstItem="0Ll-Bf-RoF" firstAttribute="top" secondItem="YUw-Ke-fHf" secondAttribute="topMargin" id="H8w-wZ-Abl"/>
+                                <constraint firstItem="huY-5S-uaa" firstAttribute="centerX" secondItem="YUw-Ke-fHf" secondAttribute="centerX" id="JiE-zN-Lsb"/>
+                                <constraint firstItem="huY-5S-uaa" firstAttribute="centerY" secondItem="YUw-Ke-fHf" secondAttribute="centerY" id="V0k-pD-MS9"/>
+                                <constraint firstItem="0I0-dY-Uaf" firstAttribute="centerY" secondItem="YUw-Ke-fHf" secondAttribute="centerY" id="d0K-kM-WA3"/>
                             </constraints>
                         </view>
                         <sections>
@@ -83,7 +77,7 @@
                                         <rect key="frame" x="0.0" y="44" width="600" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9b0-Iw-7aG" id="lOS-zT-hcm">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="92"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="91.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orens" translatesAutoresizingMaskIntoConstraints="NO" id="59o-jP-IYn">
@@ -133,7 +127,7 @@
                                         <rect key="frame" x="0.0" y="136" width="600" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Ry-he-qQA" id="Mog-ag-SYk">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="92"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="91.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pizza_my_heart" translatesAutoresizingMaskIntoConstraints="NO" id="R2c-sl-bqA">
@@ -288,25 +282,32 @@
                                 </cells>
                             </tableViewSection>
                         </sections>
-
                         <connections>
                             <outlet property="dataSource" destination="yDk-Zc-a59" id="Dak-sx-ZvR"/>
                             <outlet property="delegate" destination="yDk-Zc-a59" id="gsI-UY-41v"/>
                         </connections>
                     </tableView>
-
+                    <tabBarItem key="tabBarItem" title="Home" image="home_icon.png" id="GLD-eB-ykE"/>
                     <connections>
                         <outlet property="coupon" destination="wqx-RH-7nR" id="fO3-Qr-L7l"/>
-                        <outlet property="distance" destination="sc0-Uj-uJM" id="66k-zQ-7vz"/>
-                        <outlet property="recommended" destination="Zp1-7i-YUE" id="Cvl-r8-CzQ"/>
+                        <outlet property="coupon2" destination="mc0-gk-4ph" id="VMZ-2o-c75"/>
+                        <outlet property="coupon3" destination="TXN-FZ-2cC" id="lmi-Vi-uSH"/>
+                        <outlet property="coupon4" destination="WRq-rI-DUh" id="993-wh-Q4z"/>
+                        <outlet property="distance" destination="5NA-m3-lHx" id="wQy-Jb-8M5"/>
+                        <outlet property="distance2" destination="BOt-1F-Ht3" id="ZdX-Sx-jwn"/>
+                        <outlet property="distance3" destination="x9g-kA-Fph" id="foE-4E-b59"/>
+                        <outlet property="distance4" destination="19z-Nf-rfr" id="W4r-RJ-xTt"/>
+                        <outlet property="distanceButton" destination="5NA-m3-lHx" id="MUS-Nu-UzD"/>
                         <outlet property="restaurant" destination="73P-To-WIy" id="pF9-rP-qE0"/>
-                        <outlet property="walkOrDrive" destination="6N4-nH-mBG" id="Tgv-fi-eui"/>
+                        <outlet property="restaurant2" destination="Sv5-0m-lDc" id="cfE-k3-b58"/>
+                        <outlet property="restaurant3" destination="Sv5-0m-lDc" id="vMb-iS-K7h"/>
+                        <outlet property="restaurant4" destination="U33-op-eJK" id="XcC-H5-P7K"/>
+                        <outlet property="sortMech" destination="0I0-dY-Uaf" id="PlU-cu-ryZ"/>
                     </connections>
-                    <tabBarItem key="tabBarItem" title="Home" image="home_icon.png" id="GLD-eB-ykE"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysF-LQ-cC8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="116" y="-19"/>
+            <point key="canvasLocation" x="81" y="-19"/>
         </scene>
         <!--Claims-->
         <scene sceneID="mwv-IF-cMN">
@@ -323,6 +324,16 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ugw-eG-Ws2" id="NhO-ez-NFu">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="2GT-Ta-ott">
+                                            <rect key="frame" x="324" y="8" width="85" height="29"/>
+                                            <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <segments>
+                                                <segment title="" image="walk_icon"/>
+                                                <segment title="" image="block_symbol.png"/>
+                                            </segments>
+                                        </segmentedControl>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -335,7 +346,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f17-bQ-115" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="352" y="839"/>
+            <point key="canvasLocation" x="116" y="719"/>
         </scene>
         <!--Analytics-->
         <scene sceneID="guJ-jE-8yM">
@@ -352,7 +363,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not implemented yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhY-FA-7di">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -385,7 +396,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not implemented yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XeF-e0-ctv">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -405,15 +416,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="analytics_icon.png" width="34" height="31"/>
         <image name="block_symbol.png" width="16" height="16"/>
+        <image name="claims_icon.png" width="26" height="27"/>
+        <image name="home_icon.png" width="25" height="23"/>
+        <image name="more_icon.png" width="24" height="20"/>
         <image name="orens" width="190" height="56"/>
         <image name="pizza_my_heart" width="190" height="56"/>
         <image name="sushiritto" width="190" height="56"/>
         <image name="tacolicious" width="190" height="56"/>
         <image name="walk_icon" width="19" height="23"/>
-        <image name="analytics_icon.png" width="34" height="31"/>
-        <image name="claims_icon.png" width="26" height="27"/>
-        <image name="home_icon.png" width="25" height="23"/>
-        <image name="more_icon.png" width="24" height="20"/>
     </resources>
 </document>
