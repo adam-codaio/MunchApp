@@ -73,9 +73,12 @@
 				D3B1E2C51BF7EC5F00AFDFD2 /* Supporting Files */,
 				D3B1E2B21BF7EC4300AFDFD2 /* ViewController.swift */,
 				D3B1E2B41BF7EC4300AFDFD2 /* Main.storyboard */,
+<<<<<<< HEAD
 				F6E70CF61BFF4C5C00CADA39 /* RestaurantTableViewController.swift */,
 				F6E70CEE1BFF329900CADA39 /* MainNavigationController.swift */,
+=======
 				D3D6A0FD1BFF2290009E2549 /* HomeClaimsTableViewCell.swift */,
+>>>>>>> e5d2c31c4b4c46a89b63245d3a5ebc16f8e6b5bf
 				F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */,
 				F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */,
 				F6E70CF01BFF378900CADA39 /* Util.swift */,
@@ -172,8 +175,11 @@
 				D3B1E2B11BF7EC4300AFDFD2 /* AppDelegate.swift in Sources */,
 				F6E70CF71BFF4C5C00CADA39 /* RestaurantTableViewController.swift in Sources */,
 				F6E70CDE1BFEA80D00CADA39 /* ClaimsTableViewController.swift in Sources */,
+<<<<<<< HEAD
 				F6E70CF11BFF378900CADA39 /* Util.swift in Sources */,
+=======
 				D3D6A0FE1BFF2290009E2549 /* HomeClaimsTableViewCell.swift in Sources */,
+>>>>>>> e5d2c31c4b4c46a89b63245d3a5ebc16f8e6b5bf
 				F6E70CDA1BFEA7AA00CADA39 /* MainTabBarController.swift in Sources */,
 				F6E70CEF1BFF329900CADA39 /* MainNavigationController.swift in Sources */,
 				D3B1E2B91BF7EC4300AFDFD2 /* Munch.xcdatamodeld in Sources */,
