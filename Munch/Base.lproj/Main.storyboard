@@ -10,10 +10,11 @@
         <scene sceneID="ciD-hS-1Tm">
             <objects>
                 <tabBarController id="3XT-s2-YNw" customClass="MainTabBarController" customModule="Munch" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="aV2-IA-Gnv">
+                    <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="fill" id="aV2-IA-Gnv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.95686274509803915" green="0.96078431372549022" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.95686274509803915" green="0.96078431372549022" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="yDk-Zc-a59" kind="relationship" relationship="viewControllers" id="s5I-iv-fDl"/>
@@ -287,12 +288,13 @@
                                 </cells>
                             </tableViewSection>
                         </sections>
+
                         <connections>
                             <outlet property="dataSource" destination="yDk-Zc-a59" id="Dak-sx-ZvR"/>
                             <outlet property="delegate" destination="yDk-Zc-a59" id="gsI-UY-41v"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Home" id="GLD-eB-ykE"/>
+
                     <connections>
                         <outlet property="coupon" destination="wqx-RH-7nR" id="fO3-Qr-L7l"/>
                         <outlet property="distance" destination="sc0-Uj-uJM" id="66k-zQ-7vz"/>
@@ -300,6 +302,7 @@
                         <outlet property="restaurant" destination="73P-To-WIy" id="pF9-rP-qE0"/>
                         <outlet property="walkOrDrive" destination="6N4-nH-mBG" id="Tgv-fi-eui"/>
                     </connections>
+                    <tabBarItem key="tabBarItem" title="Home" image="home_icon.png" id="GLD-eB-ykE"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ysF-LQ-cC8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -328,7 +331,7 @@
                             <outlet property="delegate" destination="PSW-zt-yNj" id="RWM-cE-CJI"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Claims" id="Iey-nO-lsk"/>
+                    <tabBarItem key="tabBarItem" title="Claims" image="claims_icon.png" id="Iey-nO-lsk"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f17-bQ-115" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -346,8 +349,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Not implemented yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhY-FA-7di">
-                                <rect key="frame" x="0.0" y="-8" width="600" height="551"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not implemented yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhY-FA-7di">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -361,7 +364,7 @@
                             <constraint firstAttribute="trailing" secondItem="jhY-FA-7di" secondAttribute="trailing" id="oLd-qe-g2D"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Analytics" id="dVn-4U-Lpt"/>
+                    <tabBarItem key="tabBarItem" title="Analytics" image="analytics_icon.png" id="dVn-4U-Lpt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hyh-jm-TyQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -394,7 +397,7 @@
                             <constraint firstAttribute="trailing" secondItem="XeF-e0-ctv" secondAttribute="trailing" id="xZo-T2-nnb"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="More" id="Ca8-S8-NyR"/>
+                    <tabBarItem key="tabBarItem" title="More" image="more_icon.png" id="Ca8-S8-NyR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rWV-Jy-hRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -408,5 +411,9 @@
         <image name="sushiritto" width="190" height="56"/>
         <image name="tacolicious" width="190" height="56"/>
         <image name="walk_icon" width="19" height="23"/>
+        <image name="analytics_icon.png" width="34" height="31"/>
+        <image name="claims_icon.png" width="26" height="27"/>
+        <image name="home_icon.png" width="25" height="23"/>
+        <image name="more_icon.png" width="24" height="20"/>
     </resources>
 </document>
