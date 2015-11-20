@@ -103,6 +103,8 @@ class MainTabBarController: UITabBarController {
             }
             items![i].setTitleTextAttributes([NSForegroundColorAttributeName: mainGreen], forState: UIControlState.Normal)
         }
+        
+        self.navigationItem.titleView = Util.getLogoTitle()
     }
 
     override func didReceiveMemoryWarning() {
