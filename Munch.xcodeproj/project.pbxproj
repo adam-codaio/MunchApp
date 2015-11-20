@@ -13,6 +13,9 @@
 		D3B1E2B91BF7EC4300AFDFD2 /* Munch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3B1E2B71BF7EC4300AFDFD2 /* Munch.xcdatamodeld */; };
 		D3B1E2BB1BF7EC4300AFDFD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3B1E2BA1BF7EC4300AFDFD2 /* Assets.xcassets */; };
 		D3B1E2BE1BF7EC4300AFDFD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B1E2BC1BF7EC4300AFDFD2 /* LaunchScreen.storyboard */; };
+		F6E70CDA1BFEA7AA00CADA39 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */; };
+		F6E70CDC1BFEA7F200CADA39 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */; };
+		F6E70CDE1BFEA80D00CADA39 /* ClaimsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E70CDD1BFEA80D00CADA39 /* ClaimsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		D3B1E2BA1BF7EC4300AFDFD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3B1E2BD1BF7EC4300AFDFD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3B1E2BF1BF7EC4300AFDFD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		F6E70CDD1BFEA80D00CADA39 /* ClaimsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,9 @@
 				D3B1E2C51BF7EC5F00AFDFD2 /* Supporting Files */,
 				D3B1E2B21BF7EC4300AFDFD2 /* ViewController.swift */,
 				D3B1E2B41BF7EC4300AFDFD2 /* Main.storyboard */,
+				F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */,
+				F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */,
+				F6E70CDD1BFEA80D00CADA39 /* ClaimsTableViewController.swift */,
 				D3B1E2B71BF7EC4300AFDFD2 /* Munch.xcdatamodeld */,
 			);
 			path = Munch;
@@ -149,7 +158,10 @@
 			files = (
 				D3B1E2B31BF7EC4300AFDFD2 /* ViewController.swift in Sources */,
 				D3B1E2B11BF7EC4300AFDFD2 /* AppDelegate.swift in Sources */,
+				F6E70CDE1BFEA80D00CADA39 /* ClaimsTableViewController.swift in Sources */,
+				F6E70CDA1BFEA7AA00CADA39 /* MainTabBarController.swift in Sources */,
 				D3B1E2B91BF7EC4300AFDFD2 /* Munch.xcdatamodeld in Sources */,
+				F6E70CDC1BFEA7F200CADA39 /* HomeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +311,7 @@
 				D3B1E2C41BF7EC4300AFDFD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
