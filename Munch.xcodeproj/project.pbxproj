@@ -13,6 +13,15 @@
 		D3B1E2B91BF7EC4300AFDFD2 /* Munch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3B1E2B71BF7EC4300AFDFD2 /* Munch.xcdatamodeld */; };
 		D3B1E2BB1BF7EC4300AFDFD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3B1E2BA1BF7EC4300AFDFD2 /* Assets.xcassets */; };
 		D3B1E2BE1BF7EC4300AFDFD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B1E2BC1BF7EC4300AFDFD2 /* LaunchScreen.storyboard */; };
+		D3C9228A1C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922821C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift */; };
+		D3C9228B1C06A48D00D7C416 /* UserClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922831C06A48D00D7C416 /* UserClaim.swift */; };
+		D3C9228C1C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922841C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift */; };
+		D3C9228D1C06A48D00D7C416 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922851C06A48D00D7C416 /* Restaurant.swift */; };
+		D3C9228E1C06A48D00D7C416 /* Promotion+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922861C06A48D00D7C416 /* Promotion+CoreDataProperties.swift */; };
+		D3C9228F1C06A48D00D7C416 /* Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922871C06A48D00D7C416 /* Promotion.swift */; };
+		D3C922901C06A48D00D7C416 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922881C06A48D00D7C416 /* User+CoreDataProperties.swift */; };
+		D3C922911C06A48D00D7C416 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922891C06A48D00D7C416 /* User.swift */; };
+		D3C922931C06A78200D7C416 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922921C06A78200D7C416 /* DataHelper.swift */; };
 		D3D6A0FE1BFF2290009E2549 /* HomeClaimsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6A0FD1BFF2290009E2549 /* HomeClaimsTableViewCell.swift */; };
 		F6E70CDA1BFEA7AA00CADA39 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */; };
 		F6E70CDC1BFEA7F200CADA39 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */; };
@@ -31,6 +40,15 @@
 		D3B1E2BA1BF7EC4300AFDFD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3B1E2BD1BF7EC4300AFDFD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3B1E2BF1BF7EC4300AFDFD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3C922821C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserClaim+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D3C922831C06A48D00D7C416 /* UserClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserClaim.swift; sourceTree = "<group>"; };
+		D3C922841C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D3C922851C06A48D00D7C416 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		D3C922861C06A48D00D7C416 /* Promotion+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promotion+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D3C922871C06A48D00D7C416 /* Promotion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promotion.swift; sourceTree = "<group>"; };
+		D3C922881C06A48D00D7C416 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D3C922891C06A48D00D7C416 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D3C922921C06A78200D7C416 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		D3D6A0FD1BFF2290009E2549 /* HomeClaimsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeClaimsTableViewCell.swift; sourceTree = "<group>"; };
 		F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +88,15 @@
 		D3B1E2AF1BF7EC4300AFDFD2 /* Munch */ = {
 			isa = PBXGroup;
 			children = (
-				D3B1E2C51BF7EC5F00AFDFD2 /* Supporting Files */,
+				D3C922921C06A78200D7C416 /* DataHelper.swift */,
+				D3C922821C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift */,
+				D3C922831C06A48D00D7C416 /* UserClaim.swift */,
+				D3C922841C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift */,
+				D3C922851C06A48D00D7C416 /* Restaurant.swift */,
+				D3C922861C06A48D00D7C416 /* Promotion+CoreDataProperties.swift */,
+				D3C922871C06A48D00D7C416 /* Promotion.swift */,
+				D3C922881C06A48D00D7C416 /* User+CoreDataProperties.swift */,
+				D3C922891C06A48D00D7C416 /* User.swift */,
 				D3B1E2B21BF7EC4300AFDFD2 /* ViewController.swift */,
 				D3B1E2B41BF7EC4300AFDFD2 /* Main.storyboard */,
 				F6E70CF61BFF4C5C00CADA39 /* RestaurantTableViewController.swift */,
@@ -81,6 +107,7 @@
 				F6E70CF01BFF378900CADA39 /* Util.swift */,
 				F6E70CDD1BFEA80D00CADA39 /* ClaimsTableViewController.swift */,
 				D3B1E2B71BF7EC4300AFDFD2 /* Munch.xcdatamodeld */,
+				D3B1E2C51BF7EC5F00AFDFD2 /* Supporting Files */,
 			);
 			path = Munch;
 			sourceTree = "<group>";
@@ -169,6 +196,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3B1E2B31BF7EC4300AFDFD2 /* ViewController.swift in Sources */,
+				D3C9228F1C06A48D00D7C416 /* Promotion.swift in Sources */,
+				D3C922931C06A78200D7C416 /* DataHelper.swift in Sources */,
+				D3C9228A1C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift in Sources */,
 				D3B1E2B11BF7EC4300AFDFD2 /* AppDelegate.swift in Sources */,
 				F6E70CF71BFF4C5C00CADA39 /* RestaurantTableViewController.swift in Sources */,
 				F6E70CDE1BFEA80D00CADA39 /* ClaimsTableViewController.swift in Sources */,
@@ -176,8 +206,14 @@
 				D3D6A0FE1BFF2290009E2549 /* HomeClaimsTableViewCell.swift in Sources */,
 				F6E70CDA1BFEA7AA00CADA39 /* MainTabBarController.swift in Sources */,
 				F6E70CEF1BFF329900CADA39 /* MainNavigationController.swift in Sources */,
+				D3C9228C1C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift in Sources */,
+				D3C9228D1C06A48D00D7C416 /* Restaurant.swift in Sources */,
 				D3B1E2B91BF7EC4300AFDFD2 /* Munch.xcdatamodeld in Sources */,
+				D3C922901C06A48D00D7C416 /* User+CoreDataProperties.swift in Sources */,
+				D3C922911C06A48D00D7C416 /* User.swift in Sources */,
+				D3C9228E1C06A48D00D7C416 /* Promotion+CoreDataProperties.swift in Sources */,
 				F6E70CDC1BFEA7F200CADA39 /* HomeTableViewController.swift in Sources */,
+				D3C9228B1C06A48D00D7C416 /* UserClaim.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

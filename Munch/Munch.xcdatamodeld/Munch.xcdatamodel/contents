@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F27" minimumToolsVersion="Automatic">
+    <entity name="Promotion" representedClassName=".Promotion" syncable="YES">
+        <attribute name="expiry" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="promo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="repetition" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="retail_value" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="restaurant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="promotions" inverseEntity="Restaurant" syncable="YES"/>
+        <relationship name="userClaims" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserClaim" inverseName="promotion" inverseEntity="UserClaim" syncable="YES"/>
+    </entity>
+    <entity name="Restaurant" representedClassName=".Restaurant" syncable="YES">
+        <attribute name="distance" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="hours" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone_number" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="promotions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Promotion" inverseName="restaurant" inverseEntity="Promotion" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName=".User" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="userClaims" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserClaim" inverseName="user" inverseEntity="UserClaim" syncable="YES"/>
+    </entity>
+    <entity name="UserClaim" representedClassName=".UserClaim" syncable="YES">
+        <attribute name="claim_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="is_redeemed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="promotion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Promotion" inverseName="userClaims" inverseEntity="Promotion" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="userClaims" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Restaurant" positionX="-72" positionY="-99" width="128" height="118"/>
+        <element name="User" positionX="90" positionY="-34" width="128" height="88"/>
+        <element name="Promotion" positionX="-306" positionY="-81" width="128" height="28"/>
+        <element name="UserClaim" positionX="-117" positionY="98" width="128" height="28"/>
+    </elements>
 </model>
