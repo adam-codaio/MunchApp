@@ -21,10 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataHelper.seedDataStore()
 
         //print functions to make sure database is seeding correctly
-        dataHelper.printAllRestaurants()
-        dataHelper.printAllUsers()
-        dataHelper.printAllPromotions()
-        dataHelper.printAllUserClaims()
+//        dataHelper.printAllRestaurants()
+//        dataHelper.printAllUsers()
+//        dataHelper.printAllPromotions()
+//        dataHelper.printAllUserClaims()
         
         return true
     }
@@ -79,6 +79,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
+        do {
+            try NSFileManager.defaultManager().removeItemAtURL(url)
+        } catch _ {
+        }
+        
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)

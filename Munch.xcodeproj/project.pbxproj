@@ -22,6 +22,7 @@
 		D3C922901C06A48D00D7C416 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922881C06A48D00D7C416 /* User+CoreDataProperties.swift */; };
 		D3C922911C06A48D00D7C416 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922891C06A48D00D7C416 /* User.swift */; };
 		D3C922931C06A78200D7C416 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922921C06A78200D7C416 /* DataHelper.swift */; };
+		D3C922971C07904800D7C416 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922961C07904800D7C416 /* CoreDataTableViewController.swift */; };
 		D3D6A0FE1BFF2290009E2549 /* HomeClaimsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6A0FD1BFF2290009E2549 /* HomeClaimsTableViewCell.swift */; };
 		F6E70CDA1BFEA7AA00CADA39 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */; };
 		F6E70CDC1BFEA7F200CADA39 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */; };
@@ -49,6 +50,7 @@
 		D3C922881C06A48D00D7C416 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D3C922891C06A48D00D7C416 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D3C922921C06A78200D7C416 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
+		D3C922961C07904800D7C416 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
 		D3D6A0FD1BFF2290009E2549 /* HomeClaimsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeClaimsTableViewCell.swift; sourceTree = "<group>"; };
 		F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		D3B1E2AF1BF7EC4300AFDFD2 /* Munch */ = {
 			isa = PBXGroup;
 			children = (
+				D3C922961C07904800D7C416 /* CoreDataTableViewController.swift */,
 				D3C922921C06A78200D7C416 /* DataHelper.swift */,
 				D3C922821C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift */,
 				D3C922831C06A48D00D7C416 /* UserClaim.swift */,
@@ -213,6 +216,7 @@
 				D3C922911C06A48D00D7C416 /* User.swift in Sources */,
 				D3C9228E1C06A48D00D7C416 /* Promotion+CoreDataProperties.swift in Sources */,
 				F6E70CDC1BFEA7F200CADA39 /* HomeTableViewController.swift in Sources */,
+				D3C922971C07904800D7C416 /* CoreDataTableViewController.swift in Sources */,
 				D3C9228B1C06A48D00D7C416 /* UserClaim.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

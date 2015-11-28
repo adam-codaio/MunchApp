@@ -7,28 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
-class HomeTableViewController: UITableViewController {
-
-    @IBOutlet weak var coupon: UILabel!
-    @IBOutlet weak var coupon2: UILabel!
-    @IBOutlet weak var coupon3: UILabel!
-    @IBOutlet weak var coupon4: UILabel!
-    
-    
-    @IBOutlet weak var restaurant: UILabel!
-    @IBOutlet weak var restaurant2: UILabel!
-    @IBOutlet weak var restaurant3: UILabel!
-    @IBOutlet weak var restaurant4: UILabel!
-    
-    @IBOutlet weak var distance: UILabel!
-    @IBOutlet weak var distance2: UILabel!
-    @IBOutlet weak var distance3: UILabel!
-    @IBOutlet weak var distance4: UILabel!
+class HomeTableViewController: CoreDataTableViewController {
     
     @IBOutlet weak var sortMech: UISegmentedControl!
     @IBOutlet weak var distanceButton: UIButton!
-
+    
+    var managedObjectContext: NSManagedObjectContext? = AppDelegate.managedObjectContext
     
     private enum FontSizes: Int {
         case Primary = 14
@@ -50,34 +36,24 @@ class HomeTableViewController: UITableViewController {
     
     private let borderWidth = 1.0
     
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
+    
+    //makes the spacing good on landscape devices
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        coupon?.text = coupon?.text!.uppercaseString
-        coupon.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
-        coupon2?.text = coupon2?.text!.uppercaseString
-        coupon2.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
-        coupon3?.text = coupon3?.text!.uppercaseString
-        coupon3.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
-        coupon4?.text = coupon4?.text!.uppercaseString
-        coupon4.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
 
-        restaurant.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        restaurant2.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        restaurant3.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        restaurant4.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-
-
-
-        distance.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        distance?.tintColor = Colors.LightGray
-        distance2.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        distance2?.tintColor = Colors.LightGray
-        distance3.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        distance3?.tintColor = Colors.LightGray
-        distance4.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        distance4?.tintColor = Colors.LightGray
-        sortMech?.tintColor = Colors.Green
+//        
+//        coupon?.text = coupon?.text!.uppercaseString
+//        coupon.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
+//        restaurant.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+//        distance.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+//        distance?.tintColor = Colors.LightGray
 
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -91,33 +67,38 @@ class HomeTableViewController: UITableViewController {
 //        self.presentViewController(alert, animated: true, completion: nil)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
 
 
-    /*override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }*/
+        return
+            (try! managedObjectContext!.executeFetchRequest(NSFetchRequest(entityName: "Promotion"))).count ?? 0
+    }
+    
+    private let cellIdentifier = "PromotionCell"
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+        
+        if let promotionCell = cell as? HomeClaimsTableViewCell {
+            if let promotions = (try! managedObjectContext!.executeFetchRequest(NSFetchRequest(entityName: "Promotion"))) as? [Promotion] {
+                promotionCell.data = promotions[indexPath.row]
+            }
+        }
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
 
     /*
     // Override to support conditional editing of the table view.
