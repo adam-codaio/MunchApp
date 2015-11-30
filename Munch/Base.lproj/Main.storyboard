@@ -96,7 +96,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="101.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="tacolicious" translatesAutoresizingMaskIntoConstraints="NO" id="qcF-Wf-9Fa">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qcF-Wf-9Fa">
                                             <rect key="frame" x="0.0" y="-2" width="600" height="98.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="98.5" id="mdN-uV-sMS"/>
@@ -499,7 +499,6 @@
         <image name="home_icon.png" width="25" height="23"/>
         <image name="more_icon.png" width="24" height="20"/>
         <image name="pizza_my_heart" width="190" height="56"/>
-        <image name="tacolicious" width="190" height="56"/>
         <image name="walk_icon" width="19" height="23"/>
     </resources>
 </document>
