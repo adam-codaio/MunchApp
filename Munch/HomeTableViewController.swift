@@ -11,22 +11,6 @@ import CoreData
 
 class HomeTableViewController: CoreDataTableViewController {
     
-    @IBOutlet weak var sortMech: UISegmentedControl!
-    @IBOutlet weak var distanceButton: UIButton!
-    
-    var managedObjectContext: NSManagedObjectContext? = AppDelegate.managedObjectContext
-    
-    private enum FontSizes: Int {
-        case Primary = 14
-        case Secondary = 11
-    }
-    
-    private enum FontStyles: String {
-        case Primary = "AvenirNext-Bold"
-        case Secondary = "AvenirNext-DemiBold"
-        case Tertiary = "AvenirNext-Regular"
-    }
-    
     private struct Colors {
         static let Green = UIColor(hex: 0x40BA91)
         static let Orange = UIColor(hex: 0xFF9900)
@@ -34,7 +18,10 @@ class HomeTableViewController: CoreDataTableViewController {
         static let DarkGray = UIColor(hex: 0x8C868E)
     }
     
-    private let borderWidth = 1.0
+    @IBOutlet weak var sortMech: UISegmentedControl!
+    @IBOutlet weak var distanceButton: UIButton!
+    
+    var managedObjectContext: NSManagedObjectContext? = AppDelegate.managedObjectContext
     
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
@@ -47,13 +34,7 @@ class HomeTableViewController: CoreDataTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        
-//        coupon?.text = coupon?.text!.uppercaseString
-//        coupon.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
-//        restaurant.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-//        distance.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-//        distance?.tintColor = Colors.LightGray
+        sortMech.tintColor = Colors.Green
 
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -96,9 +77,9 @@ class HomeTableViewController: CoreDataTableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
+//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return UITableViewAutomaticDimension
+//    }
 
     /*
     // Override to support conditional editing of the table view.

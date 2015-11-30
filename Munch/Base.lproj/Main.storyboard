@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -50,7 +49,7 @@
         <scene sceneID="34o-aJ-8be">
             <objects>
                 <tableViewController id="yDk-Zc-a59" customClass="HomeTableViewController" customModule="Munch" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bXJ-n3-De0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="102" sectionHeaderHeight="28" sectionFooterHeight="28" id="bXJ-n3-De0">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -90,81 +89,58 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PromotionCell" rowHeight="98" id="9b0-Iw-7aG" customClass="HomeClaimsTableViewCell" customModule="Munch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="600" height="98"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PromotionCell" rowHeight="102" id="9b0-Iw-7aG" customClass="HomeClaimsTableViewCell" customModule="Munch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="600" height="102"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9b0-Iw-7aG" id="lOS-zT-hcm">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="98"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="101.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0.4 mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sc0-Uj-uJM">
-                                            <rect key="frame" x="9" y="8" width="38" height="16"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="tacolicious" translatesAutoresizingMaskIntoConstraints="NO" id="qcF-Wf-9Fa">
+                                            <rect key="frame" x="0.0" y="-2" width="600" height="98.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="98.5" id="mdN-uV-sMS"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yS-LX-9Mi">
+                                            <rect key="frame" x="8" y="8" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uDl-Ej-wES">
-                                            <rect key="frame" x="192" y="27" width="216" height="37"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Free Falafel Side with Entree" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqx-RH-7nR">
-                                                    <rect key="frame" x="0.0" y="0.0" width="216" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Oren's Hummus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73P-To-WIy">
-                                                    <rect key="frame" x="60" y="21" width="97" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="HNV-8q-caA"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" red="0.95686274509803915" green="0.96078431372549022" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="orens" translatesAutoresizingMaskIntoConstraints="NO" id="59o-jP-IYn">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="92" id="CUh-UE-PDP"/>
-                                                <constraint firstAttribute="width" secondItem="59o-jP-IYn" secondAttribute="height" multiplier="150:23" id="Ohh-Av-QcP"/>
-                                                <constraint firstAttribute="width" secondItem="59o-jP-IYn" secondAttribute="height" multiplier="150:23" id="fdK-2R-Z13"/>
-                                                <constraint firstAttribute="width" constant="600" id="hHt-AT-1OS"/>
-                                                <constraint firstAttribute="width" secondItem="59o-jP-IYn" secondAttribute="height" multiplier="150:23" id="iba-k8-LD7"/>
-                                                <constraint firstAttribute="width" constant="600" id="oPp-Mg-hGv"/>
-                                                <constraint firstAttribute="height" constant="92" id="pZF-sf-3gp"/>
-                                                <constraint firstAttribute="width" secondItem="59o-jP-IYn" secondAttribute="height" multiplier="150:23" id="rLZ-EG-uyo"/>
-                                                <constraint firstAttribute="height" constant="150" id="vpL-QB-I4r"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="CUh-UE-PDP"/>
-                                                    <exclude reference="Ohh-Av-QcP"/>
-                                                    <exclude reference="fdK-2R-Z13"/>
-                                                    <exclude reference="iba-k8-LD7"/>
-                                                    <exclude reference="oPp-Mg-hGv"/>
-                                                    <exclude reference="pZF-sf-3gp"/>
-                                                    <exclude reference="rLZ-EG-uyo"/>
-                                                </mask>
-                                            </variation>
-                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBO-Vi-a4c">
+                                            <rect key="frame" x="279" y="37" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Cl-wt-25T">
+                                            <rect key="frame" x="279" y="58" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="59o-jP-IYn" firstAttribute="centerX" secondItem="lOS-zT-hcm" secondAttribute="centerX" id="5wf-ke-EFy"/>
-                                        <constraint firstItem="59o-jP-IYn" firstAttribute="centerX" secondItem="lOS-zT-hcm" secondAttribute="centerX" id="OiQ-Fe-sLS"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="59o-jP-IYn" secondAttribute="bottom" constant="-2" id="key-lO-5Wd"/>
+                                        <constraint firstItem="4Cl-wt-25T" firstAttribute="top" secondItem="qcF-Wf-9Fa" secondAttribute="bottom" constant="-38.5" id="1yn-Xe-Le4"/>
+                                        <constraint firstItem="qcF-Wf-9Fa" firstAttribute="width" secondItem="lOS-zT-hcm" secondAttribute="width" id="3tH-hL-ik9"/>
+                                        <constraint firstItem="HBO-Vi-a4c" firstAttribute="centerX" secondItem="lOS-zT-hcm" secondAttribute="centerX" id="4Bg-iD-DBZ"/>
+                                        <constraint firstItem="4Cl-wt-25T" firstAttribute="centerX" secondItem="qcF-Wf-9Fa" secondAttribute="centerX" id="Bbk-tD-Anu"/>
+                                        <constraint firstItem="HBO-Vi-a4c" firstAttribute="centerY" secondItem="qcF-Wf-9Fa" secondAttribute="centerY" id="BsI-FO-Rdm"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="qcF-Wf-9Fa" secondAttribute="bottom" constant="-2" id="ge1-mu-cFx"/>
+                                        <constraint firstItem="qcF-Wf-9Fa" firstAttribute="height" secondItem="lOS-zT-hcm" secondAttribute="height" id="tHm-Ec-X7G"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
-                                            <exclude reference="OiQ-Fe-sLS"/>
-                                            <exclude reference="key-lO-5Wd"/>
+                                            <exclude reference="tHm-Ec-X7G"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="distance" destination="sc0-Uj-uJM" id="OhN-Lm-UNd"/>
-                                    <outlet property="promotion" destination="wqx-RH-7nR" id="aYJ-bx-GqY"/>
-                                    <outlet property="restaurant" destination="73P-To-WIy" id="s4G-4S-3ob"/>
+                                    <outlet property="distance" destination="0yS-LX-9Mi" id="WZh-H2-Hja"/>
+                                    <outlet property="promotion" destination="HBO-Vi-a4c" id="Pze-C4-e8D"/>
+                                    <outlet property="restaurant" destination="4Cl-wt-25T" id="ung-ph-ZFg"/>
+                                    <outlet property="splash" destination="qcF-Wf-9Fa" id="sX4-mj-91Q"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -522,8 +498,8 @@
         <image name="claims_icon.png" width="26" height="27"/>
         <image name="home_icon.png" width="25" height="23"/>
         <image name="more_icon.png" width="24" height="20"/>
-        <image name="orens" width="190" height="56"/>
         <image name="pizza_my_heart" width="190" height="56"/>
+        <image name="tacolicious" width="190" height="56"/>
         <image name="walk_icon" width="19" height="23"/>
     </resources>
 </document>
