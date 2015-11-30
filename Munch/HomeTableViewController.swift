@@ -23,7 +23,18 @@ class HomeTableViewController: CoreDataTableViewController {
     
     var managedObjectContext: NSManagedObjectContext? = AppDelegate.managedObjectContext
     
+    var promotions = [Promotion]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    private let defaultSort = "Nearby"
+    
     override func viewWillAppear(animated: Bool) {
+        managedObjectContext?.performBlockAndWait {
+            self.promotions = Promotion.openPromotions(inManagedObjectContext: self.managedObjectContext!, sort: self.defaultSort)
+        }
         tableView.reloadData()
     }
     
@@ -41,6 +52,12 @@ class HomeTableViewController: CoreDataTableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
+    @IBAction func setSort(sender: UISegmentedControl) {
+        managedObjectContext?.performBlockAndWait {
+            self.promotions = Promotion.openPromotions(inManagedObjectContext: self.managedObjectContext!, sort: sender.titleForSegmentAtIndex(sender.selectedSegmentIndex)!)
+        }
+    }
+
     @IBAction func setLocation(sender: AnyObject) {
 //        let alert = UIAlertController(title: nil,
 //            message: "Maximum distance:",
@@ -57,8 +74,7 @@ class HomeTableViewController: CoreDataTableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return
-            (try! managedObjectContext!.executeFetchRequest(NSFetchRequest(entityName: "Promotion"))).count ?? 0
+        return promotions.count
     }
     
     private let cellIdentifier = "PromotionCell"
@@ -67,9 +83,7 @@ class HomeTableViewController: CoreDataTableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         
         if let promotionCell = cell as? HomeClaimsTableViewCell {
-            if let promotions = (try! managedObjectContext!.executeFetchRequest(NSFetchRequest(entityName: "Promotion"))) as? [Promotion] {
-                promotionCell.data = promotions[indexPath.row]
-            }
+            promotionCell.data = promotions[indexPath.row]
         }
 
         // Configure the cell...
