@@ -12,10 +12,10 @@ import CoreData
 
 class Promotion: NSManagedObject {
     
-    class func openPromotions(inManagedObjectContext context: NSManagedObjectContext, sort: String) -> [Promotion] {
+    class func openPromotions(inManagedObjectContext context: NSManagedObjectContext, sort: String, distance: Double) -> [Promotion] {
         let request = NSFetchRequest(entityName: "Promotion")
         let now = NSDate(timeIntervalSinceNow: 0)
-        request.predicate = NSPredicate(format: "expiry > %@", now)
+        request.predicate = NSPredicate(format: "expiry > %@ and restaurant.distance <=%f", now, distance)
         if sort == "Nearby" {
             let sortDescriptor = NSSortDescriptor(key: "restaurant.distance", ascending: true)
             request.sortDescriptors = [sortDescriptor]

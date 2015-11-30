@@ -18,6 +18,17 @@ class HomeTableViewController: CoreDataTableViewController {
         static let DarkGray = UIColor(hex: 0x8C868E)
     }
     
+    private enum FontSizes: Int {
+        case Primary = 14
+        case Secondary = 11
+    }
+    
+    private enum FontStyles: String {
+        case Primary = "AvenirNext-Bold"
+        case Secondary = "AvenirNext-DemiBold"
+        case Tertiary = "AvenirNext-Regular"
+    }
+    
     @IBOutlet weak var sortMech: UISegmentedControl!
     @IBOutlet weak var distanceButton: UIButton!
     
@@ -29,13 +40,10 @@ class HomeTableViewController: CoreDataTableViewController {
         }
     }
     
-    private let defaultSort = "Nearby"
+    private var currentSort = "Nearby"
     
     override func viewWillAppear(animated: Bool) {
-        managedObjectContext?.performBlockAndWait {
-            self.promotions = Promotion.openPromotions(inManagedObjectContext: self.managedObjectContext!, sort: self.defaultSort)
-        }
-        tableView.reloadData()
+        refresh()
     }
     
     //makes the spacing good on landscape devices
@@ -53,16 +61,80 @@ class HomeTableViewController: CoreDataTableViewController {
     }
     
     @IBAction func setSort(sender: UISegmentedControl) {
-        managedObjectContext?.performBlockAndWait {
-            self.promotions = Promotion.openPromotions(inManagedObjectContext: self.managedObjectContext!, sort: sender.titleForSegmentAtIndex(sender.selectedSegmentIndex)!)
-        }
+        currentSort = sender.titleForSegmentAtIndex(sender.selectedSegmentIndex)!
+        refresh()
     }
+    
+    private func refresh() {
+        managedObjectContext?.performBlockAndWait {
+            self.promotions = Promotion.openPromotions(inManagedObjectContext: self.managedObjectContext!, sort: self.currentSort, distance: self.currentDistance)
+        }
+        tableView.reloadData()
+    }
+    
+    private func roundToOneDecimal(value: Double) -> Double {
+        return round(value * 10.0) / 10.0
+    }
+    
+    private func saveDistance() {
+        currentDistance = roundToOneDecimal(Double(slider.value))
+        refresh()
+    }
+    
+    private var slider = UISlider()
+    private var alert = UIAlertController()
+    private var currentDistance = 2.5
+    private let defaultMaxDistance = 5.0
 
     @IBAction func setLocation(sender: AnyObject) {
-//        let alert = UIAlertController(title: nil,
-//            message: "Maximum distance:",
-//            preferredStyle: .ActionSheet)
-//        self.presentViewController(alert, animated: true, completion: nil)
+        alert = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
+        setMessage("Max Distance: " + String(format: "%.1f", currentDistance) + " mi")
+        
+        alert.addAction(UIAlertAction(
+            title: "Save",
+            style: .Default)
+            { [weak weakSelf = self] (action: UIAlertAction) -> Void in
+                weakSelf?.saveDistance()
+            }
+        )
+        
+        alert.addAction(UIAlertAction(
+            title: "Cancel",
+            style: .Destructive,
+            handler: nil
+        ))
+
+        let view = UIViewController();
+        
+        //hard coded but im not sure how to work around, looks fine on 5s and 6s plus
+        let frame = CGRectMake(35.0, 10.0, 200.0, 85.0)
+        slider.frame = frame
+        slider.minimumValue = 0
+        slider.maximumValue = Float(defaultMaxDistance)
+        slider.value = Float(currentDistance)
+        slider.minimumValueImage = UIImage(named: "turtle")
+        slider.maximumValueImage = UIImage(named: "hare")
+        slider.addTarget(self, action: "sliderValueChanged:", forControlEvents: .ValueChanged)
+        
+        view.view.addSubview(slider)
+        alert.view.addSubview(view.view)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func sliderValueChanged(sender: UISlider) {
+        setMessage("Max Distance: " + String(format: "%.1f", sender.value) + " mi")
+    }
+    
+    private func setMessage(message: String) {
+        let messageText = NSMutableAttributedString(
+            string: message,
+            attributes: [
+                NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody),
+                NSForegroundColorAttributeName: Colors.DarkGray
+            ]
+        )
+        alert.setValue(messageText, forKey: "attributedMessage")
     }
 
 
