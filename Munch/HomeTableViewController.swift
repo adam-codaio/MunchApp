@@ -54,6 +54,10 @@ class HomeTableViewController: CoreDataTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         sortMech.tintColor = Colors.Green
+        distanceButton.layer.cornerRadius = 8.0;
+        distanceButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5.0, 0, 5.0)
+        distanceButton.titleLabel!.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        distanceButton.titleLabel!.tintColor = Colors.LightGray
 
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -162,10 +166,6 @@ class HomeTableViewController: CoreDataTableViewController {
 
         return cell
     }
-    
-//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return UITableViewAutomaticDimension
-//    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -187,22 +187,6 @@ class HomeTableViewController: CoreDataTableViewController {
     }
     */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -210,6 +194,5 @@ class HomeTableViewController: CoreDataTableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }
