@@ -13,12 +13,20 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    private struct Colors {
+        static let Green = UIColor(hex: 0x40BA91)
+        static let Orange = UIColor(hex: 0xFF9900)
+        static let LightGray = UIColor(hex: 0xF4F5F7)
+        static let DarkGray = UIColor(hex: 0x8C868E)
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         let dataHelper = DataHelper(context: managedObjectContext)
         dataHelper.seedDataStore()
+        
+        self.window?.tintColor = Colors.Green
 
         //print functions to make sure database is seeding correctly
 //        dataHelper.printAllRestaurants()
