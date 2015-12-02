@@ -9,11 +9,66 @@
 import UIKit
 
 class RestaurantTableViewController: UITableViewController {
+    
+    private enum FontSizes: Int {
+        case Primary = 16
+        case Secondary = 14
+        case Tertiary = 12
+    }
+    
+    private enum FontStyles: String {
+        case Primary = "AvenirNext-Bold"
+        case Secondary = "AvenirNext-DemiBold"
+        case Tertiary = "AvenirNext-Regular"
+    }
+    
+    private struct Colors {
+        static let Green = UIColor(hex: 0x40BA91)
+        static let Orange = UIColor(hex: 0xFF9900)
+        static let LightGray = UIColor(hex: 0xF4F5F7)
+        static let DarkGray = UIColor(hex: 0x8C868E)
+    }
 
     private let mainGreen = UIColor(hex: 0x40BA91)
     
+    @IBOutlet weak var distance: UILabel!
+    @IBOutlet weak var restaurant: UILabel!
+    @IBOutlet weak var splash: UIImageView!
+    @IBOutlet weak var hours: UILabel!
+    @IBOutlet weak var phone: UILabel!
+    
+    var promotion: Promotion? {
+        didSet {
+            populateData()
+        }
+    }
+    
+    private func populateData() {
+        distance?.text = String(promotion!.restaurant!.distance!) + " mi"
+        distance?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        distance?.tintColor = Colors.LightGray
+        
+        restaurant?.text = promotion?.restaurant?.name
+        restaurant?.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
+        
+        hours?.text = promotion?.restaurant?.hours
+        hours?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Tertiary.rawValue))
+        hours?.tintColor = Colors.DarkGray
+        
+        phone?.text = promotion?.restaurant?.phone_number
+        phone?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Tertiary.rawValue))
+        phone?.tintColor = Colors.DarkGray
+
+        
+//        promotion.text = promotion?.promo!.uppercaseString
+//        promotion.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
+        
+        splash?.image = UIImage(named: promotion!.restaurant!.name!)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        populateData()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

@@ -142,6 +142,7 @@
                                     <outlet property="promotion" destination="HBO-Vi-a4c" id="Pze-C4-e8D"/>
                                     <outlet property="restaurant" destination="4Cl-wt-25T" id="ung-ph-ZFg"/>
                                     <outlet property="splash" destination="qcF-Wf-9Fa" id="sX4-mj-91Q"/>
+                                    <segue destination="5Yx-F2-s6i" kind="show" id="w3d-KJ-0pd"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -245,7 +246,7 @@
             <objects>
                 <tableViewController id="5Yx-F2-s6i" customClass="RestaurantTableViewController" customModule="Munch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Xp8-GN-LUF">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -253,16 +254,16 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="197"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ibl-aH-fax">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="141"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="ibl-aH-fax">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="142"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Pb5-1x-vzg">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="113.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="114"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gR3-Lw-BrR">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="113.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="114"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pizza_my_heart" translatesAutoresizingMaskIntoConstraints="NO" id="amO-qU-YeB">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="amO-qU-YeB">
                                                             <rect key="frame" x="0.0" y="0.0" width="600.5" height="100"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="8be-35-Bex"/>
@@ -296,37 +297,39 @@
                                                 </view>
                                             </subviews>
                                         </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="bhv-lh-f4U">
-                                            <rect key="frame" x="0.0" y="116.5" width="600" height="20.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Z0x-AV-YMf">
+                                            <rect key="frame" x="0.0" y="117" width="600" height="21"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Open 11:00 AM - 2:00 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdW-sS-gtS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="192" height="20.5"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
-                                                    <color key="textColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(650) 327-9400  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b95-PC-kZL">
-                                                    <rect key="frame" x="482.5" y="0.0" width="117.5" height="20.5"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
-                                                    <color key="textColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="bhv-lh-f4U">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="21"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Open 11:00 AM - 2:00 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdW-sS-gtS">
+                                                            <rect key="frame" x="0.0" y="0.0" width="192" height="21"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
+                                                            <color key="textColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(650) 327-9400  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b95-PC-kZL">
+                                                            <rect key="frame" x="483" y="0.0" width="118" height="21"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
+                                                            <color key="textColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                         </stackView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0d-tp-dI8">
-                                            <rect key="frame" x="0.0" y="140" width="600" height="1"/>
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f0d-tp-dI8">
+                                            <rect key="frame" x="0.0" y="141" width="600" height="1"/>
                                             <color key="backgroundColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="FxU-BD-j2b"/>
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="OdW-sS-gtS" firstAttribute="leading" secondItem="ibl-aH-fax" secondAttribute="leading" id="7RN-qz-Y9u"/>
-                                    </constraints>
                                 </stackView>
-                                <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="block_symbol" translatesAutoresizingMaskIntoConstraints="NO" id="3Xu-nL-c2c">
-                                    <rect key="frame" x="0.0" y="151" width="590" height="46"/>
+                                <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="block_symbol" translatesAutoresizingMaskIntoConstraints="NO" id="3Xu-nL-c2c">
+                                    <rect key="frame" x="0.0" y="152" width="590" height="46"/>
                                 </imageView>
                             </subviews>
                             <constraints>
@@ -421,10 +424,17 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="X8l-RO-rX2"/>
+                    <connections>
+                        <outlet property="distance" destination="UUg-S1-5Hi" id="GAp-mC-Ozs"/>
+                        <outlet property="hours" destination="OdW-sS-gtS" id="AbN-YT-qa5"/>
+                        <outlet property="phone" destination="b95-PC-kZL" id="f87-L4-cog"/>
+                        <outlet property="restaurant" destination="tKJ-rZ-NqB" id="gd4-YQ-irZ"/>
+                        <outlet property="splash" destination="amO-qU-YeB" id="Z6u-l7-hTe"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SB0-Sq-5ne" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-170" y="-705"/>
+            <point key="canvasLocation" x="918" y="-18"/>
         </scene>
         <!--Analytics-->
         <scene sceneID="guJ-jE-8yM">
@@ -501,7 +511,6 @@
         <image name="drop down arrow" width="13" height="8"/>
         <image name="home_icon.png" width="25" height="23"/>
         <image name="more_icon.png" width="24" height="20"/>
-        <image name="pizza_my_heart" width="190" height="56"/>
         <image name="walk_icon" width="19" height="23"/>
     </resources>
 </document>

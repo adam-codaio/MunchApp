@@ -28,8 +28,6 @@ class HomeClaimsTableViewCell: UITableViewCell {
         static let DarkGray = UIColor(hex: 0x8C868E)
     }
     
-    private let borderWidth = 1.0
-    
     var data: Promotion? {
         didSet {
             updateUI()
