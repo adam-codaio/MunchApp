@@ -47,10 +47,10 @@ class RestaurantClaimsTableViewCell: UITableViewCell {
         claim.backgroundColor = Colors.Green
         claim.layer.cornerRadius = 8.0
     }
+    
     override func drawRect(rect: CGRect) {
         if !last {
             let path = UIBezierPath()
-            print (self.bounds.maxX)
             path.moveToPoint(CGPoint(x: 0.15 * self.bounds.maxX, y: self.bounds.maxY * 0.85))
             path.addLineToPoint(CGPoint(x: 0.85 * self.bounds.maxX, y: self.bounds.maxY * 0.85))
             path.lineWidth = 2.0

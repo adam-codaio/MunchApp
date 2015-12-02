@@ -43,6 +43,7 @@ class HomeTableViewController: CoreDataTableViewController {
     private var currentSort = "Nearby"
     
     override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = true
         refresh()
     }
     
@@ -53,6 +54,7 @@ class HomeTableViewController: CoreDataTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = true
         sortMech.tintColor = Colors.Green
         distanceButton.layer.cornerRadius = 8.0;
         distanceButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5.0, 0, 5.0)
@@ -62,6 +64,10 @@ class HomeTableViewController: CoreDataTableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
     }
     
     @IBAction func setSort(sender: UISegmentedControl) {
@@ -192,7 +198,7 @@ class HomeTableViewController: CoreDataTableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destinationvc: UIViewController? = segue.destinationViewController
-        if let restauranttvc = destinationvc as? RestaurantTableViewController {
+        if let restaurantvc = destinationvc as? RestaurantTableViewController {
             let promotion = promotions[(tableView?.indexPathForSelectedRow?.row)!]
             var allPromotions: [Promotion] = []
             if let promotions = promotion.restaurant?.promotions {
@@ -200,8 +206,8 @@ class HomeTableViewController: CoreDataTableViewController {
                     allPromotions.append(promotion as! Promotion)
                 }
             }
-            restauranttvc.promotion = promotion
-            restauranttvc.allPromotions = allPromotions
+            restaurantvc.promotion = promotion
+            restaurantvc.allPromotions = allPromotions
         }
     }
 
