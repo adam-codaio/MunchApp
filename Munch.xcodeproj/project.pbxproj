@@ -24,6 +24,8 @@
 		D3C922931C06A78200D7C416 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922921C06A78200D7C416 /* DataHelper.swift */; };
 		D3C922971C07904800D7C416 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922961C07904800D7C416 /* CoreDataTableViewController.swift */; };
 		D3D6A0FE1BFF2290009E2549 /* HomeClaimsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D6A0FD1BFF2290009E2549 /* HomeClaimsTableViewCell.swift */; };
+		D3D847541C0E803100820ABF /* LinedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D847531C0E803100820ABF /* LinedView.swift */; };
+		D3D847561C0E886F00820ABF /* RestaurantClaimsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D847551C0E886F00820ABF /* RestaurantClaimsTableViewCell.swift */; };
 		F6E70CDA1BFEA7AA00CADA39 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */; };
 		F6E70CDC1BFEA7F200CADA39 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */; };
 		F6E70CDE1BFEA80D00CADA39 /* ClaimsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E70CDD1BFEA80D00CADA39 /* ClaimsTableViewController.swift */; };
@@ -52,6 +54,8 @@
 		D3C922921C06A78200D7C416 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		D3C922961C07904800D7C416 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
 		D3D6A0FD1BFF2290009E2549 /* HomeClaimsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeClaimsTableViewCell.swift; sourceTree = "<group>"; };
+		D3D847531C0E803100820ABF /* LinedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinedView.swift; sourceTree = "<group>"; };
+		D3D847551C0E886F00820ABF /* RestaurantClaimsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantClaimsTableViewCell.swift; sourceTree = "<group>"; };
 		F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		F6E70CDD1BFEA80D00CADA39 /* ClaimsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimsTableViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 		D3B1E2AF1BF7EC4300AFDFD2 /* Munch */ = {
 			isa = PBXGroup;
 			children = (
+				D3D847531C0E803100820ABF /* LinedView.swift */,
 				D3C922961C07904800D7C416 /* CoreDataTableViewController.swift */,
 				D3C922921C06A78200D7C416 /* DataHelper.swift */,
 				D3C922821C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift */,
@@ -97,6 +102,7 @@
 				D3C922841C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift */,
 				D3C922851C06A48D00D7C416 /* Restaurant.swift */,
 				D3C922861C06A48D00D7C416 /* Promotion+CoreDataProperties.swift */,
+				D3D847551C0E886F00820ABF /* RestaurantClaimsTableViewCell.swift */,
 				D3C922871C06A48D00D7C416 /* Promotion.swift */,
 				D3C922881C06A48D00D7C416 /* User+CoreDataProperties.swift */,
 				D3C922891C06A48D00D7C416 /* User.swift */,
@@ -207,6 +213,7 @@
 				F6E70CDE1BFEA80D00CADA39 /* ClaimsTableViewController.swift in Sources */,
 				F6E70CF11BFF378900CADA39 /* Util.swift in Sources */,
 				D3D6A0FE1BFF2290009E2549 /* HomeClaimsTableViewCell.swift in Sources */,
+				D3D847541C0E803100820ABF /* LinedView.swift in Sources */,
 				F6E70CDA1BFEA7AA00CADA39 /* MainTabBarController.swift in Sources */,
 				F6E70CEF1BFF329900CADA39 /* MainNavigationController.swift in Sources */,
 				D3C9228C1C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift in Sources */,
@@ -214,6 +221,7 @@
 				D3B1E2B91BF7EC4300AFDFD2 /* Munch.xcdatamodeld in Sources */,
 				D3C922901C06A48D00D7C416 /* User+CoreDataProperties.swift in Sources */,
 				D3C922911C06A48D00D7C416 /* User.swift in Sources */,
+				D3D847561C0E886F00820ABF /* RestaurantClaimsTableViewCell.swift in Sources */,
 				D3C9228E1C06A48D00D7C416 /* Promotion+CoreDataProperties.swift in Sources */,
 				F6E70CDC1BFEA7F200CADA39 /* HomeTableViewController.swift in Sources */,
 				D3C922971C07904800D7C416 /* CoreDataTableViewController.swift in Sources */,

@@ -194,7 +194,14 @@ class HomeTableViewController: CoreDataTableViewController {
         let destinationvc: UIViewController? = segue.destinationViewController
         if let restauranttvc = destinationvc as? RestaurantTableViewController {
             let promotion = promotions[(tableView?.indexPathForSelectedRow?.row)!]
+            var allPromotions: [Promotion] = []
+            if let promotions = promotion.restaurant?.promotions {
+                for promotion in promotions {
+                    allPromotions.append(promotion as! Promotion)
+                }
+            }
             restauranttvc.promotion = promotion
+            restauranttvc.allPromotions = allPromotions
         }
     }
 

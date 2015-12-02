@@ -11,9 +11,10 @@ import UIKit
 class RestaurantTableViewController: UITableViewController {
     
     private enum FontSizes: Int {
-        case Primary = 16
+        case Primary = 18
         case Secondary = 14
         case Tertiary = 12
+        case Quaternary = 10
     }
     
     private enum FontStyles: String {
@@ -30,12 +31,13 @@ class RestaurantTableViewController: UITableViewController {
     }
 
     private let mainGreen = UIColor(hex: 0x40BA91)
-    
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var restaurant: UILabel!
     @IBOutlet weak var splash: UIImageView!
+    @IBOutlet weak var address: UILabel!
     @IBOutlet weak var hours: UILabel!
     @IBOutlet weak var phone: UILabel!
+    @IBOutlet weak var currentPromotions: UILabel!
     
     var promotion: Promotion? {
         didSet {
@@ -43,21 +45,32 @@ class RestaurantTableViewController: UITableViewController {
         }
     }
     
+    var allPromotions: [Promotion]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     private func populateData() {
         distance?.text = String(promotion!.restaurant!.distance!) + " mi"
         distance?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        distance?.tintColor = Colors.LightGray
+        distance?.textColor = Colors.LightGray
         
         restaurant?.text = promotion?.restaurant?.name
         restaurant?.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
+        restaurant?.textColor = Colors.LightGray
         
-        hours?.text = promotion?.restaurant?.hours
-        hours?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Tertiary.rawValue))
-        hours?.tintColor = Colors.DarkGray
+        address?.text = promotion?.restaurant?.address
+        address?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        address?.textColor = Colors.LightGray
+        
+        hours?.text = "Open " + (promotion?.restaurant?.hours)!
+        hours?.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Quaternary.rawValue))
+        hours?.textColor = Colors.DarkGray
         
         phone?.text = promotion?.restaurant?.phone_number
-        phone?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Tertiary.rawValue))
-        phone?.tintColor = Colors.DarkGray
+        phone?.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Quaternary.rawValue))
+        phone?.textColor = Colors.DarkGray
 
         
 //        promotion.text = promotion?.promo!.uppercaseString
@@ -68,6 +81,10 @@ class RestaurantTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentPromotions?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
+        currentPromotions?.textColor = Colors.DarkGray
+        currentPromotions?.backgroundColor = Colors.LightGray
+        currentPromotions?.layer.cornerRadius = 5.0
         populateData()
 
         // Uncomment the following line to preserve selection between presentations
@@ -148,24 +165,25 @@ class RestaurantTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return (allPromotions?.count)!
     }
+    
+    private let cellIdentifier = "RestaurantClaimCell"
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+        
+        if let claimCell = cell as? RestaurantClaimsTableViewCell {
+            claimCell.last = indexPath.row == (allPromotions?.count)! - 1
+            claimCell.data = allPromotions?[indexPath.row]
+        }
+        
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

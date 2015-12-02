@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  Munch
 //
-//  Created by Adam Ginzberg on 11/25/15.
+//  Created by Adam Ginzberg on 12/1/15.
 //  Copyright © 2015 Stanford University. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu

@@ -10,6 +10,7 @@
         <relationship name="userClaims" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserClaim" inverseName="promotion" inverseEntity="UserClaim" syncable="YES"/>
     </entity>
     <entity name="Restaurant" representedClassName=".Restaurant" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="distance" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="hours" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,9 +29,9 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="userClaims" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Restaurant" positionX="-72" positionY="-99" width="128" height="118"/>
+        <element name="Promotion" positionX="-306" positionY="-81" width="128" height="73"/>
+        <element name="Restaurant" positionX="-72" positionY="-99" width="128" height="133"/>
         <element name="User" positionX="90" positionY="-34" width="128" height="88"/>
-        <element name="Promotion" positionX="-306" positionY="-81" width="128" height="28"/>
-        <element name="UserClaim" positionX="-117" positionY="98" width="128" height="28"/>
+        <element name="UserClaim" positionX="-126" positionY="171" width="128" height="73"/>
     </elements>
 </model>
