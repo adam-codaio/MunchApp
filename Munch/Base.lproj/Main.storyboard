@@ -171,19 +171,85 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrentClaimCell" id="ugw-eG-Ws2" customClass="CurrentClaimsTableViewCell" customModule="Munch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CurrentClaimCell" rowHeight="102" id="ugw-eG-Ws2" customClass="CurrentClaimsTableViewCell" customModule="Munch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="102"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ugw-eG-Ws2" id="NhO-ez-NFu">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="101.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iWk-g2-f5W">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2o-u6-Mo1">
+                                            <rect key="frame" x="8" y="46" width="350" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="CsR-Qu-0GQ"/>
+                                                <constraint firstAttribute="width" constant="350" id="k7g-dd-Mx9"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qbr-X2-7AU">
+                                            <rect key="frame" x="8" y="25.5" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISh-7X-VBW">
+                                            <rect key="frame" x="0.0" y="78" width="86" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j04-Xo-N31">
+                                            <rect key="frame" x="524" y="35" width="68" height="30"/>
+                                            <state key="normal" title=" REDEEM "/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="iWk-g2-f5W" firstAttribute="leading" secondItem="NhO-ez-NFu" secondAttribute="leadingMargin" constant="-8" id="0Sx-V6-fRf"/>
+                                        <constraint firstItem="iWk-g2-f5W" firstAttribute="centerY" secondItem="NhO-ez-NFu" secondAttribute="centerY" constant="-1.5" id="5lX-o2-Gxg"/>
+                                        <constraint firstItem="iWk-g2-f5W" firstAttribute="centerX" secondItem="NhO-ez-NFu" secondAttribute="centerX" id="F4G-2S-DxT"/>
+                                        <constraint firstItem="k2o-u6-Mo1" firstAttribute="top" secondItem="Qbr-X2-7AU" secondAttribute="bottom" id="Fgq-g0-o0W"/>
+                                        <constraint firstAttribute="trailing" secondItem="iWk-g2-f5W" secondAttribute="trailing" id="GJt-b8-vxW"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="iWk-g2-f5W" secondAttribute="bottom" constant="-5" id="GnK-Py-DAh"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="iWk-g2-f5W" secondAttribute="bottom" constant="-5.5" id="OgW-Xf-grj"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="iWk-g2-f5W" secondAttribute="trailing" constant="-8" id="RvA-Vw-rcr"/>
+                                        <constraint firstItem="j04-Xo-N31" firstAttribute="leading" secondItem="iWk-g2-f5W" secondAttribute="trailing" constant="-84" id="X4B-vV-3rw"/>
+                                        <constraint firstItem="k2o-u6-Mo1" firstAttribute="leading" secondItem="Qbr-X2-7AU" secondAttribute="leading" id="ZQw-gM-AXV"/>
+                                        <constraint firstItem="j04-Xo-N31" firstAttribute="centerY" secondItem="iWk-g2-f5W" secondAttribute="centerY" id="a8J-Fi-Cyz"/>
+                                        <constraint firstItem="iWk-g2-f5W" firstAttribute="leading" secondItem="NhO-ez-NFu" secondAttribute="leading" id="iTb-BU-imw"/>
+                                        <constraint firstItem="k2o-u6-Mo1" firstAttribute="leading" secondItem="NhO-ez-NFu" secondAttribute="leadingMargin" id="ufM-OQ-Bh1"/>
+                                        <constraint firstItem="j04-Xo-N31" firstAttribute="leading" secondItem="iWk-g2-f5W" secondAttribute="trailing" constant="-76" id="ySt-2g-8O4"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="k2o-u6-Mo1" secondAttribute="bottom" constant="26.5" id="z9t-dG-yWK"/>
+                                        <constraint firstItem="iWk-g2-f5W" firstAttribute="top" secondItem="NhO-ez-NFu" secondAttribute="top" id="zII-fU-ur5"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="0Sx-V6-fRf"/>
+                                            <exclude reference="GJt-b8-vxW"/>
+                                            <exclude reference="OgW-Xf-grj"/>
+                                            <exclude reference="iTb-BU-imw"/>
+                                            <exclude reference="zII-fU-ur5"/>
+                                            <exclude reference="X4B-vV-3rw"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="expires" destination="ISh-7X-VBW" id="G1D-pU-fmV"/>
+                                    <outlet property="promotion" destination="Qbr-X2-7AU" id="8kJ-9S-W50"/>
+                                    <outlet property="redeem" destination="j04-Xo-N31" id="Udq-rk-Uxl"/>
+                                    <outlet property="restaurant" destination="k2o-u6-Mo1" id="TTr-cN-gfX"/>
+                                    <outlet property="splash" destination="iWk-g2-f5W" id="AxX-P2-gut"/>
+                                </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PastClaimCell" rowHeight="120" id="qJE-Od-IRy" customClass="PastClaimsTableViewCell" customModule="Munch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="600" height="120"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PastClaimCell" rowHeight="102" id="qJE-Od-IRy" customClass="PastClaimsTableViewCell" customModule="Munch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="130" width="600" height="102"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qJE-Od-IRy" id="hw1-7J-012">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="119.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="101.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class ClaimsTableViewController: UITableViewController {
+class ClaimsTableViewController: CoreDataTableViewController {
     
     private struct Colors {
         static let Green = UIColor(hex: 0x40BA91)
@@ -47,14 +47,21 @@ class ClaimsTableViewController: UITableViewController {
         managedObjectContext?.performBlockAndWait {
             let allClaims = UserClaim.allClaims(inManagedObjectContext: self.managedObjectContext!)
             let now = NSDate(timeIntervalSinceNow: 0)
+            self.currentClaims = []
+            self.pastClaims = []
             for claim in allClaims {
-                if claim.is_redeemed! == 0 && claim.promotion!.expiry!.compare(now) == NSComparisonResult.OrderedAscending {
+                if claim.is_redeemed! == 0 && claim.promotion!.expiry!.compare(now) == NSComparisonResult.OrderedDescending {
                     self.currentClaims.append(claim)
                 } else {
                     self.pastClaims.append(claim)
                 }
             }
         }
+        tableView.reloadData()
+    }
+    
+    //makes the spacing good on landscape devices
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         tableView.reloadData()
     }
     
@@ -93,18 +100,23 @@ class ClaimsTableViewController: UITableViewController {
         return headerTitles[section]
     }
     
-    //TODO: Fix these headers
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let title = UILabel()
-        let view = UIView()
-        title.frame = CGRectMake(20, 8, 320, 20)
-        title.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
-        title.text = self.tableView(tableView, titleForHeaderInSection: section)
-        title.textColor = Colors.DarkGray
-        view.addSubview(title)
-        view.backgroundColor = Colors.LightGray
-        return view
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        //hack
+        return 102
     }
+    
+//    //TODO: Fix these headers
+//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let title = UILabel()
+//        let view = UIView()
+//        title.frame = CGRectMake(20, 8, 320, 20)
+//        title.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
+//        title.text = self.tableView(tableView, titleForHeaderInSection: section)
+//        title.textColor = Colors.DarkGray
+//        view.addSubview(title)
+//        view.backgroundColor = Colors.LightGray
+//        return view
+//    }
     
     private let currentClaim = "CurrentClaimCell"
     private let pastClaim = "PastClaimCell"

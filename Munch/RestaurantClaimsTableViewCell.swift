@@ -55,6 +55,7 @@ class RestaurantClaimsTableViewCell: UITableViewCell {
             claim.backgroundColor = Colors.Green
         }
         claim.layer.cornerRadius = 8.0
+        claim.titleLabel?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
     }
     
     override func drawRect(rect: CGRect) {

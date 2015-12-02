@@ -108,8 +108,8 @@ class RestaurantTableViewController: CoreDataTableViewController {
         let description = currPromotion.promo!
         let restaurant = currPromotion.restaurant!.name!
         let timeFormatter = NSDateFormatter()
-        timeFormatter.dateFormat = "hh:mm a"
-        let expiryTime = timeFormatter.stringFromDate(currPromotion.expiry!)
+        timeFormatter.dateFormat = "h:mm a"
+        let expiryTime = timeFormatter.stringFromDate(currPromotion.expiry!).lowercaseString
         let alert = UIAlertController(
             title: "",
             message: "",
