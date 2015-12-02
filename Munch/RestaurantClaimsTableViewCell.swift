@@ -35,6 +35,8 @@ class RestaurantClaimsTableViewCell: UITableViewCell {
     
     var last = false
     
+    var claimed: Bool = false
+    
     @IBOutlet weak var promo: UILabel!
     @IBOutlet weak var claim: UIButton!
     
@@ -43,8 +45,15 @@ class RestaurantClaimsTableViewCell: UITableViewCell {
         promo.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
         promo.textColor = Colors.DarkGray
         
-        claim.tintColor = Colors.LightGray
-        claim.backgroundColor = Colors.Green
+        if claimed {
+            claim.setTitle(" CLAIMED ", forState: .Normal)
+            claim.enabled = false
+            claim.tintColor = Colors.DarkGray
+            claim.backgroundColor = Colors.LightGray
+        } else {
+            claim.tintColor = Colors.LightGray
+            claim.backgroundColor = Colors.Green
+        }
         claim.layer.cornerRadius = 8.0
     }
     

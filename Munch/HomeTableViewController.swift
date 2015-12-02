@@ -208,6 +208,7 @@ class HomeTableViewController: CoreDataTableViewController {
             }
             restaurantvc.promotion = promotion
             restaurantvc.allPromotions = allPromotions
+            restaurantvc.context = managedObjectContext
         }
     }
 

@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let dataHelper = DataHelper(context: managedObjectContext)
         dataHelper.seedDataStore()
-        
         self.window?.tintColor = Colors.Green
 
         //print functions to make sure database is seeding correctly

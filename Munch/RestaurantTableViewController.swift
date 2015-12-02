@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class RestaurantTableViewController: UITableViewController {
+class RestaurantTableViewController: CoreDataTableViewController {
     
     private enum FontSizes: Int {
         case Primary = 18
@@ -50,6 +51,8 @@ class RestaurantTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+    
+    var context: NSManagedObjectContext?
     
     private func populateData() {
         distance?.text = String(promotion!.restaurant!.distance!) + " mi"
@@ -100,11 +103,16 @@ class RestaurantTableViewController: UITableViewController {
     }
 
     @IBAction func attemptClaim(sender: UIButton) {
-        //TODO: Don't hard code
-        let description = "$1 Pizza Slices"
+        //LOL
+        let currPromotion = allPromotions![tableView.indexPathForCell((sender.superview?.superview?.superview as? RestaurantClaimsTableViewCell)!)!.row]
+        let description = currPromotion.promo!
+        let restaurant = currPromotion.restaurant!.name!
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateFormat = "hh:mm a"
+        let expiryTime = timeFormatter.stringFromDate(currPromotion.expiry!)
         let alert = UIAlertController(
-            title: "", //"Are you sure you want to claim:",
-            message: "", //"\(description) (expires at 7:30pm)",
+            title: "",
+            message: "",
             preferredStyle: UIAlertControllerStyle.Alert
         )
         
@@ -112,14 +120,14 @@ class RestaurantTableViewController: UITableViewController {
         paragraphStyle.alignment = NSTextAlignment.Center
         
         let messageText = NSMutableAttributedString(
-            string: "Are you sure you want to claim: \n\n \(description) \n Pizza My Heart \n\n Expires at 7:30 pm",
+            string: "Are you sure you want to claim: \n\n \(description) \n \(restaurant) \n\n Expires at \(expiryTime)",
             attributes: [
                 NSParagraphStyleAttributeName: paragraphStyle,
                 NSFontAttributeName : UIFont.preferredFontForTextStyle(UIFontTextStyleBody),
                 NSForegroundColorAttributeName : UIColor.blackColor()
             ]
         )
-        let expireRange = (messageText.string as NSString).rangeOfString("Expires at 7:30 pm")
+        let expireRange = (messageText.string as NSString).rangeOfString("Expires at \(expiryTime)")
         messageText.addAttribute(NSForegroundColorAttributeName, value: mainGreen, range: expireRange)
 
         alert.setValue(messageText, forKey: "attributedMessage")
@@ -128,7 +136,7 @@ class RestaurantTableViewController: UITableViewController {
             title: "Yes",
             style: .Default)
             { [weak weakSelf = self] (action: UIAlertAction) -> Void in
-                weakSelf?.confirmClaim(description)
+                weakSelf?.confirmClaim(currPromotion)
             }
         )
         
@@ -146,10 +154,19 @@ class RestaurantTableViewController: UITableViewController {
         attemptClaim(sender)
     }
     
-    private func confirmClaim(description: String) {
+    private func confirmClaim(promotion: Promotion) {
+        context?.performBlockAndWait {
+            //This returns a message on success or failure
+            //TODO: check whether the promotion can still be claimed
+            let message = Promotion.claimPromotion(inManagedObjectContext: self.context!, promotion: promotion)
+            if message == "Success" {
+                self.tableView.reloadData()
+            }
+        }
+        
         let alert = UIAlertController(
             title: "Claimed!",
-            message: "\(description) from Pizza My Heart",
+            message: "\(promotion.promo!) from \(promotion.restaurant!.name!)",
             preferredStyle: UIAlertControllerStyle.Alert
         )
         
@@ -178,8 +195,18 @@ class RestaurantTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         
         if let claimCell = cell as? RestaurantClaimsTableViewCell {
+            
+            let userRequest = NSFetchRequest(entityName: "User")
+            let user = (try? context!.executeFetchRequest(userRequest))?.first as? User
+            let currPromotion = allPromotions![indexPath.row]
+            let userClaimRequest = NSFetchRequest(entityName: "UserClaim")
+            userClaimRequest.predicate = NSPredicate(format: "user=%@ and promotion=%@", user!, currPromotion)
+            let userClaims = (try? context!.executeFetchRequest(userClaimRequest)) as? [UserClaim]
+            claimCell.claimed = userClaims!.count != 0
+            
             claimCell.last = indexPath.row == (allPromotions?.count)! - 1
             claimCell.data = allPromotions?[indexPath.row]
+
         }
         
         return cell
