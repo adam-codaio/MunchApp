@@ -66,10 +66,12 @@ class ClaimsTableViewController: CoreDataTableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = true
         refresh()
     }
     
     override func viewDidLoad() {
+        self.navigationController?.navigationBarHidden = true
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
@@ -77,6 +79,10 @@ class ClaimsTableViewController: CoreDataTableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
     }
 
     // MARK: - Table view data source

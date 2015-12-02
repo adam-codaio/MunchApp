@@ -171,12 +171,24 @@ class RestaurantTableViewController: CoreDataTableViewController {
         )
         
         alert.addAction(UIAlertAction(
-            title: "Continue",
-            style: .Default,
+            title: "Go to Claims",
+            style: .Default)
+            { [weak weakSelf = self] (action: UIAlertAction) -> Void in
+                weakSelf?.segueToClaims()
+            }
+        )
+        
+        alert.addAction(UIAlertAction(
+            title: "Exit",
+            style: .Cancel,
             handler: nil)
         )
         
         presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    private func segueToClaims() {
+        performSegueWithIdentifier("GoToClaims", sender: self)
     }
     
     // MARK: - Table view data source

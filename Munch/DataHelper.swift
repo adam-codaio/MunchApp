@@ -97,7 +97,7 @@ public class DataHelper {
             (id: 2, promo: "$1 Pizza Slices", restaurant: pmh, repetition: 45, expiry: NSDate(timeIntervalSinceNow: 7200), value: 1.99),
             (id: 3, promo: "Buy One get One Free", restaurant: cream, repetition: 20, expiry: NSDate(timeIntervalSinceNow: 4800), value: 2.99),
             (id: 4, promo: "$15 Soup and Salad Deal", restaurant: lyfe, repetition: 10, expiry: NSDate(timeIntervalSinceNow: 7200), value: 2.00),
-            (id: 5, promo: "Buy 2 Carnitas Tacos get 1 Free", restaurant: tacolicious, repetition: 30, expiry: NSDate(timeIntervalSinceNow: 7200), value: 1.50),
+            (id: 5, promo: "Buy 2 Tacos get 1 Free", restaurant: tacolicious, repetition: 30, expiry: NSDate(timeIntervalSinceNow: 7200), value: 1.50),
             (id: 6, promo: "$3 Off Caballero Burrito", restaurant: sushirrito, repetition: 8, expiry: NSDate(timeIntervalSinceNow: 9600), value: 3.00),
             (id: 7, promo: "$3 Guacamole", restaurant: tacolicious, repetition: 15, expiry: NSDate(timeIntervalSinceNow: 0), value: 3.50),
             (id: 8, promo: "1/2 Off Sugar Cookies", restaurant: cream, repetition: 20, expiry: NSDate(timeIntervalSinceNow: 0), value: 0.50)
