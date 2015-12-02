@@ -7,9 +7,61 @@
 //
 
 import UIKit
+import CoreData
 
 class ClaimsTableViewController: UITableViewController {
-
+    
+    private struct Colors {
+        static let Green = UIColor(hex: 0x40BA91)
+        static let Orange = UIColor(hex: 0xFF9900)
+        static let LightGray = UIColor(hex: 0xF4F5F7)
+        static let DarkGray = UIColor(hex: 0x8C868E)
+    }
+    
+    private enum FontSizes: Int {
+        case Primary = 14
+        case Secondary = 11
+    }
+    
+    private enum FontStyles: String {
+        case Primary = "AvenirNext-Bold"
+        case Secondary = "AvenirNext-DemiBold"
+        case Tertiary = "AvenirNext-Regular"
+    }
+    
+    var managedObjectContext: NSManagedObjectContext? = AppDelegate.managedObjectContext
+    
+    var currentClaims = [UserClaim]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    var pastClaims = [UserClaim]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    private func refresh() {
+        managedObjectContext?.performBlockAndWait {
+            let allClaims = UserClaim.allClaims(inManagedObjectContext: self.managedObjectContext!)
+            let now = NSDate(timeIntervalSinceNow: 0)
+            for claim in allClaims {
+                if claim.is_redeemed! == 0 && claim.promotion!.expiry!.compare(now) == NSComparisonResult.OrderedAscending {
+                    self.currentClaims.append(claim)
+                } else {
+                    self.pastClaims.append(claim)
+                }
+            }
+        }
+        tableView.reloadData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        refresh()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,32 +72,62 @@ class ClaimsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return headerTitles.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        if section == 0 {
+            return currentClaims.count
+        } else if section == 1 {
+            return pastClaims.count
+        }
         return 0
     }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    private let headerTitles = ["Current Claims", "Past Claims"]
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return headerTitles[section]
     }
-    */
+    
+    //TODO: Fix these headers
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let title = UILabel()
+        let view = UIView()
+        title.frame = CGRectMake(20, 8, 320, 20)
+        title.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
+        title.text = self.tableView(tableView, titleForHeaderInSection: section)
+        title.textColor = Colors.DarkGray
+        view.addSubview(title)
+        view.backgroundColor = Colors.LightGray
+        return view
+    }
+    
+    private let currentClaim = "CurrentClaimCell"
+    private let pastClaim = "PastClaimCell"
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(currentClaim, forIndexPath: indexPath)
+            
+            if let currentCell = cell as? CurrentClaimsTableViewCell {
+                currentCell.data = currentClaims[indexPath.row]
+            }
+            return cell
+        } else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(pastClaim, forIndexPath: indexPath)
+            
+            if let pastCell = cell as? PastClaimsTableViewCell {
+                pastCell.data = pastClaims[indexPath.row]
+            }
+            return cell
+        }
+        // Configure the cell...
+        return UITableViewCell()
+    }
 
     /*
     // Override to support conditional editing of the table view.
