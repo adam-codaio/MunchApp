@@ -66,12 +66,10 @@ class ClaimsTableViewController: CoreDataTableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
         refresh()
     }
     
     override func viewDidLoad() {
-        self.navigationController?.navigationBarHidden = true
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
@@ -146,7 +144,7 @@ class ClaimsTableViewController: CoreDataTableViewController {
         // Configure the cell...
         return UITableViewCell()
     }
-
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -182,14 +180,15 @@ class ClaimsTableViewController: CoreDataTableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let destinationvc: UIViewController? = segue.destinationViewController
+        if let redeemvc = destinationvc as? RedeemClaimViewController {
+            let currClaim = currentClaims[tableView.indexPathForCell((sender!.superview?!.superview as? CurrentClaimsTableViewCell)!)!.row]
+            redeemvc.data = currClaim
+        }
     }
-    */
 
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D33D09531C0F8E3B0033154B /* RedeemClaimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D09521C0F8E3B0033154B /* RedeemClaimViewController.swift */; };
+		D33D09551C0F94560033154B /* RedeemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D09541C0F94560033154B /* RedeemView.swift */; };
 		D3B1E2B11BF7EC4300AFDFD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B1E2B01BF7EC4300AFDFD2 /* AppDelegate.swift */; };
 		D3B1E2B31BF7EC4300AFDFD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B1E2B21BF7EC4300AFDFD2 /* ViewController.swift */; };
 		D3B1E2B61BF7EC4300AFDFD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B1E2B41BF7EC4300AFDFD2 /* Main.storyboard */; };
@@ -37,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D33D09521C0F8E3B0033154B /* RedeemClaimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemClaimViewController.swift; sourceTree = "<group>"; };
+		D33D09541C0F94560033154B /* RedeemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemView.swift; sourceTree = "<group>"; };
 		D3B1E2AD1BF7EC4300AFDFD2 /* Munch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Munch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B1E2B01BF7EC4300AFDFD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3B1E2B21BF7EC4300AFDFD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */,
 				F6E70CF01BFF378900CADA39 /* Util.swift */,
 				F6E70CDD1BFEA80D00CADA39 /* ClaimsTableViewController.swift */,
+				D33D09521C0F8E3B0033154B /* RedeemClaimViewController.swift */,
+				D33D09541C0F94560033154B /* RedeemView.swift */,
 				D3B1E2B71BF7EC4300AFDFD2 /* Munch.xcdatamodeld */,
 				D3B1E2C51BF7EC5F00AFDFD2 /* Supporting Files */,
 			);
@@ -214,6 +220,7 @@
 				D3C9228F1C06A48D00D7C416 /* Promotion.swift in Sources */,
 				D3C922931C06A78200D7C416 /* DataHelper.swift in Sources */,
 				D3C9228A1C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift in Sources */,
+				D33D09551C0F94560033154B /* RedeemView.swift in Sources */,
 				D3D8475C1C0EE1F700820ABF /* PastClaimsTableViewCell.swift in Sources */,
 				D3B1E2B11BF7EC4300AFDFD2 /* AppDelegate.swift in Sources */,
 				F6E70CF71BFF4C5C00CADA39 /* RestaurantTableViewController.swift in Sources */,
@@ -228,6 +235,7 @@
 				D3B1E2B91BF7EC4300AFDFD2 /* Munch.xcdatamodeld in Sources */,
 				D3C922901C06A48D00D7C416 /* User+CoreDataProperties.swift in Sources */,
 				D3C922911C06A48D00D7C416 /* User.swift in Sources */,
+				D33D09531C0F8E3B0033154B /* RedeemClaimViewController.swift in Sources */,
 				D3D847561C0E886F00820ABF /* RestaurantClaimsTableViewCell.swift in Sources */,
 				D3C9228E1C06A48D00D7C416 /* Promotion+CoreDataProperties.swift in Sources */,
 				F6E70CDC1BFEA7F200CADA39 /* HomeTableViewController.swift in Sources */,
