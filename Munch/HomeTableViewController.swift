@@ -99,7 +99,7 @@ class HomeTableViewController: CoreDataTableViewController {
 
     @IBAction func setLocation(sender: AnyObject) {
         alert = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
-        setMessage("Max Distance: " + String(format: "%.1f", currentDistance) + " mi")
+        setMessage("\t Max Distance: " + String(format: "%.1f", currentDistance) + " mi\n")
         
         alert.addAction(UIAlertAction(
             title: "Save",
@@ -111,21 +111,27 @@ class HomeTableViewController: CoreDataTableViewController {
         
         alert.addAction(UIAlertAction(
             title: "Cancel",
-            style: .Destructive,
+            style: .Cancel,
             handler: nil
         ))
 
         let view = UIViewController();
         
         //hard coded but im not sure how to work around, looks fine on 5s and 6s plus
-        let frame = CGRectMake(35.0, 10.0, 200.0, 85.0)
+        let frame = CGRectMake(35.0, 15.0, 200.0, 85.0)
         slider.frame = frame
         slider.minimumValue = 0
         slider.maximumValue = Float(defaultMaxDistance)
         slider.value = Float(currentDistance)
-        slider.minimumValueImage = UIImage(named: "turtle")
+        slider.minimumValueImage = UIImage(named: "tortoise")
         slider.maximumValueImage = UIImage(named: "hare")
         slider.addTarget(self, action: "sliderValueChanged:", forControlEvents: .ValueChanged)
+        
+        let subview = alert.view.subviews.first! as UIView
+        let one = subview.subviews.first!.subviews.first!
+        one.backgroundColor = UIColor.whiteColor()
+        let actions = one.subviews[2]
+        actions.backgroundColor = UIColor(hex: 0xF4F5F7)
         
         view.view.addSubview(slider)
         alert.view.addSubview(view.view)
@@ -134,16 +140,19 @@ class HomeTableViewController: CoreDataTableViewController {
     }
     
     func sliderValueChanged(sender: UISlider) {
-        setMessage("Max Distance: " + String(format: "%.1f", sender.value) + " mi")
+        setMessage("\t Max Distance: " + String(format: "%.1f", sender.value) + " mi\n")
     }
     
     private func setMessage(message: String) {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.Left
+        
         let messageText = NSMutableAttributedString(
             string: message,
             attributes: [
-                NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody),
-                NSForegroundColorAttributeName: Colors.DarkGray
-            ]
+                NSParagraphStyleAttributeName: paragraphStyle,
+                NSFontAttributeName : UIFont.systemFontOfSize(18),
+                NSForegroundColorAttributeName : Colors.DarkGray            ]
         )
         alert.setValue(messageText, forKey: "attributedMessage")
     }
