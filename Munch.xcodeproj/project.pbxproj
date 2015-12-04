@@ -32,6 +32,7 @@
 		D3D8475C1C0EE1F700820ABF /* PastClaimsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8475B1C0EE1F700820ABF /* PastClaimsTableViewCell.swift */; };
 		F682DF1F1C12023E00643045 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DF1E1C12023E00643045 /* ActivityViewController.swift */; };
 		F682DF211C1202B400643045 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DF201C1202B400643045 /* ActivityView.swift */; };
+		F682DF231C12211300643045 /* ActivityGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DF221C12211300643045 /* ActivityGraphView.swift */; };
 		F6E70CDA1BFEA7AA00CADA39 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */; };
 		F6E70CDC1BFEA7F200CADA39 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */; };
 		F6E70CDE1BFEA80D00CADA39 /* ClaimsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E70CDD1BFEA80D00CADA39 /* ClaimsTableViewController.swift */; };
@@ -68,6 +69,7 @@
 		D3D8475B1C0EE1F700820ABF /* PastClaimsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastClaimsTableViewCell.swift; sourceTree = "<group>"; };
 		F682DF1E1C12023E00643045 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		F682DF201C1202B400643045 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		F682DF221C12211300643045 /* ActivityGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityGraphView.swift; sourceTree = "<group>"; };
 		F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		F6E70CDD1BFEA80D00CADA39 /* ClaimsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimsTableViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				D3D6A0FD1BFF2290009E2549 /* HomeClaimsTableViewCell.swift */,
 				F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */,
 				F682DF1E1C12023E00643045 /* ActivityViewController.swift */,
+				F682DF221C12211300643045 /* ActivityGraphView.swift */,
 				F682DF201C1202B400643045 /* ActivityView.swift */,
 				F6E70CF01BFF378900CADA39 /* Util.swift */,
 				F6E70CDD1BFEA80D00CADA39 /* ClaimsTableViewController.swift */,
@@ -190,7 +193,7 @@
 				TargetAttributes = {
 					D3B1E2AC1BF7EC4300AFDFD2 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = JKTF3LYPY3;
+						DevelopmentTeam = CC8RH4GF8Q;
 					};
 				};
 			};
@@ -245,6 +248,7 @@
 				D3D847541C0E803100820ABF /* LinedView.swift in Sources */,
 				F6E70CDA1BFEA7AA00CADA39 /* MainTabBarController.swift in Sources */,
 				F6E70CEF1BFF329900CADA39 /* MainNavigationController.swift in Sources */,
+				F682DF231C12211300643045 /* ActivityGraphView.swift in Sources */,
 				D3C9228C1C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift in Sources */,
 				D3C9228D1C06A48D00D7C416 /* Restaurant.swift in Sources */,
 				D3B1E2B91BF7EC4300AFDFD2 /* Munch.xcdatamodeld in Sources */,
@@ -370,10 +374,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Munch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cs193p.ginzberg.Munch;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cs193p.alextran.Munch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -381,10 +388,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Munch/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cs193p.ginzberg.Munch;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cs193p.alextran.Munch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

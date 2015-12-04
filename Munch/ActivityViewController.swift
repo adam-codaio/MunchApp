@@ -56,9 +56,11 @@ class ActivityViewController: UIViewController {
         
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
-        
-        reloadData()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        reloadData()
     }
 
     override func didReceiveMemoryWarning() {
