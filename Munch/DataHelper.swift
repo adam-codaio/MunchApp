@@ -26,7 +26,7 @@ public class DataHelper {
     
     private func seedUsers() {
         let users = [
-            (name: "Alexandero Tran", rating: 2.3)
+            (name: "Alexandero Tran", rating: 2.5)
         ]
         
         for user in users {
@@ -100,7 +100,7 @@ public class DataHelper {
             (id: 5, promo: "Buy 2 Tacos get 1 Free", restaurant: tacolicious, repetition: 30, expiry: NSDate(timeIntervalSinceNow: 7200), value: 1.50),
             (id: 6, promo: "$3 Off Caballero Burrito", restaurant: sushirrito, repetition: 8, expiry: NSDate(timeIntervalSinceNow: 9600), value: 3.00),
             (id: 7, promo: "$3 Guacamole", restaurant: tacolicious, repetition: 15, expiry: NSDate(timeIntervalSinceNow: 0), value: 3.50),
-            (id: 8, promo: "1/2 Off Sugar Cookies", restaurant: cream, repetition: 20, expiry: NSDate(timeIntervalSinceNow: 0), value: 0.50)
+            (id: 8, promo: "1/2 Off Sugar Cookies", restaurant: cream, repetition: 20, expiry: NSDate(timeIntervalSinceNow: 0), value: 1.50)
         ]
         
         for promotion in promotions {

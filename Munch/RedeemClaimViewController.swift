@@ -20,6 +20,7 @@ class RedeemClaimViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.titleView = Util.getLogoTitle()
         updateView()
     }
 }

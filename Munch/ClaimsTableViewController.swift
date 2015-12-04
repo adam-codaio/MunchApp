@@ -109,18 +109,28 @@ class ClaimsTableViewController: CoreDataTableViewController {
         return 102
     }
     
-//    //TODO: Fix these headers
-//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let title = UILabel()
-//        let view = UIView()
-//        title.frame = CGRectMake(20, 8, 320, 20)
-//        title.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
-//        title.text = self.tableView(tableView, titleForHeaderInSection: section)
-//        title.textColor = Colors.DarkGray
-//        view.addSubview(title)
-//        view.backgroundColor = Colors.LightGray
-//        return view
-//    }
+    //TODO: Fix these headers
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let title = UILabel()
+        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.width, 50))
+        
+        let offset: CGFloat = section == 0 ? 0 : 26
+        title.frame = CGRectMake(tableView.frame.width/2 - 60, 8 + offset, 120, 20)
+        title.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(12))
+        title.text = self.tableView(tableView, titleForHeaderInSection: section)
+        title.textColor = Colors.DarkGray
+        title.textAlignment = .Center
+        title.backgroundColor = Colors.LightGray
+        title.layer.cornerRadius = 2.0
+        title.clipsToBounds = true
+        view.addSubview(title)
+        view.backgroundColor = UIColor.whiteColor()
+        return view
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 32 : 60
+    }
     
     private let currentClaim = "CurrentClaimCell"
     private let pastClaim = "PastClaimCell"

@@ -42,6 +42,8 @@ class RedeemView: UIView {
     @IBOutlet weak var present: UILabel!
     @IBOutlet weak var scan: UILabel!
     
+    private var addedBackground = false
+    
     private func updateUI() {
         
         restaurant.text = data?.promotion?.restaurant?.name
@@ -59,6 +61,18 @@ class RedeemView: UIView {
         scan.textColor = Colors.DarkGray
 
         splash.image = UIImage(named: (data?.promotion?.restaurant?.name)!)
+        
+        if (splash != nil) {
+            splash.superview?.sendSubviewToBack(splash!)
+        }
+    
+        if (splash != nil && !addedBackground) {
+            let bg = UIView(frame: splash!.bounds)
+            bg.backgroundColor = UIColor.blackColor()
+            bg.alpha = 0.1
+            splash.addSubview(bg)
+            addedBackground = true
+        }
     }
 
     // Only override drawRect: if you perform custom drawing.

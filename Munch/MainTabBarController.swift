@@ -34,7 +34,7 @@ extension UIImage {
         let context = UIGraphicsGetCurrentContext()
         
         CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, CGRectMake(2.0, 0.0, size.width-3.0, size.height))
+        CGContextFillRect(context, CGRectMake(0.5, 0.0, size.width-1.5, size.height))
         
         //let leftBorder = CGRectMake(0.0, 0.0, 0.5, size.height)
         let rightBorder = CGRectMake(size.width-0.5, 0.0, 0.5, size.height)

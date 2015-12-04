@@ -41,6 +41,8 @@ class CurrentClaimsTableViewCell: UITableViewCell {
     @IBOutlet weak var expires: UILabel!
     @IBOutlet weak var redeem: UIButton!
     
+    private var addedBackground = false
+    
     private func updateUI() {
       
         restaurant.text = data?.promotion?.restaurant?.name
@@ -62,9 +64,19 @@ class CurrentClaimsTableViewCell: UITableViewCell {
         redeem.titleLabel?.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Tertiary.rawValue))
         redeem.tintColor = Colors.LightGray
         redeem.backgroundColor = Colors.Green
-        redeem.layer.cornerRadius = 6.0
+        redeem.layer.cornerRadius = 5.0
+        redeem.layer.borderColor = Colors.LightGray.CGColor
+        redeem.layer.borderWidth = 1
         
         splash.image = UIImage(named: (data?.promotion?.restaurant?.name)!)
+        
+        if (splash != nil && !addedBackground) {
+            let bg = UIView(frame: splash!.bounds)
+            bg.backgroundColor = UIColor.blackColor()
+            bg.alpha = 0.1
+            splash.addSubview(bg)
+            addedBackground = true
+        }
     }
 
 }

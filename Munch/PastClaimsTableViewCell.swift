@@ -47,6 +47,7 @@ class PastClaimsTableViewCell: UITableViewCell {
         promotion.text = data?.promotion?.promo!.uppercaseString
         promotion.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
         promotion.textColor = Colors.LightGray
+        promotion.layer.shadowColor = Colors.DarkGray.CGColor
         
         status.backgroundColor = UIColor.whiteColor()
         status.textColor = Colors.DarkGray
