@@ -84,20 +84,20 @@ class MainTabBarController: UITabBarController {
             switch i {
             case 0:
                 items![i].title = "Home"
-                items![i].image = UIImage(named: "home_icon.png")?.imageWithRenderingMode(.AlwaysOriginal)
-                items![i].selectedImage = UIImage(named: "home_icon.png")?.imageWithRenderingMode(.AlwaysOriginal)
+                items![i].image = UIImage(named: "home.png")?.imageWithRenderingMode(.AlwaysOriginal)
+                items![i].selectedImage = UIImage(named: "home.png")?.imageWithRenderingMode(.AlwaysOriginal)
             case 1:
                 items![i].title = "Claims"
-                items![i].image = UIImage(named: "claims_icon.png")?.imageWithRenderingMode(.AlwaysOriginal)
-                items![i].selectedImage = UIImage(named: "claims_icon.png")?.imageWithRenderingMode(.AlwaysOriginal)
+                items![i].image = UIImage(named: "claims.png")?.imageWithRenderingMode(.AlwaysOriginal)
+                items![i].selectedImage = UIImage(named: "claims.png")?.imageWithRenderingMode(.AlwaysOriginal)
             case 2:
                 items![i].title = "Analytics"
-                items![i].image = UIImage(named: "analytics_icon.png")?.imageWithRenderingMode(.AlwaysOriginal)
-                items![i].selectedImage = UIImage(named: "analytics_icon.png")?.imageWithRenderingMode(.AlwaysOriginal)
+                items![i].image = UIImage(named: "analytics.png")?.imageWithRenderingMode(.AlwaysOriginal)
+                items![i].selectedImage = UIImage(named: "analytics.png")?.imageWithRenderingMode(.AlwaysOriginal)
             case 3:
                 items![i].title = "More"
-                items![i].image = UIImage(named: "more_icon.png")?.imageWithRenderingMode(.AlwaysOriginal)
-                items![i].selectedImage = UIImage(named: "more_icon.png")?.imageWithRenderingMode(.AlwaysOriginal)
+                items![i].image = UIImage(named: "more.png")?.imageWithRenderingMode(.AlwaysOriginal)
+                items![i].selectedImage = UIImage(named: "more.png")?.imageWithRenderingMode(.AlwaysOriginal)
             default:
                 break
             }
