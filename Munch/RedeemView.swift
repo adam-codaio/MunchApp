@@ -36,6 +36,7 @@ class RedeemView: UIView {
         }
     }
     
+    
     @IBOutlet weak var splash: UIImageView!
     @IBOutlet weak var promotion: UILabel!
     @IBOutlet weak var restaurant: UILabel!
@@ -74,6 +75,7 @@ class RedeemView: UIView {
             addedBackground = true
         }
     }
+    
 
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

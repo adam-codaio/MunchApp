@@ -43,12 +43,12 @@ public class DataHelper {
     
     private func seedRestaurants() {
         let restaurants = [
-            (hours: "11:00 AM - 11:00 PM", phone_number: "(650)-752-6492", distance: 1.4, name: "Oren's Hummus Shop", address: "261 University Ave, Palo Alto, CA 94301"),
+            (hours: "11:00 AM - 11:00 PM", phone_number: "(650)-752-6492", distance: 0.2, name: "Oren's Hummus Shop", address: "261 University Ave, Palo Alto, CA 94301"),
             (hours: "11:00 AM - 12:00 AM", phone_number: "(650)-327-9400", distance: 1.3, name: "Pizza My Heart", address: "220 University Ave, Palo Alto, CA 94301"),
-            (hours: "12:00 PM - 11:00 PM", phone_number: "(650)-321-2390", distance: 1.6, name: "CREAM", address: "440 University Ave, Palo Alto, CA 94301"),
-            (hours: "7:00 AM - 9:00 PM", phone_number: "(650)-325-5933", distance: 1.4, name: "Lyfe Kitchen", address: "167 Hamilton Ave, Palo Alto, CA 94301"),
-            (hours: "11:30 AM - 10:00 PM", phone_number: "(650)-838-0500", distance: 1.4, name: "Tacolicious", address: "632 Emerson St, Palo Alto, CA 94301"),
-            (hours: "11:00 AM - 4:00 PM", phone_number: "(650)-600-9696", distance: 1.6, name: "Sushirrito", address: "448 University Ave, Palo Alto, CA 94301")
+            (hours: "12:00 PM - 11:00 PM", phone_number: "(650)-321-2390", distance: 1.7, name: "CREAM", address: "440 University Ave, Palo Alto, CA 94301"),
+            (hours: "7:00 AM - 9:00 PM", phone_number: "(650)-325-5933", distance: 0.8, name: "Lyfe Kitchen", address: "167 Hamilton Ave, Palo Alto, CA 94301"),
+            (hours: "11:30 AM - 10:00 PM", phone_number: "(650)-838-0500", distance: 3.9, name: "Tacolicious", address: "632 Emerson St, Palo Alto, CA 94301"),
+            (hours: "11:00 AM - 4:00 PM", phone_number: "(650)-600-9696", distance: 10.6, name: "Sushirrito", address: "448 University Ave, Palo Alto, CA 94301")
         ]
         for restaurant in restaurants {
             let newRestaurant = NSEntityDescription.insertNewObjectForEntityForName("Restaurant", inManagedObjectContext: context) as! Restaurant

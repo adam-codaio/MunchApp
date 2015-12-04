@@ -87,6 +87,10 @@ class HomeTableViewController: CoreDataTableViewController {
         return round(value * 10.0) / 10.0
     }
     
+    private func roundToPointFive(value: Double) -> Double {
+        return round(value * 2.0) / 2.0
+    }
+    
     private func saveDistance() {
         currentDistance = roundToOneDecimal(Double(slider.value))
         refresh()
@@ -98,8 +102,9 @@ class HomeTableViewController: CoreDataTableViewController {
     private let defaultMaxDistance = 5.0
 
     @IBAction func setLocation(sender: AnyObject) {
+        let control = UISegmentedControl()
         alert = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
-        setMessage("Max Distance: " + String(format: "%.1f", currentDistance) + " mi")
+        setMessage("Max Distance: " + String(format: "%.1f", currentDistance) + " mi\n")
         
         alert.addAction(UIAlertAction(
             title: "Save",
@@ -111,39 +116,82 @@ class HomeTableViewController: CoreDataTableViewController {
         
         alert.addAction(UIAlertAction(
             title: "Cancel",
-            style: .Destructive,
+            style: .Cancel,
             handler: nil
         ))
 
         let view = UIViewController();
         
         //hard coded but im not sure how to work around, looks fine on 5s and 6s plus
-        let frame = CGRectMake(35.0, 10.0, 200.0, 85.0)
+        let frame = CGRectMake(35.0, 15.0, 200.0, 85.0)
         slider.frame = frame
         slider.minimumValue = 0
         slider.maximumValue = Float(defaultMaxDistance)
         slider.value = Float(currentDistance)
-        slider.minimumValueImage = UIImage(named: "turtle")
+        slider.minimumValueImage = UIImage(named: "tortoise")
         slider.maximumValueImage = UIImage(named: "hare")
         slider.addTarget(self, action: "sliderValueChanged:", forControlEvents: .ValueChanged)
         
+        
+        let controlFrame = CGRectMake(170, 15, 70, 25)
+        control.frame = controlFrame
+        control.addTarget(self, action: "toggleTransportation:", forControlEvents: .ValueChanged)
+        control.insertSegmentWithImage(UIImage(named: "walk"), atIndex: 0, animated: false)
+        control.insertSegmentWithImage(UIImage(named: "car"), atIndex: 1, animated: false)
+        control.selectedSegmentIndex = 0
+        
+        
+        
+        let subview = alert.view.subviews.first! as UIView
+        let one = subview.subviews.first!.subviews.first!
+        one.backgroundColor = UIColor.whiteColor()
+        let actions = one.subviews[2]
+        actions.backgroundColor = UIColor(hex: 0xF4F5F7)
+        
         view.view.addSubview(slider)
+        view.view.addSubview(control)
         alert.view.addSubview(view.view)
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    func toggleTransportation(sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            if slider.value > 5.0 {
+                slider.value = 5.0
+                setMessage("Max Distance: " + String(format: "%.1f", slider.value) + " mi\n")
+            }
+            slider.minimumValue = 0
+            slider.maximumValue = Float(defaultMaxDistance)
+        } else {
+            slider.minimumValue = 0
+            slider.maximumValue = 25
+            let value = roundToPointFive(Double(slider.value))
+            slider.value = Float(value)
+            setMessage("Max Distance: " + String(format: "%.1f", value) + " mi\n")
+        }
+    }
+    
     func sliderValueChanged(sender: UISlider) {
-        setMessage("Max Distance: " + String(format: "%.1f", sender.value) + " mi")
+        if sender.maximumValue == 25 {
+            let value = roundToPointFive(Double(slider.value))
+            slider.value = Float(value)
+            setMessage("Max Distance: " + String(format: "%.1f", value) + " mi\n")
+        } else {
+            setMessage("Max Distance: " + String(format: "%.1f", sender.value) + " mi\n")
+        }
     }
     
     private func setMessage(message: String) {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.Left
+        
         let messageText = NSMutableAttributedString(
             string: message,
             attributes: [
-                NSFontAttributeName: UIFont.preferredFontForTextStyle(UIFontTextStyleBody),
-                NSForegroundColorAttributeName: Colors.DarkGray
-            ]
+                NSParagraphStyleAttributeName: paragraphStyle,
+                NSFontAttributeName : UIFont.systemFontOfSize(14),
+                NSForegroundColorAttributeName : Colors.DarkGray            ]
         )
         alert.setValue(messageText, forKey: "attributedMessage")
     }

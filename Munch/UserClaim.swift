@@ -23,4 +23,16 @@ class UserClaim: NSManagedObject {
         }
         return []
     }
+    
+    class func redeemClaim(inManagedObjectContext context: NSManagedObjectContext, promotion: Promotion) {
+        let userRequest = NSFetchRequest(entityName: "User")
+        //Because i'm lzy
+        let user = (try? context.executeFetchRequest(userRequest))?.first as? User
+        let claimRequest = NSFetchRequest(entityName: "UserClaim")
+        claimRequest.predicate = NSPredicate(format: "user=%@ and promotion=%@", user!, promotion)
+        if let userClaim = (try? context.executeFetchRequest(claimRequest))?.first as? UserClaim {
+            userClaim.setValue(true, forKey: "is_redeemed")
+        }
+
+    }
 }
