@@ -65,7 +65,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0Eh-ZJ-7k2">
                                     <rect key="frame" x="132" y="8" width="349" height="28"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NA-m3-lHx">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NA-m3-lHx">
                                             <rect key="frame" x="0.0" y="0.0" width="133" height="28"/>
                                             <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title=" Set Distance" image="down">
@@ -75,7 +75,7 @@
                                                 <action selector="setLocation:" destination="yDk-Zc-a59" eventType="touchUpInside" id="cj2-s3-YSQ"/>
                                             </connections>
                                         </button>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0I0-dY-Uaf">
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0I0-dY-Uaf">
                                             <rect key="frame" x="138" y="0.0" width="211" height="29"/>
                                             <segments>
                                                 <segment title="Nearby"/>
@@ -726,7 +726,7 @@
                             <constraint firstAttribute="trailing" secondItem="XeF-e0-ctv" secondAttribute="trailing" id="xZo-T2-nnb"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="More" image="more_icon.png" id="Ca8-S8-NyR"/>
+                    <tabBarItem key="tabBarItem" title="More" image="more.png" id="Ca8-S8-NyR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rWV-Jy-hRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -759,7 +759,7 @@
         <image name="analytics_icon.png" width="34" height="31"/>
         <image name="claims_icon.png" width="26" height="27"/>
         <image name="down" width="25" height="25"/>
-        <image name="more_icon.png" width="24" height="20"/>
+        <image name="more.png" width="25" height="25"/>
         <image name="qrcode-1" width="420" height="420"/>
     </resources>
 </document>
