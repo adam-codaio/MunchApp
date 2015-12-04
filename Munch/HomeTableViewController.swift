@@ -43,7 +43,7 @@ class HomeTableViewController: CoreDataTableViewController {
     private var currentSort = "Nearby"
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
+        //self.navigationController?.navigationBarHidden = true
         refresh()
     }
     
@@ -54,7 +54,8 @@ class HomeTableViewController: CoreDataTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBarHidden = true
+        self.navigationItem.titleView = Util.getLogoTitle()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         sortMech.tintColor = Colors.Green
         distanceButton.layer.cornerRadius = 8.0;
         distanceButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5.0, 0, 5.0)

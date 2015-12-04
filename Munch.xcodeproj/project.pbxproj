@@ -102,26 +102,17 @@
 		D3B1E2AF1BF7EC4300AFDFD2 /* Munch */ = {
 			isa = PBXGroup;
 			children = (
+				F62CB5D81C11976C00D7326A /* CoreData */,
 				D3D847531C0E803100820ABF /* LinedView.swift */,
-				D3C922961C07904800D7C416 /* CoreDataTableViewController.swift */,
-				D3C922921C06A78200D7C416 /* DataHelper.swift */,
-				D3C922821C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift */,
-				D3C922831C06A48D00D7C416 /* UserClaim.swift */,
 				D3D847591C0EE1E800820ABF /* CurrentClaimsTableViewCell.swift */,
 				D3D8475B1C0EE1F700820ABF /* PastClaimsTableViewCell.swift */,
-				D3C922841C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift */,
-				D3C922851C06A48D00D7C416 /* Restaurant.swift */,
-				D3C922861C06A48D00D7C416 /* Promotion+CoreDataProperties.swift */,
 				D3D847551C0E886F00820ABF /* RestaurantClaimsTableViewCell.swift */,
-				D3C922871C06A48D00D7C416 /* Promotion.swift */,
-				D3C922881C06A48D00D7C416 /* User+CoreDataProperties.swift */,
-				D3C922891C06A48D00D7C416 /* User.swift */,
 				D3B1E2B21BF7EC4300AFDFD2 /* ViewController.swift */,
 				D3B1E2B41BF7EC4300AFDFD2 /* Main.storyboard */,
 				F6E70CF61BFF4C5C00CADA39 /* RestaurantTableViewController.swift */,
 				F6E70CEE1BFF329900CADA39 /* MainNavigationController.swift */,
-				D3D6A0FD1BFF2290009E2549 /* HomeClaimsTableViewCell.swift */,
 				F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */,
+				D3D6A0FD1BFF2290009E2549 /* HomeClaimsTableViewCell.swift */,
 				F6E70CDB1BFEA7F200CADA39 /* HomeTableViewController.swift */,
 				F6E70CF01BFF378900CADA39 /* Util.swift */,
 				F6E70CDD1BFEA80D00CADA39 /* ClaimsTableViewController.swift */,
@@ -142,6 +133,23 @@
 				D3B1E2BF1BF7EC4300AFDFD2 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F62CB5D81C11976C00D7326A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				D3C922961C07904800D7C416 /* CoreDataTableViewController.swift */,
+				D3C922921C06A78200D7C416 /* DataHelper.swift */,
+				D3C922821C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift */,
+				D3C922831C06A48D00D7C416 /* UserClaim.swift */,
+				D3C922841C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift */,
+				D3C922851C06A48D00D7C416 /* Restaurant.swift */,
+				D3C922861C06A48D00D7C416 /* Promotion+CoreDataProperties.swift */,
+				D3C922871C06A48D00D7C416 /* Promotion.swift */,
+				D3C922881C06A48D00D7C416 /* User+CoreDataProperties.swift */,
+				D3C922891C06A48D00D7C416 /* User.swift */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

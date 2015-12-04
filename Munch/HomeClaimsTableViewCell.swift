@@ -39,11 +39,11 @@ class HomeClaimsTableViewCell: UITableViewCell {
     @IBOutlet weak var promotion: UILabel!
     @IBOutlet weak var splash: UIImageView!
     
+    private var addedBackground = false
 
     private func updateUI() {
         distance.text = String(data!.restaurant!.distance!) + " mi"
         distance.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        distance.tintColor = Colors.LightGray
 
         restaurant.text = data?.restaurant?.name
         restaurant.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
@@ -52,5 +52,13 @@ class HomeClaimsTableViewCell: UITableViewCell {
         promotion.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
         
         splash.image = UIImage(named: data!.restaurant!.name!)
+        
+        if (!addedBackground) {
+            let bg = UIView(frame: splash.bounds)
+            bg.backgroundColor = UIColor.blackColor()
+            bg.alpha = 0.1
+            splash.addSubview(bg)
+            addedBackground = true
+        }
     }
 }

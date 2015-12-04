@@ -61,9 +61,9 @@ class RestaurantClaimsTableViewCell: UITableViewCell {
     override func drawRect(rect: CGRect) {
         if !last {
             let path = UIBezierPath()
-            path.moveToPoint(CGPoint(x: 0.15 * self.bounds.maxX, y: self.bounds.maxY * 0.85))
-            path.addLineToPoint(CGPoint(x: 0.85 * self.bounds.maxX, y: self.bounds.maxY * 0.85))
-            path.lineWidth = 2.0
+            path.moveToPoint(CGPoint(x: 20, y: self.bounds.maxY))
+            path.addLineToPoint(CGPoint(x: self.bounds.maxX - 20, y: self.bounds.maxY))
+            path.lineWidth = 1.0
             let strokeColor = Colors.DarkGray
             strokeColor.setStroke()
             path.stroke()

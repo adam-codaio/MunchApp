@@ -54,18 +54,31 @@ class RestaurantTableViewController: CoreDataTableViewController {
     
     var context: NSManagedObjectContext?
     
+    private var addedBackground = false
+    
     private func populateData() {
+        splash?.image = UIImage(named: promotion!.restaurant!.name!)
+        splash?.superview?.sendSubviewToBack(splash!)
+        
+        if (splash != nil && !addedBackground) {
+            let bg = UIView(frame: splash!.bounds)
+            bg.backgroundColor = UIColor.blackColor()
+            bg.alpha = 0.1
+            splash.addSubview(bg)
+            addedBackground = true
+        }
+        
         distance?.text = String(promotion!.restaurant!.distance!) + " mi"
         distance?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        distance?.textColor = Colors.LightGray
+        //distance?.textColor = Colors.LightGray
         
         restaurant?.text = promotion?.restaurant?.name
         restaurant?.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
-        restaurant?.textColor = Colors.LightGray
+        //restaurant?.textColor = Colors.LightGray
         
         address?.text = promotion?.restaurant?.address
         address?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        address?.textColor = Colors.LightGray
+        //address?.textColor = Colors.LightGray
         
         hours?.text = "Open " + (promotion?.restaurant?.hours)!
         hours?.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Quaternary.rawValue))
@@ -78,17 +91,19 @@ class RestaurantTableViewController: CoreDataTableViewController {
         
 //        promotion.text = promotion?.promo!.uppercaseString
 //        promotion.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
-        
-        splash?.image = UIImage(named: promotion!.restaurant!.name!)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentPromotions?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
-        currentPromotions?.textColor = Colors.DarkGray
-        currentPromotions?.backgroundColor = Colors.LightGray
-        currentPromotions?.layer.cornerRadius = 5.0
-        populateData()
+        self.navigationItem.titleView = Util.getLogoTitle()
+        if let currentPromotions = currentPromotions {
+            currentPromotions.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+            currentPromotions.textColor = Colors.DarkGray
+            currentPromotions.backgroundColor = Colors.LightGray
+            currentPromotions.layer.cornerRadius = 3.0
+            currentPromotions.clipsToBounds = true
+            populateData()
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -104,7 +119,8 @@ class RestaurantTableViewController: CoreDataTableViewController {
 
     @IBAction func attemptClaim(sender: UIButton) {
         //LOL
-        let currPromotion = allPromotions![tableView.indexPathForCell((sender.superview?.superview?.superview as? RestaurantClaimsTableViewCell)!)!.row]
+        //lol...
+        let currPromotion = allPromotions![tableView.indexPathForCell((sender.superview?.superview as? RestaurantClaimsTableViewCell)!)!.row]
         let description = currPromotion.promo!
         let restaurant = currPromotion.restaurant!.name!
         let timeFormatter = NSDateFormatter()
@@ -123,28 +139,37 @@ class RestaurantTableViewController: CoreDataTableViewController {
             string: "Are you sure you want to claim: \n\n \(description) \n \(restaurant) \n\n Expires at \(expiryTime)",
             attributes: [
                 NSParagraphStyleAttributeName: paragraphStyle,
-                NSFontAttributeName : UIFont.preferredFontForTextStyle(UIFontTextStyleBody),
-                NSForegroundColorAttributeName : UIColor.blackColor()
-            ]
+                NSFontAttributeName : UIFont.systemFontOfSize(14),
+                NSForegroundColorAttributeName : Colors.DarkGray            ]
         )
+        let descRange = (messageText.string as NSString).rangeOfString("\(description)")
+        messageText.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(16), range: descRange)
         let expireRange = (messageText.string as NSString).rangeOfString("Expires at \(expiryTime)")
         messageText.addAttribute(NSForegroundColorAttributeName, value: mainGreen, range: expireRange)
+        messageText.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(14), range: expireRange)
 
         alert.setValue(messageText, forKey: "attributedMessage")
         
         alert.addAction(UIAlertAction(
-            title: "Yes",
+            title: "Cancel",
+            style: .Cancel,
+            handler: nil))
+        
+        
+        let claimAction = UIAlertAction(
+            title: "Claim",
             style: .Default)
             { [weak weakSelf = self] (action: UIAlertAction) -> Void in
                 weakSelf?.confirmClaim(currPromotion)
-            }
-        )
+        }
+        alert.addAction(claimAction);
         
-        alert.addAction(UIAlertAction(
-            title: "No",
-            style: .Destructive,
-            handler: nil)
-        )
+        let subview = alert.view.subviews.first! as UIView
+        let one = subview.subviews.first!.subviews.first!
+        one.backgroundColor = UIColor.whiteColor()
+        let actions = one.subviews[2]
+        actions.backgroundColor = UIColor(hex: 0xF4F5F7)
+        
         
         presentViewController(alert, animated: true, completion: nil)
     }
@@ -174,7 +199,7 @@ class RestaurantTableViewController: CoreDataTableViewController {
             title: "Go to Claims",
             style: .Default)
             { [weak weakSelf = self] (action: UIAlertAction) -> Void in
-                weakSelf?.segueToClaims()
+                weakSelf?.tabBarController?.selectedIndex = 1
             }
         )
         
@@ -183,6 +208,12 @@ class RestaurantTableViewController: CoreDataTableViewController {
             style: .Cancel,
             handler: nil)
         )
+        
+        let subview = alert.view.subviews.first! as UIView
+        let one = subview.subviews.first!.subviews.first!
+        one.backgroundColor = UIColor.whiteColor()
+        let actions = one.subviews[2]
+        actions.backgroundColor = UIColor(hex: 0xF4F5F7)
         
         presentViewController(alert, animated: true, completion: nil)
     }
