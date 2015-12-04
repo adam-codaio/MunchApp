@@ -17,5 +17,7 @@ extension User {
     @NSManaged var name: String?
     @NSManaged var rating: NSNumber?
     @NSManaged var userClaims: NSSet?
+    
+    
 
 }

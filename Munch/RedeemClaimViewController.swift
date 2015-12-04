@@ -13,13 +13,23 @@ class RedeemClaimViewController: UIViewController {
     var data: UserClaim?
     
     @IBOutlet var redeemView: RedeemView!
+    @IBOutlet weak var qrcode: UIImageView!
     
     private func updateView() {
         redeemView.data = data
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         updateView()
+        let tapGesture = UITapGestureRecognizer(target: self, action: "redeem:")
+        tapGesture.numberOfTapsRequired = 2
+        qrcode.userInteractionEnabled = true
+        qrcode.addGestureRecognizer(tapGesture)
+    }
+    
+    func redeem(sender: UIImageView) {
+        UserClaim.redeemClaim(inManagedObjectContext: AppDelegate.managedObjectContext!, promotion: (data?.promotion)!)
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

@@ -457,6 +457,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="qrcode" destination="9Ik-1w-lm3" id="nv6-4t-1Dg"/>
                         <outlet property="redeemView" destination="KSS-1f-MbR" id="8sA-cR-JgR"/>
                     </connections>
                 </viewController>
