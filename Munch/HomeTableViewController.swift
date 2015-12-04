@@ -100,6 +100,7 @@ class HomeTableViewController: CoreDataTableViewController {
     private var alert = UIAlertController()
     private var currentDistance = 2.5
     private let defaultMaxDistance = 5.0
+    private var segmentIndex = 0
 
     @IBAction func setLocation(sender: AnyObject) {
         let control = UISegmentedControl()
@@ -126,7 +127,7 @@ class HomeTableViewController: CoreDataTableViewController {
         let frame = CGRectMake(35.0, 15.0, 200.0, 85.0)
         slider.frame = frame
         slider.minimumValue = 0
-        slider.maximumValue = Float(defaultMaxDistance)
+        slider.maximumValue = segmentIndex == 0 ? 5.0 : 25.0
         slider.value = Float(currentDistance)
         slider.minimumValueImage = UIImage(named: "tortoise")
         slider.maximumValueImage = UIImage(named: "hare")
@@ -138,7 +139,7 @@ class HomeTableViewController: CoreDataTableViewController {
         control.addTarget(self, action: "toggleTransportation:", forControlEvents: .ValueChanged)
         control.insertSegmentWithImage(UIImage(named: "walk"), atIndex: 0, animated: false)
         control.insertSegmentWithImage(UIImage(named: "car"), atIndex: 1, animated: false)
-        control.selectedSegmentIndex = 0
+        control.selectedSegmentIndex = segmentIndex
         
         
         
@@ -163,12 +164,14 @@ class HomeTableViewController: CoreDataTableViewController {
             }
             slider.minimumValue = 0
             slider.maximumValue = Float(defaultMaxDistance)
+            segmentIndex = 0
         } else {
             slider.minimumValue = 0
             slider.maximumValue = 25
             let value = roundToPointFive(Double(slider.value))
             slider.value = Float(value)
             setMessage("Max Distance: " + String(format: "%.1f", value) + " mi\n")
+            segmentIndex = 1
         }
     }
     
