@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3XT-s2-YNw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3XT-s2-YNw">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -63,11 +62,11 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0Eh-ZJ-7k2">
-                                    <rect key="frame" x="132" y="8" width="349" height="28"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0Eh-ZJ-7k2">
+                                    <rect key="frame" x="132" y="8" width="337" height="28"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NA-m3-lHx">
-                                            <rect key="frame" x="0.0" y="0.0" width="133" height="28"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="121" height="28"/>
                                             <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title=" Set Distance" image="down">
                                                 <color key="titleColor" red="0.5490196078431373" green="0.52549019607843139" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
@@ -77,7 +76,7 @@
                                             </connections>
                                         </button>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0I0-dY-Uaf">
-                                            <rect key="frame" x="138" y="0.0" width="211" height="29"/>
+                                            <rect key="frame" x="126" y="0.0" width="211" height="29"/>
                                             <segments>
                                                 <segment title="Nearby"/>
                                                 <segment title="Recommended"/>
@@ -821,33 +820,38 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E1Z-82-COF" customClass="LinedView" customModule="Munch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="158" width="600" height="140"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="preset_graph" translatesAutoresizingMaskIntoConstraints="NO" id="wN6-IJ-y7l">
-                                        <rect key="frame" x="135" y="30" width="331" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="PlH-vC-qOQ"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coupons Used in the Last Week" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XE7-r4-kad">
-                                        <rect key="frame" x="197" y="9" width="206.5" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coupons Claimed in the Last Week" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XE7-r4-kad">
+                                        <rect key="frame" x="188" y="9" width="225" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZIL-AJ-NST">
+                                        <rect key="frame" x="150" y="30" width="300" height="100"/>
+                                        <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="mgH-B0-hEo"/>
+                                            <constraint firstAttribute="width" constant="300" id="oLb-rB-Ybb"/>
+                                        </constraints>
+                                    </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="preset_graph" translatesAutoresizingMaskIntoConstraints="NO" id="rMd-cV-S5w">
+                                        <rect key="frame" x="150" y="30" width="300" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="7VP-Nv-l2b"/>
+                                            <constraint firstAttribute="height" constant="100" id="JEU-Hg-mkh"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="wN6-IJ-y7l" firstAttribute="width" secondItem="E1Z-82-COF" secondAttribute="height" multiplier="269:181" id="Rwd-RY-QhO"/>
-                                    <constraint firstItem="wN6-IJ-y7l" firstAttribute="top" secondItem="E1Z-82-COF" secondAttribute="top" constant="30" id="W5c-HC-JJJ"/>
+                                    <constraint firstItem="rMd-cV-S5w" firstAttribute="centerX" secondItem="E1Z-82-COF" secondAttribute="centerX" id="3eF-FD-bXO"/>
+                                    <constraint firstItem="rMd-cV-S5w" firstAttribute="top" secondItem="E1Z-82-COF" secondAttribute="top" constant="30" id="8ft-ao-DOS"/>
+                                    <constraint firstItem="ZIL-AJ-NST" firstAttribute="centerX" secondItem="E1Z-82-COF" secondAttribute="centerX" id="KlK-0O-hcC"/>
+                                    <constraint firstItem="ZIL-AJ-NST" firstAttribute="top" secondItem="E1Z-82-COF" secondAttribute="top" constant="30" id="Qyj-wu-lY5"/>
                                     <constraint firstAttribute="height" constant="140" id="Wd6-xm-uBR"/>
                                     <constraint firstItem="XE7-r4-kad" firstAttribute="centerX" secondItem="E1Z-82-COF" secondAttribute="centerX" id="c0J-8r-SoY"/>
-                                    <constraint firstItem="wN6-IJ-y7l" firstAttribute="centerX" secondItem="E1Z-82-COF" secondAttribute="centerX" id="cN3-1M-G0Y"/>
                                     <constraint firstItem="XE7-r4-kad" firstAttribute="top" secondItem="E1Z-82-COF" secondAttribute="top" constant="9" id="ma3-IM-dXb"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Rwd-RY-QhO"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jGO-48-zUZ">
                                 <rect key="frame" x="0.0" y="306" width="600" height="150"/>
@@ -1132,12 +1136,11 @@
     </scenes>
     <resources>
         <image name="claims_icon.png" width="26" height="27"/>
-        <image name="drop down arrow" width="13" height="8"/>
+        <image name="down" width="25" height="25"/>
         <image name="moneybag" width="256" height="256"/>
+        <image name="more.png" width="25" height="25"/>
         <image name="preset_graph" width="331" height="186"/>
         <image name="preset_rating" width="224" height="64"/>
-        <image name="down" width="25" height="25"/>
-        <image name="more.png" width="25" height="25"/>
         <image name="qrcode-1" width="420" height="420"/>
     </resources>
 </document>

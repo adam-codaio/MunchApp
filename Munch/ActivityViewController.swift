@@ -23,6 +23,9 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var ccLabel: UILabel!
     @IBOutlet weak var crLabel: UILabel!
     @IBOutlet weak var ceLabel: UILabel!
+    
+    //@IBOutlet weak var graphView: ActivityGraphView!
+    
     @IBAction func filterChanged(sender: UISegmentedControl) {
         filter = filters[sender.selectedSegmentIndex]
         reloadData()
@@ -47,11 +50,11 @@ class ActivityViewController: UIViewController {
         expiredLabel.layer.cornerRadius = 9
         expiredLabel.clipsToBounds = true
         
-        ccLabel.layer.cornerRadius = 5
+        ccLabel.layer.cornerRadius = 4
         ccLabel.clipsToBounds = true
-        crLabel.layer.cornerRadius = 5
+        crLabel.layer.cornerRadius = 4
         crLabel.clipsToBounds = true
-        ceLabel.layer.cornerRadius = 5
+        ceLabel.layer.cornerRadius = 4
         ceLabel.clipsToBounds = true
         
         formatter.maximumFractionDigits = 2
@@ -103,7 +106,8 @@ class ActivityViewController: UIViewController {
         
         
         inTheLastLabel.text = "in the last " + filter.lowercaseString
-        couponsUsedLabel.text = "Coupons Used in the Last " + filter
+        couponsUsedLabel.text = "Coupons Claimed in the Last " + filter
+        //graphView.filter = filter
     }
     
     
