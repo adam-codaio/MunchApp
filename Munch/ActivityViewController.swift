@@ -59,6 +59,7 @@ class ActivityViewController: UIViewController {
         
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
+        formatter.minimumIntegerDigits = 1
         // Do any additional setup after loading the view.
     }
     
@@ -83,10 +84,21 @@ class ActivityViewController: UIViewController {
             var redeemedClaims = 0
             var expiredClaims = 0
 
+            let cutoff: NSDate
+            if weakSelf?.filter == "Week" {
+                cutoff = NSDate (timeIntervalSinceNow: -60*60*24*7)
+            } else if weakSelf?.filter == "Month" {
+                cutoff = NSDate (timeIntervalSinceNow: -60*60*24*28)
+            } else {
+                cutoff = NSDate (timeIntervalSinceNow: -60*60*24*365)
+            }
+            
             for claim in allClaims {
                 if !(claim.is_redeemed! == 0 && claim.promotion!.expiry!.compare(now) == NSComparisonResult.OrderedDescending) {
                     if (claim.is_redeemed! == 1) {
-                        moneySaved += (claim.promotion?.retail_value!.doubleValue)!
+                        if (claim.claim_time!.compare(cutoff) == NSComparisonResult.OrderedDescending) {
+                            moneySaved += (claim.promotion?.retail_value!.doubleValue)!
+                        }
                         redeemedClaims += 1
                     } else {
                         expiredClaims += 1
