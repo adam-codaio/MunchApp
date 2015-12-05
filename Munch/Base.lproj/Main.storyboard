@@ -1132,12 +1132,11 @@
     </scenes>
     <resources>
         <image name="claims_icon.png" width="26" height="27"/>
-        <image name="drop down arrow" width="13" height="8"/>
+        <image name="down" width="25" height="25"/>
         <image name="moneybag" width="256" height="256"/>
+        <image name="more.png" width="25" height="25"/>
         <image name="preset_graph" width="331" height="186"/>
         <image name="preset_rating" width="224" height="64"/>
-        <image name="down" width="25" height="25"/>
-        <image name="more.png" width="25" height="25"/>
         <image name="qrcode-1" width="420" height="420"/>
     </resources>
 </document>

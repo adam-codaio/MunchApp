@@ -143,8 +143,8 @@ public class DataHelper {
         
         let claims = [
             (claim_time: NSDate(timeIntervalSinceNow: 0), is_redeemed: false, user: alex, promotion: pmh),
-            (claim_time: NSDate(timeIntervalSinceNow: -10000), is_redeemed: false, user: alex, promotion: tacolicious),
-            (claim_time: NSDate(timeIntervalSinceNow: -1000), is_redeemed: true, user: alex, promotion: cream)
+            (claim_time: NSDate(timeIntervalSinceNow: -1900800), is_redeemed: false, user: alex, promotion: tacolicious),
+            (claim_time: NSDate(timeIntervalSinceNow: -3888000), is_redeemed: true, user: alex, promotion: cream)
         ]
         
         for claim in claims {
