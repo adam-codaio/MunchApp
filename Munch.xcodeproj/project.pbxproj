@@ -15,6 +15,7 @@
 		D3B1E2B91BF7EC4300AFDFD2 /* Munch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D3B1E2B71BF7EC4300AFDFD2 /* Munch.xcdatamodeld */; };
 		D3B1E2BB1BF7EC4300AFDFD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3B1E2BA1BF7EC4300AFDFD2 /* Assets.xcassets */; };
 		D3B1E2BE1BF7EC4300AFDFD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B1E2BC1BF7EC4300AFDFD2 /* LaunchScreen.storyboard */; };
+		D3BD43CF1C8FA3D0007C8443 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD43CE1C8FA3D0007C8443 /* HttpService.swift */; };
 		D3C9228A1C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922821C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift */; };
 		D3C9228B1C06A48D00D7C416 /* UserClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922831C06A48D00D7C416 /* UserClaim.swift */; };
 		D3C9228C1C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922841C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift */; };
@@ -52,6 +53,7 @@
 		D3B1E2BA1BF7EC4300AFDFD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3B1E2BD1BF7EC4300AFDFD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3B1E2BF1BF7EC4300AFDFD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3BD43CE1C8FA3D0007C8443 /* HttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
 		D3C922821C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserClaim+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D3C922831C06A48D00D7C416 /* UserClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserClaim.swift; sourceTree = "<group>"; };
 		D3C922841C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				F682DF221C12211300643045 /* ActivityGraphView.swift */,
 				F682DF201C1202B400643045 /* ActivityView.swift */,
 				F6E70CF01BFF378900CADA39 /* Util.swift */,
+				D3BD43CE1C8FA3D0007C8443 /* HttpService.swift */,
 				F6E70CDD1BFEA80D00CADA39 /* ClaimsTableViewController.swift */,
 				D33D09521C0F8E3B0033154B /* RedeemClaimViewController.swift */,
 				D33D09541C0F94560033154B /* RedeemView.swift */,
@@ -262,6 +265,7 @@
 				F682DF211C1202B400643045 /* ActivityView.swift in Sources */,
 				D3C922971C07904800D7C416 /* CoreDataTableViewController.swift in Sources */,
 				D3C9228B1C06A48D00D7C416 /* UserClaim.swift in Sources */,
+				D3BD43CF1C8FA3D0007C8443 /* HttpService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
