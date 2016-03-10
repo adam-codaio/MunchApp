@@ -118,6 +118,7 @@ class LoginViewController: UIViewController {
         } else {
             register()
         }
+    }
 
     private func createStringFromDictionary(dict: Dictionary<String, String>) -> String {
         var params = String()
