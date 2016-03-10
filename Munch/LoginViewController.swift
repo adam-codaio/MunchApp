@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    let Keychain = KeychainWrapper()
+    private let Keychain = KeychainWrapper()
     
     private func setupForMode() {
         if loginMode {
@@ -145,20 +145,17 @@ class LoginViewController: UIViewController {
         let data = ["email": email, "password": password, "name": name, "is_customer": "t"]
         let (_, registerStatus) = HttpService.doRequest("/api/user/", method: "POST", data: createStringFromDictionary(data), flag: false, synchronous: true)
         if registerStatus {
-            Keychain.mySetObject(password, forKey:kSecValueData)
-            Keychain.writeToKeychain()
             NSUserDefaults.standardUserDefaults().setValue(email, forKey: "email")
             let data = ["email": email, "password": password]
             let (jsonResponse, authStatus) = HttpService.doRequest("/api/auth/", method: "POST", data: createStringFromDictionary(data), flag: false, synchronous: true)
             let client_id = jsonResponse!["client_id"].string!
             if authStatus {
-                Keychain.mySetObject(client_id, forKey: kSecValueData)
-                Keychain.writeToKeychain()
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoggedIn")
                 let data = ["grant_type": "password", "username": email, "password": password, "client_id": client_id]
                 let (jsonResponse, tokenStatus) = HttpService.doRequest("/o/token/", method: "POST", data: createStringFromDictionary(data), flag: false, synchronous: true)
                 let access_token = jsonResponse!["access_token"].string!
                 if tokenStatus {
+                    //only storing access token
                     Keychain.mySetObject(access_token, forKey: kSecValueData)
                     Keychain.writeToKeychain()
                     //transition to next view -- maybe this should be like a welcome screen for new users?

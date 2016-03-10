@@ -16,6 +16,7 @@ class HttpService {
     private static var dataTask: NSURLSessionDataTask?
     private static var responseData: JSON? = nil
     private static var status = false
+    private static let Keychain = KeychainWrapper()
     
     //Data parameter should maybe be AnyObject -- will make changes when we start making those kinds of requests
     static func doRequest(url: String, method: String, data: AnyObject?, flag: Bool, synchronous: Bool) -> (data: JSON?, status: Bool) {
@@ -24,7 +25,7 @@ class HttpService {
         let request = NSMutableURLRequest(URL: fullURL!)
         request.HTTPMethod = method
         if flag {
-            let token = "y6r0v7oeNRpvMfQaJr5bdpPZMv3hVz"
+            let token = Keychain.myObjectForKey(kSecValueData)
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
         if data != nil {
