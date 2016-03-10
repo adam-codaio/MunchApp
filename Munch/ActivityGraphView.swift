@@ -31,11 +31,11 @@ class ActivityGraphView: UIView {
         self.setNeedsDisplay()
     }
     
-    private let graphWidth = 200
-    private let graphHeight = 90
-    private let widthOffset = 50
-    private let heightOffset = 5
-    private let labelOffset = 20
+    private let graphWidth : CGFloat = 200
+    private let graphHeight : CGFloat = 90
+    private let widthOffset : CGFloat = 50
+    private let heightOffset : CGFloat = 5
+    private let labelOffset : CGFloat = 20
     
     private func drawGraphAxes() {
         let path = UIBezierPath()
@@ -55,15 +55,23 @@ class ActivityGraphView: UIView {
             return
         }
         
-        let upper = data.maxElement()!
+        print ("attempting to graph")
+        print(data)
+        print(labels)
+        
+        let upper = CGFloat((data.maxElement()!/4)+1)*4.0
+        
+        UIColor.darkGrayColor().set()
+        drawYLabels(upper)
+        drawXLabels(labels)
         
         Colors.Green.set()
         let path = UIBezierPath()
         path.lineWidth = 2
         let dim = labels.count
         for (var i = 0; i < dim; ++i) {
-            let point = CGPoint(x: widthOffset + labelOffset, y: heightOffset + graphHeight - labelOffset
-                - data[i] * graphHeight/upper)
+            let point = CGPoint(x: widthOffset + labelOffset + graphWidth*(CGFloat(i)/CGFloat(dim)), y: heightOffset + graphHeight - labelOffset
+                - CGFloat(data[i]) * graphHeight/upper)
             if i == 0 {
                 path.moveToPoint(point)
             } else {
@@ -71,11 +79,11 @@ class ActivityGraphView: UIView {
             }
             
             // Draw the specific point
-//            let curr = UIBezierPath()
-//            curr.moveToPoint(point)
-//            curr.addLineToPoint(point)
-//            curr.lineWidth = 5
-//            curr.stroke()
+            //            let curr = UIBezierPath()
+            //            curr.moveToPoint(point)
+            //            curr.addLineToPoint(point)
+            //            curr.lineWidth = 5
+            //            curr.stroke()
         }
         
         path.stroke()
@@ -149,11 +157,50 @@ class ActivityGraphView: UIView {
             }
             
             
-            dispatch_async(dispatch_get_main_queue()) {
-                weakSelf?.graphData(labels, data: data, usedFilter: usedFilter)
-            }
+            weakSelf?.graphData(labels, data: data, usedFilter: usedFilter)
         }
     }
+    
+    private let labelAttributes = [
+        NSForegroundColorAttributeName: UIColor.darkGrayColor(),
+        NSObliquenessAttributeName: 0.1,
+        NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 10)!
+    ]
+    
+    private func drawYLabels(upper: CGFloat) {
+        let increment = upper/4.0
+        
+        for (var i: CGFloat = 0.0; i <= upper; i += increment) {
+            let path = UIBezierPath()
+            path.lineWidth = 2
+            let height = heightOffset + graphHeight - labelOffset - ((i/upper)*graphHeight)
+            
+            path.moveToPoint(CGPoint(x: widthOffset+labelOffset-5, y: height))
+            path.addLineToPoint(CGPoint(x: widthOffset+labelOffset+5, y: height))
+            path.stroke()
+            
+            let text = NSString(string: NSNumber(integer: Int(i)).stringValue)
+            text.drawAtPoint(CGPoint(x: widthOffset, y: height-5), withAttributes: labelAttributes)
+        }
+    }
+    
+    private func drawXLabels(labels: [String]) {
+        let dim: CGFloat = CGFloat(labels.count)
+        for (var i: CGFloat = 0.0; i < dim; i += 1) {
+            let path = UIBezierPath()
+            path.lineWidth = 2
+            let width = widthOffset + labelOffset + graphWidth * ((i)/dim)
+            let height = heightOffset+graphHeight-labelOffset
+            
+            path.moveToPoint(CGPoint(x: width, y: height - 5))
+            path.addLineToPoint(CGPoint(x: width, y: height + 5))
+            path.stroke()
+            
+            let text = NSString(string: labels[Int(i)])
+            text.drawAtPoint(CGPoint(x: width-5, y: height+5), withAttributes: labelAttributes)
+        }
+    }
+
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

@@ -24,8 +24,8 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var crLabel: UILabel!
     @IBOutlet weak var ceLabel: UILabel!
     
-    //@IBOutlet weak var graphView: ActivityGraphView!
-    
+    @IBOutlet weak var graphView: ActivityGraphView!
+
     @IBAction func filterChanged(sender: UISegmentedControl) {
         filter = filters[sender.selectedSegmentIndex]
         reloadData()
@@ -119,7 +119,7 @@ class ActivityViewController: UIViewController {
         
         inTheLastLabel.text = "in the last " + filter.lowercaseString
         couponsUsedLabel.text = "Coupons Claimed in the Last " + filter
-        //graphView.filter = filter
+        graphView.filter = filter
     }
     
     
