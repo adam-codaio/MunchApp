@@ -7,27 +7,18 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class HttpService {
     
 
     private static let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
     private static var dataTask: NSURLSessionDataTask?
-    private static var responseData: AnyObject?
+    private static var responseData: JSON? = nil
     private static var status = false
     
-    private static func dataToJSON(data: NSData) -> AnyObject? {
-        do {
-            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
-            return json
-        } catch {
-            print("error serializing JSON: \(error)")
-        }
-        return nil
-    }
-    
     //Data parameter should maybe be AnyObject -- will make changes when we start making those kinds of requests
-    static func doRequest(url: String, method: String, data: AnyObject?, flag: Bool) -> (data: AnyObject?, status: Bool) {
+    static func doRequest(url: String, method: String, data: AnyObject?, flag: Bool, synchronous: Bool) -> (data: JSON?, status: Bool) {
         let fullURL = NSURL(string: "https://getstuft.herokuapp.com\(url)")
         //Fetch on login and store somewhere that we can access here
         let request = NSMutableURLRequest(URL: fullURL!)
@@ -41,6 +32,7 @@ class HttpService {
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.setValue("application/json", forHTTPHeaderField: "Accept")
         }
+        let semaphore = dispatch_semaphore_create(0)
         dataTask = defaultSession.dataTaskWithRequest(request) { data, response, error in
             if self.dataTask != nil {
                 self.dataTask?.cancel()
@@ -49,12 +41,16 @@ class HttpService {
                 print(error)
             } else if let httpResponse = response as? NSHTTPURLResponse {
                 if httpResponse.statusCode == 200 {
-                    responseData = self.dataToJSON(data!)
+                    responseData = JSON(data: data!)
                     status = true
                 }
             }
+            dispatch_semaphore_signal(semaphore)
         }
         dataTask?.resume()
+        if synchronous {
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+        }
         return (responseData, status)
     }
 }

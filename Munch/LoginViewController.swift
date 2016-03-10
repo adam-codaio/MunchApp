@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class LoginViewController: UIViewController {
     
@@ -133,56 +134,30 @@ class LoginViewController: UIViewController {
         return params
     }
     
-    private func parseClient(jsonResponse: AnyObject?) -> String {
-        return ""
-    }
-    
-    private func parseAccessToken(jsonResponse: AnyObject?) -> String {
-        return ""
-    }
-    
-    private func validateUserInput() -> Bool {
-        return true
-    }
-    
     func login() {
         
     }
     
     func register() {
-        validateUserInput()
-        let email = "deez.nuts@gmail.com"
-        let name = "deez nuts"
-        let password = "dddddddd"
-        let hasLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("hasLoggedIn")
-        if !hasLoggedIn {
-            NSUserDefaults.standardUserDefaults().setValue(email, forKey: "email")
-        }
-        
-        let url = "/api/user/"
-        let method = "POST"
+        let email = (emailField?.text)!
+        let password = (passwordField?.text)!
+        let name = (nameField?.text)!
         let data = ["email": email, "password": password, "name": name, "is_customer": "t"]
-        let (_, registerStatus) = HttpService.doRequest(url, method: method, data: createStringFromDictionary(data), flag: false)
+        let (_, registerStatus) = HttpService.doRequest("/api/user/", method: "POST", data: createStringFromDictionary(data), flag: false, synchronous: true)
         if registerStatus {
             Keychain.mySetObject(password, forKey:kSecValueData)
             Keychain.writeToKeychain()
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoggedIn")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            let url = "/api/auth/"
-            let method = "POST"
+            NSUserDefaults.standardUserDefaults().setValue(email, forKey: "email")
             let data = ["email": email, "password": password]
-            let (jsonResponse, authStatus) = HttpService.doRequest(url, method: method, data: createStringFromDictionary(data), flag: false)
-            let client_id = parseClient(jsonResponse)
+            let (jsonResponse, authStatus) = HttpService.doRequest("/api/auth/", method: "POST", data: createStringFromDictionary(data), flag: false, synchronous: true)
+            let client_id = jsonResponse!["client_id"].string!
             if authStatus {
-                //this probably isn't the right way to update the keychain
                 Keychain.mySetObject(client_id, forKey: kSecValueData)
                 Keychain.writeToKeychain()
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasAuthenticated")
-                let url = "/o/token/"
-                let method = "POST"
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoggedIn")
                 let data = ["grant_type": "password", "username": email, "password": password, "client_id": client_id]
-                let (jsonResponse, tokenStatus) = HttpService.doRequest(url, method: method, data: createStringFromDictionary(data), flag: false)
-                let access_token = parseAccessToken(jsonResponse)
+                let (jsonResponse, tokenStatus) = HttpService.doRequest("/o/token/", method: "POST", data: createStringFromDictionary(data), flag: false, synchronous: true)
+                let access_token = jsonResponse!["access_token"].string!
                 if tokenStatus {
                     Keychain.mySetObject(access_token, forKey: kSecValueData)
                     Keychain.writeToKeychain()
@@ -194,7 +169,7 @@ class LoginViewController: UIViewController {
                 //do something like could not authenticate account on server for some reason
             }
         } else {
-            //do something like could not make account on server because duplicate email
+            //do something like could not make account on server because email already exists
         }
     }
     

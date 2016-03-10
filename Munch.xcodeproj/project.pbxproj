@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B65D8A99F9DA2E4E5A3B64D /* Pods_Munch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE15452539435725879EF5B1 /* Pods_Munch.framework */; };
 		D33D09531C0F8E3B0033154B /* RedeemClaimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D09521C0F8E3B0033154B /* RedeemClaimViewController.swift */; };
 		D33D09551C0F94560033154B /* RedeemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D09541C0F94560033154B /* RedeemView.swift */; };
 		D352352D1C9135D500089528 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352352C1C9135D500089528 /* LoginViewController.swift */; };
@@ -45,6 +46,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		117E2C19E494386C6A8AD07E /* Pods-Munch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Munch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Munch/Pods-Munch.debug.xcconfig"; sourceTree = "<group>"; };
+		314E4C0064E9388F788F3B01 /* Pods-Munch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Munch.release.xcconfig"; path = "Pods/Target Support Files/Pods-Munch/Pods-Munch.release.xcconfig"; sourceTree = "<group>"; };
 		D33D09521C0F8E3B0033154B /* RedeemClaimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemClaimViewController.swift; sourceTree = "<group>"; };
 		D33D09541C0F94560033154B /* RedeemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemView.swift; sourceTree = "<group>"; };
 		D352352C1C9135D500089528 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		D3D847551C0E886F00820ABF /* RestaurantClaimsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantClaimsTableViewCell.swift; sourceTree = "<group>"; };
 		D3D847591C0EE1E800820ABF /* CurrentClaimsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentClaimsTableViewCell.swift; sourceTree = "<group>"; };
 		D3D8475B1C0EE1F700820ABF /* PastClaimsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastClaimsTableViewCell.swift; sourceTree = "<group>"; };
+		EE15452539435725879EF5B1 /* Pods_Munch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Munch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F682DF1E1C12023E00643045 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		F682DF201C1202B400643045 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		F682DF221C12211300643045 /* ActivityGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityGraphView.swift; sourceTree = "<group>"; };
@@ -91,17 +95,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B65D8A99F9DA2E4E5A3B64D /* Pods_Munch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		47861A8DEECAA746CDAB8DBC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE15452539435725879EF5B1 /* Pods_Munch.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D3B1E2A41BF7EC4300AFDFD2 = {
 			isa = PBXGroup;
 			children = (
 				D3B1E2AF1BF7EC4300AFDFD2 /* Munch */,
 				D3B1E2AE1BF7EC4300AFDFD2 /* Products */,
+				D5C3CFFE63A6EB10BB609DB0 /* Pods */,
+				47861A8DEECAA746CDAB8DBC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,6 +172,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D5C3CFFE63A6EB10BB609DB0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				117E2C19E494386C6A8AD07E /* Pods-Munch.debug.xcconfig */,
+				314E4C0064E9388F788F3B01 /* Pods-Munch.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F62CB5D81C11976C00D7326A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,9 +205,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3B1E2C21BF7EC4300AFDFD2 /* Build configuration list for PBXNativeTarget "Munch" */;
 			buildPhases = (
+				F93F161729310034769F703E /* Check Pods Manifest.lock */,
 				D3B1E2A91BF7EC4300AFDFD2 /* Sources */,
 				D3B1E2AA1BF7EC4300AFDFD2 /* Frameworks */,
 				D3B1E2AB1BF7EC4300AFDFD2 /* Resources */,
+				4D9DF2B48B0D9107889BDE88 /* Embed Pods Frameworks */,
+				6794014CAEF21EC3F9986D1E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -240,6 +267,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4D9DF2B48B0D9107889BDE88 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Munch/Pods-Munch-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6794014CAEF21EC3F9986D1E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Munch/Pods-Munch-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F93F161729310034769F703E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D3B1E2A91BF7EC4300AFDFD2 /* Sources */ = {
@@ -388,6 +463,7 @@
 		};
 		D3B1E2C31BF7EC4300AFDFD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 117E2C19E494386C6A8AD07E /* Pods-Munch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -406,6 +482,7 @@
 		};
 		D3B1E2C41BF7EC4300AFDFD2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 314E4C0064E9388F788F3B01 /* Pods-Munch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
