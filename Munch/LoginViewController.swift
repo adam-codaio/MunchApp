@@ -130,30 +130,40 @@ class LoginViewController: UIViewController {
         let password = (passwordField?.text)!
         let name = (nameField?.text)!
         let data = ["email": email, "password": password, "name": name, "is_customer": "t"]
-        let (_, registerStatus) = HttpService.doRequest("/api/user/", method: "POST", data: data, flag: false, synchronous: true)
-        if registerStatus {
-            NSUserDefaults.standardUserDefaults().setValue(email, forKey: "email")
-            let data = ["email": email, "password": password]
-            let (jsonResponse, authStatus) = HttpService.doRequest("/api/auth/", method: "POST", data: data, flag: false, synchronous: true)
-            let client_id = jsonResponse!["client_id"].string!
-            if authStatus {
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoggedIn")
-                let data = ["grant_type": "password", "username": email, "password": password, "client_id": client_id]
-                let (jsonResponse, tokenStatus) = HttpService.doRequest("/o/token/", method: "POST", data: data, flag: false, synchronous: true)
-                let access_token = jsonResponse!["access_token"].string!
-                if tokenStatus {
-                    //only storing access token
-                    Keychain.mySetObject(access_token, forKey: kSecValueData)
-                    Keychain.writeToKeychain()
-                    //transition to next view -- maybe this should be like a welcome screen for new users?
+        //Start spinner
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            let (_, registerStatus) = HttpService.doRequest("/api/user/", method: "POST", data: data, flag: false, synchronous: true)
+            if registerStatus {
+                NSUserDefaults.standardUserDefaults().setValue(email, forKey: "email")
+                let data = ["email": email, "password": password]
+                let (jsonResponse, authStatus) = HttpService.doRequest("/api/auth/", method: "POST", data: data, flag: false, synchronous: true)
+                if authStatus {
+                    let client_id = jsonResponse!["client_id"].string!
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoggedIn")
+                    let data = ["grant_type": "password", "username": email, "password": password, "client_id": client_id]
+                    let (jsonResponse, tokenStatus) = HttpService.doRequest("/o/token/", method: "POST", data: data, flag: false, synchronous: true)
+                    if tokenStatus {
+                        let access_token = jsonResponse!["access_token"].string!
+                        //only storing access token
+                        self.Keychain.mySetObject(access_token, forKey: kSecValueData)
+                        self.Keychain.writeToKeychain()
+                        dispatch_async(dispatch_get_main_queue()) {
+                            ///End spinner
+                            print("success!")
+                        }
+                        //transition to next view -- maybe this should be like a welcome screen for new users?
+                    } else {
+                        //do something like could not get access token from server for some reason
+                        print("retrieving access token failed")
+                    }
                 } else {
-                    //do something like could not get access token from server for some reason
+                    //do something like could not authenticate account on server for some reason
+                    print("authenticating account failed")
                 }
             } else {
-                //do something like could not authenticate account on server for some reason
+                //do something like could not make account on server because email already exists
+                print("registering account failed")
             }
-        } else {
-            //do something like could not make account on server because email already exists
         }
     }
     
