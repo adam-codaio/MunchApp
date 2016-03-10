@@ -120,19 +120,6 @@ class LoginViewController: UIViewController {
             register()
         }
     }
-
-    private func createStringFromDictionary(dict: Dictionary<String, String>) -> String {
-        var params = String()
-        var first = true
-        for (key, value) in dict {
-            if !first {
-                params += "&"
-            }
-            params += key + "=" + value
-            first = false
-        }
-        return params
-    }
     
     func login() {
         
@@ -143,16 +130,16 @@ class LoginViewController: UIViewController {
         let password = (passwordField?.text)!
         let name = (nameField?.text)!
         let data = ["email": email, "password": password, "name": name, "is_customer": "t"]
-        let (_, registerStatus) = HttpService.doRequest("/api/user/", method: "POST", data: createStringFromDictionary(data), flag: false, synchronous: true)
+        let (_, registerStatus) = HttpService.doRequest("/api/user/", method: "POST", data: data, flag: false, synchronous: true)
         if registerStatus {
             NSUserDefaults.standardUserDefaults().setValue(email, forKey: "email")
             let data = ["email": email, "password": password]
-            let (jsonResponse, authStatus) = HttpService.doRequest("/api/auth/", method: "POST", data: createStringFromDictionary(data), flag: false, synchronous: true)
+            let (jsonResponse, authStatus) = HttpService.doRequest("/api/auth/", method: "POST", data: data, flag: false, synchronous: true)
             let client_id = jsonResponse!["client_id"].string!
             if authStatus {
                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoggedIn")
                 let data = ["grant_type": "password", "username": email, "password": password, "client_id": client_id]
-                let (jsonResponse, tokenStatus) = HttpService.doRequest("/o/token/", method: "POST", data: createStringFromDictionary(data), flag: false, synchronous: true)
+                let (jsonResponse, tokenStatus) = HttpService.doRequest("/o/token/", method: "POST", data: data, flag: false, synchronous: true)
                 let access_token = jsonResponse!["access_token"].string!
                 if tokenStatus {
                     //only storing access token

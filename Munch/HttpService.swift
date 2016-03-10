@@ -18,8 +18,21 @@ class HttpService {
     private static var status = false
     private static let Keychain = KeychainWrapper()
     
+    private static func createStringFromDictionary(dict: Dictionary<String, String>) -> String {
+        var params = String()
+        var first = true
+        for (key, value) in dict {
+            if !first {
+                params += "&"
+            }
+            params += key + "=" + value
+            first = false
+        }
+        return params
+    }
+    
     //Data parameter should maybe be AnyObject -- will make changes when we start making those kinds of requests
-    static func doRequest(url: String, method: String, data: AnyObject?, flag: Bool, synchronous: Bool) -> (data: JSON?, status: Bool) {
+    static func doRequest(url: String, method: String, data: Dictionary<String,String>?, flag: Bool, synchronous: Bool) -> (data: JSON?, status: Bool) {
         let fullURL = NSURL(string: "https://getstuft.herokuapp.com\(url)")
         //Fetch on login and store somewhere that we can access here
         let request = NSMutableURLRequest(URL: fullURL!)
@@ -29,7 +42,7 @@ class HttpService {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
         if data != nil {
-            request.HTTPBody = data!.dataUsingEncoding(NSUTF8StringEncoding)
+            request.HTTPBody = createStringFromDictionary(data!).dataUsingEncoding(NSUTF8StringEncoding)
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.setValue("application/json", forHTTPHeaderField: "Accept")
         }
