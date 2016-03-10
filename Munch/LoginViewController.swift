@@ -51,9 +51,14 @@ class LoginViewController: UIViewController {
         prevHeight = nameField.frame.height
         nameField.hidden = true
         passwordField2.hidden = true
+        if loginMode && NSUserDefaults.standardUserDefaults().boolForKey("rememberMe") {
+            emailField.text = NSUserDefaults.standardUserDefaults().stringForKey("email")
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
+        //if NSUserDefaults.standardUserDefaults().boolForKey("stayLoggedIn")
+        //transition to home view
         super.viewWillAppear(animated)
     }
 
@@ -121,48 +126,74 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func login() {
-        
+    private func authenticate(email: String, password: String) -> (Bool, String?) {
+        let data = ["email": email, "password": password]
+        let (authResponse, authStatus) = HttpService.doRequest("/api/auth/", method: "POST", data: data, flag: false, synchronous: true)
+        if authStatus {
+            let client_id = authResponse!["client_id"].string!
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "stayLoggedIn")
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "rememberMe")
+            let data = ["grant_type": "password", "username": email, "password": password, "client_id": client_id]
+            let (tokenResponse, tokenStatus) = HttpService.doRequest("/o/token/", method: "POST", data: data, flag: false, synchronous: true)
+            if tokenStatus {
+                let access_token = tokenResponse!["access_token"].string!
+                //only storing access token
+                self.Keychain.mySetObject(access_token, forKey: kSecValueData)
+                self.Keychain.writeToKeychain()
+                return (true, nil)
+            } else {
+                return (false, tokenResponse!["detail"].string!)
+            }
+        } else {
+            return (false, authResponse!["detail"].string!)
+        }
     }
     
-    func register() {
+    private func login() {
+        let email = (emailField?.text)!
+        let password = (passwordField?.text)!
+        //start spinner
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            let (result, error) = self.authenticate(email, password: password)
+            dispatch_async(dispatch_get_main_queue()) {
+                ///End spinner
+                if result {
+                    print("log in success!")
+                    //transition to home view
+                } else {
+                    //alert of some kind
+                    print("log in failed! \(error)")
+                }
+            }
+        }
+    }
+    
+    private func register() {
         let email = (emailField?.text)!
         let password = (passwordField?.text)!
         let name = (nameField?.text)!
         let data = ["email": email, "password": password, "name": name, "is_customer": "t"]
         //Start spinner
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
-            let (_, registerStatus) = HttpService.doRequest("/api/user/", method: "POST", data: data, flag: false, synchronous: true)
+            let (registerResponse, registerStatus) = HttpService.doRequest("/api/user/", method: "POST", data: data, flag: false, synchronous: true)
             if registerStatus {
                 NSUserDefaults.standardUserDefaults().setValue(email, forKey: "email")
-                let data = ["email": email, "password": password]
-                let (jsonResponse, authStatus) = HttpService.doRequest("/api/auth/", method: "POST", data: data, flag: false, synchronous: true)
-                if authStatus {
-                    let client_id = jsonResponse!["client_id"].string!
-                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoggedIn")
-                    let data = ["grant_type": "password", "username": email, "password": password, "client_id": client_id]
-                    let (jsonResponse, tokenStatus) = HttpService.doRequest("/o/token/", method: "POST", data: data, flag: false, synchronous: true)
-                    if tokenStatus {
-                        let access_token = jsonResponse!["access_token"].string!
-                        //only storing access token
-                        self.Keychain.mySetObject(access_token, forKey: kSecValueData)
-                        self.Keychain.writeToKeychain()
-                        dispatch_async(dispatch_get_main_queue()) {
-                            ///End spinner
-                            print("success!")
-                        }
-                        //transition to next view -- maybe this should be like a welcome screen for new users?
+                let (result, error) = self.authenticate(email, password: password)
+                dispatch_async(dispatch_get_main_queue()) {
+                    //End spinner
+                    if result {
+                        print("registration success!")
+                        //transition to next view
                     } else {
-                        //do something like could not get access token from server for some reason
-                        print("retrieving access token failed")
+                        print("authentication failed! \(error)")
                     }
-                } else {
-                    //do something like could not authenticate account on server for some reason
-                    print("authenticating account failed")
                 }
             } else {
-                //do something like could not make account on server because email already exists
-                print("registering account failed")
+                dispatch_async(dispatch_get_main_queue()) {
+                    ///End spinner
+                    //alert of some kind -- because invalid email address or duplicate email address
+                    print("registering account failed. \(registerResponse)")
+                }
             }
         }
     }

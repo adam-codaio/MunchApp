@@ -14,8 +14,6 @@ class HttpService {
 
     private static let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
     private static var dataTask: NSURLSessionDataTask?
-    private static var responseData: JSON? = nil
-    private static var status = false
     private static let Keychain = KeychainWrapper()
     
     private static func createStringFromDictionary(dict: Dictionary<String, String>) -> String {
@@ -47,6 +45,8 @@ class HttpService {
             request.setValue("application/json", forHTTPHeaderField: "Accept")
         }
         let semaphore = dispatch_semaphore_create(0)
+        var responseData: JSON? = nil
+        var status = false
         dataTask = defaultSession.dataTaskWithRequest(request) { data, response, error in
             if self.dataTask != nil {
                 self.dataTask?.cancel()
@@ -57,6 +57,8 @@ class HttpService {
                 if httpResponse.statusCode == 200 {
                     responseData = JSON(data: data!)
                     status = true
+                } else {
+                    responseData = JSON(data: data!)
                 }
             }
             dispatch_semaphore_signal(semaphore)
