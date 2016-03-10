@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D33D09531C0F8E3B0033154B /* RedeemClaimViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D09521C0F8E3B0033154B /* RedeemClaimViewController.swift */; };
 		D33D09551C0F94560033154B /* RedeemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D09541C0F94560033154B /* RedeemView.swift */; };
+		D352352D1C9135D500089528 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352352C1C9135D500089528 /* LoginViewController.swift */; };
+		D35235311C91361400089528 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D35235301C91361400089528 /* KeychainWrapper.m */; };
 		D3B1E2B11BF7EC4300AFDFD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B1E2B01BF7EC4300AFDFD2 /* AppDelegate.swift */; };
 		D3B1E2B31BF7EC4300AFDFD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B1E2B21BF7EC4300AFDFD2 /* ViewController.swift */; };
 		D3B1E2B61BF7EC4300AFDFD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B1E2B41BF7EC4300AFDFD2 /* Main.storyboard */; };
@@ -45,6 +47,10 @@
 /* Begin PBXFileReference section */
 		D33D09521C0F8E3B0033154B /* RedeemClaimViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemClaimViewController.swift; sourceTree = "<group>"; };
 		D33D09541C0F94560033154B /* RedeemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemView.swift; sourceTree = "<group>"; };
+		D352352C1C9135D500089528 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D352352E1C91361300089528 /* Munch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Munch-Bridging-Header.h"; sourceTree = "<group>"; };
+		D352352F1C91361400089528 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
+		D35235301C91361400089528 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		D3B1E2AD1BF7EC4300AFDFD2 /* Munch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Munch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B1E2B01BF7EC4300AFDFD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3B1E2B21BF7EC4300AFDFD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -129,9 +135,13 @@
 				D3BD43CE1C8FA3D0007C8443 /* HttpService.swift */,
 				F6E70CDD1BFEA80D00CADA39 /* ClaimsTableViewController.swift */,
 				D33D09521C0F8E3B0033154B /* RedeemClaimViewController.swift */,
+				D352352C1C9135D500089528 /* LoginViewController.swift */,
 				D33D09541C0F94560033154B /* RedeemView.swift */,
+				D352352F1C91361400089528 /* KeychainWrapper.h */,
+				D35235301C91361400089528 /* KeychainWrapper.m */,
 				D3B1E2B71BF7EC4300AFDFD2 /* Munch.xcdatamodeld */,
 				D3B1E2C51BF7EC5F00AFDFD2 /* Supporting Files */,
+				D352352E1C91361300089528 /* Munch-Bridging-Header.h */,
 			);
 			path = Munch;
 			sourceTree = "<group>";
@@ -190,7 +200,7 @@
 		D3B1E2A51BF7EC4300AFDFD2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Stanford University";
 				TargetAttributes = {
@@ -249,6 +259,7 @@
 				F6E70CF11BFF378900CADA39 /* Util.swift in Sources */,
 				D3D6A0FE1BFF2290009E2549 /* HomeClaimsTableViewCell.swift in Sources */,
 				D3D847541C0E803100820ABF /* LinedView.swift in Sources */,
+				D352352D1C9135D500089528 /* LoginViewController.swift in Sources */,
 				F6E70CDA1BFEA7AA00CADA39 /* MainTabBarController.swift in Sources */,
 				F6E70CEF1BFF329900CADA39 /* MainNavigationController.swift in Sources */,
 				F682DF231C12211300643045 /* ActivityGraphView.swift in Sources */,
@@ -260,6 +271,7 @@
 				D33D09531C0F8E3B0033154B /* RedeemClaimViewController.swift in Sources */,
 				D3D847561C0E886F00820ABF /* RestaurantClaimsTableViewCell.swift in Sources */,
 				D3C9228E1C06A48D00D7C416 /* Promotion+CoreDataProperties.swift in Sources */,
+				D35235311C91361400089528 /* KeychainWrapper.m in Sources */,
 				F6E70CDC1BFEA7F200CADA39 /* HomeTableViewController.swift in Sources */,
 				D3D8475A1C0EE1E800820ABF /* CurrentClaimsTableViewCell.swift in Sources */,
 				F682DF211C1202B400643045 /* ActivityView.swift in Sources */,
@@ -378,6 +390,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Munch/Info.plist;
@@ -386,6 +399,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cs193p.alextran.Munch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Munch/Munch-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -393,6 +408,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Munch/Info.plist;
@@ -401,6 +417,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = edu.stanford.cs193p.alextran.Munch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Munch/Munch-Bridging-Header.h";
 			};
 			name = Release;
 		};

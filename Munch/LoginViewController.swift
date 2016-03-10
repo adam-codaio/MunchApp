@@ -21,6 +21,32 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    let Keychain = KeychainWrapper()
+    
+    func register() {
+        let email = "deez.nuts@gmail.com"
+        let name = "deez nuts"
+        let password = "dddddddd"
+        let hasLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("hasLoggedIn")
+        if !hasLoggedIn {
+            NSUserDefaults.standardUserDefaults().setValue(email, forKey: "email")
+        }
+        
+        let url = "/api/user/"
+        let method = "POST"
+        let data = ["email": email, "password": password, "name": name, "is_customer": "t"]
+        let jsonResponse = HttpService.doRequest(url, method: method, data: data)
+        
+        Keychain.mySetObject(password, forKey:kSecValueData)
+        Keychain.writeToKeychain()
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoggedIn")
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    func login() {
+        
+    }
+    
 
     /*
     // MARK: - Navigation
