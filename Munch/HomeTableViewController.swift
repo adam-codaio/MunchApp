@@ -80,6 +80,10 @@ class HomeTableViewController: CoreDataTableViewController {
         managedObjectContext?.performBlockAndWait {
             self.promotions = Promotion.openPromotions(inManagedObjectContext: self.managedObjectContext!, sort: self.currentSort, distance: self.currentDistance)
         }
+        let url = "/api/promotion/list_promotions/"
+        let method = "GET"
+        let jsonResponse = HttpService.doRequest(url, method: method, data: nil)
+        //serializeJSON(jsonResponse) -- need to put the JSON into promotion objects here
         tableView.reloadData()
     }
     
