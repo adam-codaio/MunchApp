@@ -11,24 +11,6 @@ import CoreData
 
 class ClaimsTableViewController: CoreDataTableViewController {
     
-    private struct Colors {
-        static let Green = UIColor(hex: 0x40BA91)
-        static let Orange = UIColor(hex: 0xFF9900)
-        static let LightGray = UIColor(hex: 0xF4F5F7)
-        static let DarkGray = UIColor(hex: 0x8C868E)
-    }
-    
-    private enum FontSizes: Int {
-        case Primary = 14
-        case Secondary = 11
-    }
-    
-    private enum FontStyles: String {
-        case Primary = "AvenirNext-Bold"
-        case Secondary = "AvenirNext-DemiBold"
-        case Tertiary = "AvenirNext-Regular"
-    }
-    
     var managedObjectContext: NSManagedObjectContext? = AppDelegate.managedObjectContext
     
     var currentClaims = [UserClaim]() {
@@ -116,11 +98,11 @@ class ClaimsTableViewController: CoreDataTableViewController {
         
         let offset: CGFloat = section == 0 ? 0 : 26
         title.frame = CGRectMake(tableView.frame.width/2 - 60, 8 + offset, 120, 20)
-        title.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(12))
+        title.font = UIFont(name: Util.FontStyles.Secondary, size: CGFloat(12))
         title.text = self.tableView(tableView, titleForHeaderInSection: section)
-        title.textColor = Colors.DarkGray
+        title.textColor = Util.Colors.DarkGray
         title.textAlignment = .Center
-        title.backgroundColor = Colors.LightGray
+        title.backgroundColor = Util.Colors.LightGray
         title.layer.cornerRadius = 2.0
         title.clipsToBounds = true
         view.addSubview(title)

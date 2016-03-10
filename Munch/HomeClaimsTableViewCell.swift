@@ -10,24 +10,6 @@ import UIKit
 
 class HomeClaimsTableViewCell: UITableViewCell {
     
-    private enum FontSizes: Int {
-        case Primary = 14
-        case Secondary = 11
-    }
-    
-    private enum FontStyles: String {
-        case Primary = "AvenirNext-Bold"
-        case Secondary = "AvenirNext-DemiBold"
-        case Tertiary = "AvenirNext-Regular"
-    }
-    
-    private struct Colors {
-        static let Green = UIColor(hex: 0x40BA91)
-        static let Orange = UIColor(hex: 0xFF9900)
-        static let LightGray = UIColor(hex: 0xF4F5F7)
-        static let DarkGray = UIColor(hex: 0x8C868E)
-    }
-    
     var data: Promotion? {
         didSet {
             updateUI()
@@ -43,13 +25,13 @@ class HomeClaimsTableViewCell: UITableViewCell {
 
     private func updateUI() {
         distance.text = String(data!.restaurant!.distance!) + " mi"
-        distance.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        distance.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Tertiary))
 
         restaurant.text = data?.restaurant?.name
-        restaurant.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        restaurant.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Tertiary))
         
         promotion.text = data?.promo!.uppercaseString
-        promotion.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
+        promotion.font = UIFont(name: Util.FontStyles.Secondary, size: CGFloat(Util.FontSizes.Secondary))
         
         splash.image = UIImage(named: data!.restaurant!.name!)
         

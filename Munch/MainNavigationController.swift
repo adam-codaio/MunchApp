@@ -9,9 +9,6 @@
 import UIKit
 
 class MainNavigationController: UINavigationController {
-
-    private let mainGreen = UIColor(hex: 0x40BA91)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

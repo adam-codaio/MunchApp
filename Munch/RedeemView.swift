@@ -10,26 +10,6 @@ import UIKit
 
 class RedeemView: UIView {
     
-    private enum FontSizes: Int {
-        case Top = 18
-        case Primary = 14
-        case Secondary = 13
-        case Tertiary = 10
-    }
-    
-    private enum FontStyles: String {
-        case Primary = "AvenirNext-Bold"
-        case Secondary = "AvenirNext-DemiBold"
-        case Tertiary = "AvenirNext-Regular"
-    }
-    
-    private struct Colors {
-        static let Green = UIColor(hex: 0x40BA91)
-        static let Orange = UIColor(hex: 0xFF9900)
-        static let LightGray = UIColor(hex: 0xF4F5F7)
-        static let DarkGray = UIColor(hex: 0x8C868E)
-    }
-    
     var data: UserClaim? {
         didSet {
             updateUI()
@@ -48,18 +28,18 @@ class RedeemView: UIView {
     private func updateUI() {
         
         restaurant.text = data?.promotion?.restaurant?.name
-        restaurant.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        restaurant.textColor = Colors.LightGray
+        restaurant.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Tertiary))
+        restaurant.textColor = Util.Colors.LightGray
 
         promotion.text = data?.promotion?.promo!.uppercaseString
-        promotion.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
-        promotion.textColor = Colors.LightGray
+        promotion.font = UIFont(name: Util.FontStyles.Secondary, size: CGFloat(Util.FontSizes.Secondary))
+        promotion.textColor = Util.Colors.LightGray
         
-        present.font = UIFont(name:FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Top.rawValue))
-        present.textColor = Colors.DarkGray
+        present.font = UIFont(name:Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Primary))
+        present.textColor = Util.Colors.DarkGray
         
-        scan.font = UIFont(name:FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Top.rawValue))
-        scan.textColor = Colors.DarkGray
+        scan.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Primary))
+        scan.textColor = Util.Colors.DarkGray
 
         splash.image = UIImage(named: (data?.promotion?.restaurant?.name)!)
         

@@ -8,77 +8,16 @@
 
 import UIKit
 
-extension UIColor
-{
-    convenience init(red: Int, green: Int, blue: Int)
-    {
-        let newRed = CGFloat(red)/255
-        let newGreen = CGFloat(green)/255
-        let newBlue = CGFloat(blue)/255
-        
-        self.init(red: newRed, green: newGreen, blue: newBlue, alpha: 1.0)
-    }
-    
-    convenience init(hex: Int) {
-        self.init(red: (hex & 0xFF0000) >> 16,
-            green: (hex & 0x00FF00) >> 8,
-            blue: (hex & 0x0000FF) >> 0)
-    }
-}
-
-extension UIImage {
-    class func imageWithColorAndBorder(color: UIColor, borderColor: UIColor, size: CGSize) -> UIImage {
-        //TODO: Borders are off. fix it
-        let rect = CGRectMake(0.0, 0.0, size.width, size.height)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, CGRectMake(0.5, 0.0, size.width-1.5, size.height))
-        
-        //let leftBorder = CGRectMake(0.0, 0.0, 0.5, size.height)
-        let rightBorder = CGRectMake(size.width-0.5, 0.0, 0.5, size.height)
-        
-        CGContextSetFillColorWithColor(context, borderColor.CGColor)
-        //CGContextFillRect(context, leftBorder)
-        CGContextFillRect(context, rightBorder)
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image
-    }
-    
-    class func imageWithColor(color: UIColor, size: CGSize) -> UIImage {
-        let rect = CGRectMake(0.0, 0.0, size.width, size.height)
-        UIGraphicsBeginImageContext(rect.size)
-        let context = UIGraphicsGetCurrentContext()
-        
-        CGContextSetFillColorWithColor(context, color.CGColor)
-        CGContextFillRect(context, CGRectMake(1.0, 0.0, size.width-1.0, size.height))
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image
-    }
-}
-
 class MainTabBarController: UITabBarController {
-    
-    private let mainGreen = UIColor(hex: 0x40BA91)
-    private let gray = UIColor(hex:0xA3A3A3)
-    private let selectedGray = UIColor(hex:0xEAEAEA)
-    private let unselectedGray = UIColor(hex: 0xF4F5F7)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         var items = self.tabBar.items
         
-        self.tabBar.tintColor = mainGreen
-        self.tabBar.selectionIndicatorImage = UIImage.imageWithColorAndBorder(selectedGray, borderColor: gray, size: CGSizeMake(self.tabBar.frame.width/CGFloat(items?.count ?? 1), self.tabBar.frame.height))
-        self.tabBar.backgroundImage = UIImage.imageWithColorAndBorder(unselectedGray, borderColor: gray, size: CGSizeMake(self.tabBar.frame.width/CGFloat(items?.count ?? 1), self.tabBar.frame.height))
+        self.tabBar.tintColor = Util.Colors.Green
+        self.tabBar.selectionIndicatorImage = UIImage.imageWithColorAndBorder(Util.Colors.SelectedTabGray, borderColor: Util.Colors.Gray, size: CGSizeMake(self.tabBar.frame.width/CGFloat(items?.count ?? 1), self.tabBar.frame.height))
+        self.tabBar.backgroundImage = UIImage.imageWithColorAndBorder(Util.Colors.LightGray, borderColor: Util.Colors.Gray, size: CGSizeMake(self.tabBar.frame.width/CGFloat(items?.count ?? 1), self.tabBar.frame.height))
         
         for (var i = 0; i < items?.count ?? 0; ++i) {
             switch i {
@@ -101,7 +40,7 @@ class MainTabBarController: UITabBarController {
             default:
                 break
             }
-            items![i].setTitleTextAttributes([NSForegroundColorAttributeName: mainGreen], forState: UIControlState.Normal)
+            items![i].setTitleTextAttributes([NSForegroundColorAttributeName: Util.Colors.Green], forState: UIControlState.Normal)
         }
         
         self.navigationItem.titleView = Util.getLogoTitle()

@@ -9,25 +9,6 @@
 import UIKit
 
 class PastClaimsTableViewCell: UITableViewCell {
-    private enum FontSizes: Int {
-        case Primary = 14
-        case Secondary = 13
-        case Tertiary = 10
-    }
-    
-    private enum FontStyles: String {
-        case Primary = "AvenirNext-Bold"
-        case Secondary = "AvenirNext-DemiBold"
-        case Tertiary = "AvenirNext-Regular"
-    }
-    
-    private struct Colors {
-        static let Green = UIColor(hex: 0x40BA91)
-        static let Orange = UIColor(hex: 0xFF9900)
-        static let LightGray = UIColor(hex: 0xF4F5F7)
-        static let DarkGray = UIColor(hex: 0x8C868E)
-    }
-    
     @IBOutlet weak var splash: UIImageView!
     @IBOutlet weak var promotion: UILabel!
     @IBOutlet weak var restaurant: UILabel!
@@ -41,18 +22,18 @@ class PastClaimsTableViewCell: UITableViewCell {
     
     private func updateUI() {
         restaurant.text = data?.promotion?.restaurant?.name
-        restaurant.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        restaurant.textColor = Colors.LightGray
+        restaurant.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Tertiary))
+        restaurant.textColor = Util.Colors.LightGray
         
         promotion.text = data?.promotion?.promo!.uppercaseString
-        promotion.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
-        promotion.textColor = Colors.LightGray
-        promotion.layer.shadowColor = Colors.DarkGray.CGColor
+        promotion.font = UIFont(name: Util.FontStyles.Secondary, size: CGFloat(Util.FontSizes.Secondary))
+        promotion.textColor = Util.Colors.LightGray
+        promotion.layer.shadowColor = Util.Colors.DarkGray.CGColor
         
         status.backgroundColor = UIColor.whiteColor()
-        status.textColor = Colors.DarkGray
-        status.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        status.layer.borderColor = Colors.DarkGray.CGColor
+        status.textColor = Util.Colors.DarkGray
+        status.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Tertiary))
+        status.layer.borderColor = Util.Colors.DarkGray.CGColor
         status.layer.borderWidth = 1.0
         if data?.is_redeemed == 1 {
             status.text = " Redeemed! "

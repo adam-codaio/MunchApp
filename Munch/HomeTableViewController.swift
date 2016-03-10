@@ -11,24 +11,6 @@ import CoreData
 
 class HomeTableViewController: CoreDataTableViewController {
     
-    private struct Colors {
-        static let Green = UIColor(hex: 0x40BA91)
-        static let Orange = UIColor(hex: 0xFF9900)
-        static let LightGray = UIColor(hex: 0xF4F5F7)
-        static let DarkGray = UIColor(hex: 0x8C868E)
-    }
-    
-    private enum FontSizes: Int {
-        case Primary = 14
-        case Secondary = 11
-    }
-    
-    private enum FontStyles: String {
-        case Primary = "AvenirNext-Bold"
-        case Secondary = "AvenirNext-DemiBold"
-        case Tertiary = "AvenirNext-Regular"
-    }
-    
     @IBOutlet weak var sortMech: UISegmentedControl!
     @IBOutlet weak var distanceButton: UIButton!
     
@@ -56,11 +38,11 @@ class HomeTableViewController: CoreDataTableViewController {
         super.viewDidLoad()
         self.navigationItem.titleView = Util.getLogoTitle()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-        sortMech.tintColor = Colors.Green
+        sortMech.tintColor = Util.Colors.Green
         distanceButton.layer.cornerRadius = 8.0;
         distanceButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5.0, 0, 5.0)
-        distanceButton.titleLabel!.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        distanceButton.titleLabel!.tintColor = Colors.LightGray
+        distanceButton.titleLabel!.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Tertiary))
+        distanceButton.titleLabel!.tintColor = Util.Colors.LightGray
 
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -198,7 +180,7 @@ class HomeTableViewController: CoreDataTableViewController {
             attributes: [
                 NSParagraphStyleAttributeName: paragraphStyle,
                 NSFontAttributeName : UIFont.systemFontOfSize(14),
-                NSForegroundColorAttributeName : Colors.DarkGray            ]
+                NSForegroundColorAttributeName : Util.Colors.DarkGray            ]
         )
         alert.setValue(messageText, forKey: "attributedMessage")
     }

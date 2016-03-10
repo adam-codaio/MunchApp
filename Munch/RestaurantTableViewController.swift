@@ -10,28 +10,6 @@ import UIKit
 import CoreData
 
 class RestaurantTableViewController: CoreDataTableViewController {
-    
-    private enum FontSizes: Int {
-        case Primary = 18
-        case Secondary = 14
-        case Tertiary = 12
-        case Quaternary = 10
-    }
-    
-    private enum FontStyles: String {
-        case Primary = "AvenirNext-Bold"
-        case Secondary = "AvenirNext-DemiBold"
-        case Tertiary = "AvenirNext-Regular"
-    }
-    
-    private struct Colors {
-        static let Green = UIColor(hex: 0x40BA91)
-        static let Orange = UIColor(hex: 0xFF9900)
-        static let LightGray = UIColor(hex: 0xF4F5F7)
-        static let DarkGray = UIColor(hex: 0x8C868E)
-    }
-
-    private let mainGreen = UIColor(hex: 0x40BA91)
     @IBOutlet weak var distance: UILabel!
     @IBOutlet weak var restaurant: UILabel!
     @IBOutlet weak var splash: UIImageView!
@@ -69,24 +47,24 @@ class RestaurantTableViewController: CoreDataTableViewController {
         }
         
         distance?.text = String(promotion!.restaurant!.distance!) + " mi"
-        distance?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        distance?.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Secondary))
         //distance?.textColor = Colors.LightGray
         
         restaurant?.text = promotion?.restaurant?.name
-        restaurant?.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
+        restaurant?.font = UIFont(name: Util.FontStyles.Secondary, size: CGFloat(Util.FontSizes.Primary))
         //restaurant?.textColor = Colors.LightGray
         
         address?.text = promotion?.restaurant?.address
-        address?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
+        address?.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Secondary))
         //address?.textColor = Colors.LightGray
         
         hours?.text = "Open " + (promotion?.restaurant?.hours)!
-        hours?.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Quaternary.rawValue))
-        hours?.textColor = Colors.DarkGray
+        hours?.font = UIFont(name: Util.FontStyles.Secondary, size: CGFloat(Util.FontSizes.Quaternary))
+        hours?.textColor = Util.Colors.DarkGray
         
         phone?.text = promotion?.restaurant?.phone_number
-        phone?.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Quaternary.rawValue))
-        phone?.textColor = Colors.DarkGray
+        phone?.font = UIFont(name: Util.FontStyles.Secondary, size: CGFloat(Util.FontSizes.Quaternary))
+        phone?.textColor = Util.Colors.DarkGray
 
         
 //        promotion.text = promotion?.promo!.uppercaseString
@@ -97,9 +75,9 @@ class RestaurantTableViewController: CoreDataTableViewController {
         super.viewDidLoad()
         self.navigationItem.titleView = Util.getLogoTitle()
         if let currentPromotions = currentPromotions {
-            currentPromotions.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-            currentPromotions.textColor = Colors.DarkGray
-            currentPromotions.backgroundColor = Colors.LightGray
+            currentPromotions.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Secondary))
+            currentPromotions.textColor = Util.Colors.DarkGray
+            currentPromotions.backgroundColor = Util.Colors.LightGray
             currentPromotions.layer.cornerRadius = 3.0
             currentPromotions.clipsToBounds = true
             populateData()
@@ -140,12 +118,12 @@ class RestaurantTableViewController: CoreDataTableViewController {
             attributes: [
                 NSParagraphStyleAttributeName: paragraphStyle,
                 NSFontAttributeName : UIFont.systemFontOfSize(14),
-                NSForegroundColorAttributeName : Colors.DarkGray            ]
+                NSForegroundColorAttributeName : Util.Colors.DarkGray            ]
         )
         let descRange = (messageText.string as NSString).rangeOfString("\(description)")
         messageText.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(16), range: descRange)
         let expireRange = (messageText.string as NSString).rangeOfString("Expires at \(expiryTime)")
-        messageText.addAttribute(NSForegroundColorAttributeName, value: mainGreen, range: expireRange)
+        messageText.addAttribute(NSForegroundColorAttributeName, value: Util.Colors.Green, range: expireRange)
         messageText.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(14), range: expireRange)
 
         alert.setValue(messageText, forKey: "attributedMessage")

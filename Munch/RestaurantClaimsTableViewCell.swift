@@ -10,23 +10,6 @@ import UIKit
 
 class RestaurantClaimsTableViewCell: UITableViewCell {
     
-    private enum FontSizes: Int {
-        case Primary = 12
-    }
-    
-    private enum FontStyles: String {
-        case Primary = "AvenirNext-Bold"
-        case Secondary = "AvenirNext-DemiBold"
-        case Tertiary = "AvenirNext-Regular"
-    }
-    
-    private struct Colors {
-        static let Green = UIColor(hex: 0x40BA91)
-        static let Orange = UIColor(hex: 0xFF9900)
-        static let LightGray = UIColor(hex: 0xF4F5F7)
-        static let DarkGray = UIColor(hex: 0x8C868E)
-    }
-    
     var data: Promotion? {
         didSet {
             updateUI()
@@ -42,20 +25,20 @@ class RestaurantClaimsTableViewCell: UITableViewCell {
     
     private func updateUI() {
         promo.text = data?.promo?.uppercaseString
-        promo.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
-        promo.textColor = Colors.DarkGray
+        promo.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Tertiary))
+        promo.textColor = Util.Colors.DarkGray
         
         if claimed {
             claim.setTitle(" CLAIMED ", forState: .Normal)
             claim.enabled = false
-            claim.tintColor = Colors.DarkGray
-            claim.backgroundColor = Colors.LightGray
+            claim.tintColor = Util.Colors.DarkGray
+            claim.backgroundColor = Util.Colors.LightGray
         } else {
-            claim.tintColor = Colors.LightGray
-            claim.backgroundColor = Colors.Green
+            claim.tintColor = Util.Colors.LightGray
+            claim.backgroundColor = Util.Colors.Green
         }
         claim.layer.cornerRadius = 8.0
-        claim.titleLabel?.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
+        claim.titleLabel?.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Tertiary))
     }
     
     override func drawRect(rect: CGRect) {
@@ -64,7 +47,7 @@ class RestaurantClaimsTableViewCell: UITableViewCell {
             path.moveToPoint(CGPoint(x: 20, y: self.bounds.maxY))
             path.addLineToPoint(CGPoint(x: self.bounds.maxX - 20, y: self.bounds.maxY))
             path.lineWidth = 1.0
-            let strokeColor = Colors.DarkGray
+            let strokeColor = Util.Colors.DarkGray
             strokeColor.setStroke()
             path.stroke()
             

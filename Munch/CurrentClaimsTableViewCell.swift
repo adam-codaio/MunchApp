@@ -10,24 +10,6 @@ import UIKit
 
 class CurrentClaimsTableViewCell: UITableViewCell {
     
-    private enum FontSizes: Int {
-        case Primary = 14
-        case Secondary = 13
-        case Tertiary = 10
-    }
-    
-    private enum FontStyles: String {
-        case Primary = "AvenirNext-Bold"
-        case Secondary = "AvenirNext-DemiBold"
-        case Tertiary = "AvenirNext-Regular"
-    }
-    
-    private struct Colors {
-        static let Green = UIColor(hex: 0x40BA91)
-        static let Orange = UIColor(hex: 0xFF9900)
-        static let LightGray = UIColor(hex: 0xF4F5F7)
-        static let DarkGray = UIColor(hex: 0x8C868E)
-    }
     
     var data: UserClaim? {
         didSet {
@@ -46,26 +28,26 @@ class CurrentClaimsTableViewCell: UITableViewCell {
     private func updateUI() {
       
         restaurant.text = data?.promotion?.restaurant?.name
-        restaurant.font = UIFont(name: FontStyles.Tertiary.rawValue, size: CGFloat(FontSizes.Secondary.rawValue))
-        restaurant.textColor = Colors.LightGray
+        restaurant.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Tertiary))
+        restaurant.textColor = Util.Colors.LightGray
 
         promotion.text = data?.promotion?.promo!.uppercaseString
-        promotion.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Primary.rawValue))
-        promotion.textColor = Colors.LightGray
+        promotion.font = UIFont(name: Util.FontStyles.Secondary, size: CGFloat(Util.FontSizes.Secondary))
+        promotion.textColor = Util.Colors.LightGray
         
         let timeFormatter = NSDateFormatter()
         timeFormatter.dateFormat = "h:mm a"
         let expiryTime = timeFormatter.stringFromDate((data?.promotion?.expiry)!).lowercaseString
         expires.text = " Expires " + expiryTime
-        expires.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Tertiary.rawValue))
-        expires.textColor = Colors.Green
-        expires.backgroundColor = Colors.LightGray
+        expires.font = UIFont(name: Util.FontStyles.Secondary, size: CGFloat(Util.FontSizes.Quaternary))
+        expires.textColor = Util.Colors.Green
+        expires.backgroundColor = Util.Colors.LightGray
     
-        redeem.titleLabel?.font = UIFont(name: FontStyles.Secondary.rawValue, size: CGFloat(FontSizes.Tertiary.rawValue))
-        redeem.tintColor = Colors.LightGray
-        redeem.backgroundColor = Colors.Green
+        redeem.titleLabel?.font = UIFont(name: Util.FontStyles.Secondary, size: CGFloat(Util.FontSizes.Quaternary))
+        redeem.tintColor = Util.Colors.LightGray
+        redeem.backgroundColor = Util.Colors.Green
         redeem.layer.cornerRadius = 5.0
-        redeem.layer.borderColor = Colors.LightGray.CGColor
+        redeem.layer.borderColor = Util.Colors.LightGray.CGColor
         redeem.layer.borderWidth = 1
         
         splash.image = UIImage(named: (data?.promotion?.restaurant?.name)!)
