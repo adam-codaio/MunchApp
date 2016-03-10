@@ -23,7 +23,37 @@ class LoginViewController: UIViewController {
     
     let Keychain = KeychainWrapper()
     
+    private func createStringFromDictionary(dict: Dictionary<String, String>) -> String {
+        var params = String()
+        var first = true
+        for (key, value) in dict {
+            if !first {
+                params += "&"
+            }
+            params += key + "=" + value
+            first = false
+        }
+        return params
+    }
+    
+    private func parseClient(jsonResponse: AnyObject?) -> String {
+        return ""
+    }
+    
+    private func parseAccessToken(jsonResponse: AnyObject?) -> String {
+        return ""
+    }
+    
+    private func validateUserInput() -> Bool {
+        return true
+    }
+    
+    func login() {
+        
+    }
+    
     func register() {
+        validateUserInput()
         let email = "deez.nuts@gmail.com"
         let name = "deez nuts"
         let password = "dddddddd"
@@ -35,16 +65,40 @@ class LoginViewController: UIViewController {
         let url = "/api/user/"
         let method = "POST"
         let data = ["email": email, "password": password, "name": name, "is_customer": "t"]
-        let jsonResponse = HttpService.doRequest(url, method: method, data: data)
-        
-        Keychain.mySetObject(password, forKey:kSecValueData)
-        Keychain.writeToKeychain()
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoggedIn")
-        NSUserDefaults.standardUserDefaults().synchronize()
-    }
-    
-    func login() {
-        
+        let (_, registerStatus) = HttpService.doRequest(url, method: method, data: createStringFromDictionary(data), flag: false)
+        if registerStatus {
+            Keychain.mySetObject(password, forKey:kSecValueData)
+            Keychain.writeToKeychain()
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoggedIn")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            let url = "/api/auth/"
+            let method = "POST"
+            let data = ["email": email, "password": password]
+            let (jsonResponse, authStatus) = HttpService.doRequest(url, method: method, data: createStringFromDictionary(data), flag: false)
+            let client_id = parseClient(jsonResponse)
+            if authStatus {
+                //this probably isn't the right way to update the keychain
+                Keychain.mySetObject(client_id, forKey: kSecValueData)
+                Keychain.writeToKeychain()
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasAuthenticated")
+                let url = "/o/token/"
+                let method = "POST"
+                let data = ["grant_type": "password", "username": email, "password": password, "client_id": client_id]
+                let (jsonResponse, tokenStatus) = HttpService.doRequest(url, method: method, data: createStringFromDictionary(data), flag: false)
+                let access_token = parseAccessToken(jsonResponse)
+                if tokenStatus {
+                    Keychain.mySetObject(access_token, forKey: kSecValueData)
+                    Keychain.writeToKeychain()
+                    //transition to next view -- maybe this should be like a welcome screen for new users?
+                } else {
+                    //do something like could not get access token from server for some reason
+                }
+            } else {
+                //do something like could not authenticate account on server for some reason
+            }
+        } else {
+            //do something like could not make account on server because duplicate email
+        }
     }
     
 
