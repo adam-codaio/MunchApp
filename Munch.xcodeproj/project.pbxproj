@@ -12,6 +12,10 @@
 		D33D09551C0F94560033154B /* RedeemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D09541C0F94560033154B /* RedeemView.swift */; };
 		D352352D1C9135D500089528 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D352352C1C9135D500089528 /* LoginViewController.swift */; };
 		D35235311C91361400089528 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D35235301C91361400089528 /* KeychainWrapper.m */; };
+		D390BED81C9964BE0004E024 /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390BED41C9964BE0004E024 /* Restaurant+CoreDataProperties.swift */; };
+		D390BED91C9964BE0004E024 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390BED51C9964BE0004E024 /* User+CoreDataProperties.swift */; };
+		D390BEDA1C9964BE0004E024 /* UserClaim+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390BED61C9964BE0004E024 /* UserClaim+CoreDataProperties.swift */; };
+		D390BEDB1C9964BE0004E024 /* Promotion+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D390BED71C9964BE0004E024 /* Promotion+CoreDataProperties.swift */; };
 		D3B1E2B11BF7EC4300AFDFD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B1E2B01BF7EC4300AFDFD2 /* AppDelegate.swift */; };
 		D3B1E2B31BF7EC4300AFDFD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B1E2B21BF7EC4300AFDFD2 /* ViewController.swift */; };
 		D3B1E2B61BF7EC4300AFDFD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B1E2B41BF7EC4300AFDFD2 /* Main.storyboard */; };
@@ -19,13 +23,9 @@
 		D3B1E2BB1BF7EC4300AFDFD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3B1E2BA1BF7EC4300AFDFD2 /* Assets.xcassets */; };
 		D3B1E2BE1BF7EC4300AFDFD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B1E2BC1BF7EC4300AFDFD2 /* LaunchScreen.storyboard */; };
 		D3BD43CF1C8FA3D0007C8443 /* HttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BD43CE1C8FA3D0007C8443 /* HttpService.swift */; };
-		D3C9228A1C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922821C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift */; };
 		D3C9228B1C06A48D00D7C416 /* UserClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922831C06A48D00D7C416 /* UserClaim.swift */; };
-		D3C9228C1C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922841C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift */; };
 		D3C9228D1C06A48D00D7C416 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922851C06A48D00D7C416 /* Restaurant.swift */; };
-		D3C9228E1C06A48D00D7C416 /* Promotion+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922861C06A48D00D7C416 /* Promotion+CoreDataProperties.swift */; };
 		D3C9228F1C06A48D00D7C416 /* Promotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922871C06A48D00D7C416 /* Promotion.swift */; };
-		D3C922901C06A48D00D7C416 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922881C06A48D00D7C416 /* User+CoreDataProperties.swift */; };
 		D3C922911C06A48D00D7C416 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922891C06A48D00D7C416 /* User.swift */; };
 		D3C922931C06A78200D7C416 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922921C06A78200D7C416 /* DataHelper.swift */; };
 		D3C922971C07904800D7C416 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C922961C07904800D7C416 /* CoreDataTableViewController.swift */; };
@@ -54,6 +54,10 @@
 		D352352E1C91361300089528 /* Munch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Munch-Bridging-Header.h"; sourceTree = "<group>"; };
 		D352352F1C91361400089528 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
 		D35235301C91361400089528 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
+		D390BED41C9964BE0004E024 /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D390BED51C9964BE0004E024 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D390BED61C9964BE0004E024 /* UserClaim+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserClaim+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		D390BED71C9964BE0004E024 /* Promotion+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promotion+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D3B1E2AD1BF7EC4300AFDFD2 /* Munch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Munch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B1E2B01BF7EC4300AFDFD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3B1E2B21BF7EC4300AFDFD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,13 +67,9 @@
 		D3B1E2BD1BF7EC4300AFDFD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3B1E2BF1BF7EC4300AFDFD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3BD43CE1C8FA3D0007C8443 /* HttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpService.swift; sourceTree = "<group>"; };
-		D3C922821C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserClaim+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D3C922831C06A48D00D7C416 /* UserClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserClaim.swift; sourceTree = "<group>"; };
-		D3C922841C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Restaurant+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D3C922851C06A48D00D7C416 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
-		D3C922861C06A48D00D7C416 /* Promotion+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Promotion+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D3C922871C06A48D00D7C416 /* Promotion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promotion.swift; sourceTree = "<group>"; };
-		D3C922881C06A48D00D7C416 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D3C922891C06A48D00D7C416 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D3C922921C06A78200D7C416 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		D3C922961C07904800D7C416 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
@@ -184,15 +184,15 @@
 		F62CB5D81C11976C00D7326A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				D390BED41C9964BE0004E024 /* Restaurant+CoreDataProperties.swift */,
+				D390BED51C9964BE0004E024 /* User+CoreDataProperties.swift */,
+				D390BED61C9964BE0004E024 /* UserClaim+CoreDataProperties.swift */,
+				D390BED71C9964BE0004E024 /* Promotion+CoreDataProperties.swift */,
 				D3C922961C07904800D7C416 /* CoreDataTableViewController.swift */,
 				D3C922921C06A78200D7C416 /* DataHelper.swift */,
-				D3C922821C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift */,
 				D3C922831C06A48D00D7C416 /* UserClaim.swift */,
-				D3C922841C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift */,
 				D3C922851C06A48D00D7C416 /* Restaurant.swift */,
-				D3C922861C06A48D00D7C416 /* Promotion+CoreDataProperties.swift */,
 				D3C922871C06A48D00D7C416 /* Promotion.swift */,
-				D3C922881C06A48D00D7C416 /* User+CoreDataProperties.swift */,
 				D3C922891C06A48D00D7C416 /* User.swift */,
 			);
 			name = CoreData;
@@ -322,13 +322,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3B1E2B31BF7EC4300AFDFD2 /* ViewController.swift in Sources */,
+				D390BED81C9964BE0004E024 /* Restaurant+CoreDataProperties.swift in Sources */,
 				D3C9228F1C06A48D00D7C416 /* Promotion.swift in Sources */,
 				D3C922931C06A78200D7C416 /* DataHelper.swift in Sources */,
-				D3C9228A1C06A48D00D7C416 /* UserClaim+CoreDataProperties.swift in Sources */,
 				F682DF1F1C12023E00643045 /* ActivityViewController.swift in Sources */,
 				D33D09551C0F94560033154B /* RedeemView.swift in Sources */,
 				D3D8475C1C0EE1F700820ABF /* PastClaimsTableViewCell.swift in Sources */,
 				D3B1E2B11BF7EC4300AFDFD2 /* AppDelegate.swift in Sources */,
+				D390BED91C9964BE0004E024 /* User+CoreDataProperties.swift in Sources */,
 				F6E70CF71BFF4C5C00CADA39 /* RestaurantTableViewController.swift in Sources */,
 				F6E70CDE1BFEA80D00CADA39 /* ClaimsTableViewController.swift in Sources */,
 				F6E70CF11BFF378900CADA39 /* Util.swift in Sources */,
@@ -337,18 +338,17 @@
 				D352352D1C9135D500089528 /* LoginViewController.swift in Sources */,
 				F6E70CDA1BFEA7AA00CADA39 /* MainTabBarController.swift in Sources */,
 				F6E70CEF1BFF329900CADA39 /* MainNavigationController.swift in Sources */,
+				D390BEDA1C9964BE0004E024 /* UserClaim+CoreDataProperties.swift in Sources */,
 				F682DF231C12211300643045 /* ActivityGraphView.swift in Sources */,
-				D3C9228C1C06A48D00D7C416 /* Restaurant+CoreDataProperties.swift in Sources */,
 				D3C9228D1C06A48D00D7C416 /* Restaurant.swift in Sources */,
 				D3B1E2B91BF7EC4300AFDFD2 /* Munch.xcdatamodeld in Sources */,
-				D3C922901C06A48D00D7C416 /* User+CoreDataProperties.swift in Sources */,
 				D3C922911C06A48D00D7C416 /* User.swift in Sources */,
 				D33D09531C0F8E3B0033154B /* RedeemClaimViewController.swift in Sources */,
 				D3D847561C0E886F00820ABF /* RestaurantClaimsTableViewCell.swift in Sources */,
-				D3C9228E1C06A48D00D7C416 /* Promotion+CoreDataProperties.swift in Sources */,
 				D35235311C91361400089528 /* KeychainWrapper.m in Sources */,
 				F6E70CDC1BFEA7F200CADA39 /* HomeTableViewController.swift in Sources */,
 				D3D8475A1C0EE1E800820ABF /* CurrentClaimsTableViewCell.swift in Sources */,
+				D390BEDB1C9964BE0004E024 /* Promotion+CoreDataProperties.swift in Sources */,
 				F682DF211C1202B400643045 /* ActivityView.swift in Sources */,
 				D3C922971C07904800D7C416 /* CoreDataTableViewController.swift in Sources */,
 				D3C9228B1C06A48D00D7C416 /* UserClaim.swift in Sources */,

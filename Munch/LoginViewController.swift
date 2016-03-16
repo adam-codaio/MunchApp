@@ -126,6 +126,7 @@ class LoginViewController: UIViewController {
         }
     }
     
+    //TODO: check refresh token and dont always issue reauthorization request
     private func authenticate(email: String, password: String) -> (Bool, String?) {
         let data = ["email": email, "password": password]
         let (authResponse, authStatus) = HttpService.doRequest("/api/auth/", method: "POST", data: data, flag: false, synchronous: true)
