@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class LoginViewController: UIViewController {
     
@@ -50,9 +51,14 @@ class LoginViewController: UIViewController {
         prevHeight = nameField.frame.height
         nameField.hidden = true
         passwordField2.hidden = true
+        if loginMode && NSUserDefaults.standardUserDefaults().boolForKey("rememberMe") {
+            emailField.text = NSUserDefaults.standardUserDefaults().stringForKey("email")
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
+        //if NSUserDefaults.standardUserDefaults().boolForKey("stayLoggedIn")
+        //transition to home view
         super.viewWillAppear(animated)
     }
 
@@ -61,7 +67,7 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    let Keychain = KeychainWrapper()
+    private let Keychain = KeychainWrapper()
     
     private func setupForMode() {
         if loginMode {
@@ -119,82 +125,77 @@ class LoginViewController: UIViewController {
             register()
         }
     }
-
-    private func createStringFromDictionary(dict: Dictionary<String, String>) -> String {
-        var params = String()
-        var first = true
-        for (key, value) in dict {
-            if !first {
-                params += "&"
-            }
-            params += key + "=" + value
-            first = false
-        }
-        return params
-    }
     
-    private func parseClient(jsonResponse: AnyObject?) -> String {
-        return ""
-    }
-    
-    private func parseAccessToken(jsonResponse: AnyObject?) -> String {
-        return ""
-    }
-    
-    private func validateUserInput() -> Bool {
-        return true
-    }
-    
-    func login() {
-        
-    }
-    
-    func register() {
-        validateUserInput()
-        let email = "deez.nuts@gmail.com"
-        let name = "deez nuts"
-        let password = "dddddddd"
-        let hasLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("hasLoggedIn")
-        if !hasLoggedIn {
-            NSUserDefaults.standardUserDefaults().setValue(email, forKey: "email")
-        }
-        
-        let url = "/api/user/"
-        let method = "POST"
-        let data = ["email": email, "password": password, "name": name, "is_customer": "t"]
-        let (_, registerStatus) = HttpService.doRequest(url, method: method, data: createStringFromDictionary(data), flag: false)
-        if registerStatus {
-            Keychain.mySetObject(password, forKey:kSecValueData)
-            Keychain.writeToKeychain()
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasLoggedIn")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            let url = "/api/auth/"
-            let method = "POST"
-            let data = ["email": email, "password": password]
-            let (jsonResponse, authStatus) = HttpService.doRequest(url, method: method, data: createStringFromDictionary(data), flag: false)
-            let client_id = parseClient(jsonResponse)
-            if authStatus {
-                //this probably isn't the right way to update the keychain
-                Keychain.mySetObject(client_id, forKey: kSecValueData)
-                Keychain.writeToKeychain()
-                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasAuthenticated")
-                let url = "/o/token/"
-                let method = "POST"
-                let data = ["grant_type": "password", "username": email, "password": password, "client_id": client_id]
-                let (jsonResponse, tokenStatus) = HttpService.doRequest(url, method: method, data: createStringFromDictionary(data), flag: false)
-                let access_token = parseAccessToken(jsonResponse)
-                if tokenStatus {
-                    Keychain.mySetObject(access_token, forKey: kSecValueData)
-                    Keychain.writeToKeychain()
-                    //transition to next view -- maybe this should be like a welcome screen for new users?
-                } else {
-                    //do something like could not get access token from server for some reason
-                }
+    //TODO: check refresh token and dont always issue reauthorization request
+    private func authenticate(email: String, password: String) -> (Bool, String?) {
+        let data = ["email": email, "password": password]
+        let (authResponse, authStatus) = HttpService.doRequest("/api/auth/", method: "POST", data: data, flag: false, synchronous: true)
+        if authStatus {
+            let client_id = authResponse!["client_id"].string!
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "stayLoggedIn")
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "rememberMe")
+            let data = ["grant_type": "password", "username": email, "password": password, "client_id": client_id]
+            let (tokenResponse, tokenStatus) = HttpService.doRequest("/o/token/", method: "POST", data: data, flag: false, synchronous: true)
+            if tokenStatus {
+                let access_token = tokenResponse!["access_token"].string!
+                //only storing access token
+                self.Keychain.mySetObject(access_token, forKey: kSecValueData)
+                self.Keychain.writeToKeychain()
+                return (true, nil)
             } else {
-                //do something like could not authenticate account on server for some reason
+                return (false, tokenResponse!["detail"].string!)
             }
         } else {
-            //do something like could not make account on server because duplicate email
+            return (false, authResponse!["detail"].string!)
+        }
+    }
+    
+    private func login() {
+        let email = (emailField?.text)!
+        let password = (passwordField?.text)!
+        //start spinner
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            let (result, error) = self.authenticate(email, password: password)
+            dispatch_async(dispatch_get_main_queue()) {
+                ///End spinner
+                if result {
+                    print("log in success!")
+                    //transition to home view
+                } else {
+                    //alert of some kind
+                    print("log in failed! \(error)")
+                }
+            }
+        }
+    }
+    
+    private func register() {
+        let email = (emailField?.text)!
+        let password = (passwordField?.text)!
+        let name = (nameField?.text)!
+        let data = ["email": email, "password": password, "name": name, "is_customer": "t"]
+        //Start spinner
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
+            let (registerResponse, registerStatus) = HttpService.doRequest("/api/user/", method: "POST", data: data, flag: false, synchronous: true)
+            if registerStatus {
+                NSUserDefaults.standardUserDefaults().setValue(email, forKey: "email")
+                let (result, error) = self.authenticate(email, password: password)
+                dispatch_async(dispatch_get_main_queue()) {
+                    //End spinner
+                    if result {
+                        print("registration success!")
+                        //transition to next view
+                    } else {
+                        print("authentication failed! \(error)")
+                    }
+                }
+            } else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    ///End spinner
+                    //alert of some kind -- because invalid email address or duplicate email address
+                    print("registering account failed. \(registerResponse)")
+                }
+            }
         }
     }
     

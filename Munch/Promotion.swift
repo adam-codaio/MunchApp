@@ -45,4 +45,34 @@ class Promotion: NSManagedObject {
         return "Fail"
     }
 
+    class func createPromotion(inManagedObjectContext context: NSManagedObjectContext, id: Int, promo: String, repetition: Int, retail_value: Float, expiry: NSDate, restaurant: Restaurant) -> Promotion? {
+        
+        let promotionRequest = NSFetchRequest(entityName: "Promotion")
+        promotionRequest.predicate = NSPredicate(format: "id==%d", id)
+        let promotions = (try? context.executeFetchRequest(promotionRequest)) as! [Promotion]
+        
+        if promotions.count == 1 {
+            return updatePromotion(inManagedObjectContext: context, promo: promo, repetition: repetition, retail_value: retail_value, expiry: expiry, restaurant: restaurant, promotion: promotions[0])
+        }
+            
+        if let newPromotion = NSEntityDescription.insertNewObjectForEntityForName("Promotion", inManagedObjectContext: context) as? Promotion {
+            newPromotion.id = id
+            newPromotion.promo = promo
+            newPromotion.repetition = repetition
+            newPromotion.retail_value = retail_value
+            newPromotion.expiry = expiry
+            newPromotion.restaurant = restaurant
+            return newPromotion
+        }
+        return nil
+    }
+    
+    class func updatePromotion(inManagedObjectContext context: NSManagedObjectContext, promo: String, repetition: Int, retail_value: Float, expiry: NSDate, restaurant: Restaurant, promotion: Promotion) -> Promotion? {
+        promotion.setValue(promo, forKey: "promo")
+        promotion.setValue(repetition, forKey: "repetition")
+        promotion.setValue(retail_value, forKey: "retail_value")
+        promotion.setValue(expiry, forKey: "expiry")
+        promotion.setValue(restaurant, forKey: "restaurant")
+        return promotion
+    }
 }

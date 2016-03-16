@@ -7,40 +7,46 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class HttpService {
     
 
     private static let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
     private static var dataTask: NSURLSessionDataTask?
-    private static var responseData: AnyObject?
-    private static var status = false
+    private static let Keychain = KeychainWrapper()
     
-    private static func dataToJSON(data: NSData) -> AnyObject? {
-        do {
-            let json = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
-            return json
-        } catch {
-            print("error serializing JSON: \(error)")
+    private static func createStringFromDictionary(dict: Dictionary<String, String>) -> String {
+        var params = String()
+        var first = true
+        for (key, value) in dict {
+            if !first {
+                params += "&"
+            }
+            params += key + "=" + value
+            first = false
         }
-        return nil
+        return params
     }
     
     //Data parameter should maybe be AnyObject -- will make changes when we start making those kinds of requests
-    static func doRequest(url: String, method: String, data: AnyObject?, flag: Bool) -> (data: AnyObject?, status: Bool) {
+    static func doRequest(url: String, method: String, data: Dictionary<String,String>?, flag: Bool, synchronous: Bool) -> (data: JSON?, status: Bool) {
         let fullURL = NSURL(string: "https://getstuft.herokuapp.com\(url)")
         //Fetch on login and store somewhere that we can access here
         let request = NSMutableURLRequest(URL: fullURL!)
         request.HTTPMethod = method
         if flag {
-            let token = "y6r0v7oeNRpvMfQaJr5bdpPZMv3hVz"
+            let token = Keychain.myObjectForKey(kSecValueData)
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
         if data != nil {
-            request.HTTPBody = data!.dataUsingEncoding(NSUTF8StringEncoding)
+            request.HTTPBody = createStringFromDictionary(data!).dataUsingEncoding(NSUTF8StringEncoding)
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.setValue("application/json", forHTTPHeaderField: "Accept")
         }
+        let semaphore = dispatch_semaphore_create(0)
+        var responseData: JSON? = nil
+        var status = false
         dataTask = defaultSession.dataTaskWithRequest(request) { data, response, error in
             if self.dataTask != nil {
                 self.dataTask?.cancel()
@@ -49,12 +55,18 @@ class HttpService {
                 print(error)
             } else if let httpResponse = response as? NSHTTPURLResponse {
                 if httpResponse.statusCode == 200 {
-                    responseData = self.dataToJSON(data!)
+                    responseData = JSON(data: data!)
                     status = true
+                } else {
+                    responseData = JSON(data: data!)
                 }
             }
+            dispatch_semaphore_signal(semaphore)
         }
         dataTask?.resume()
+        if synchronous {
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+        }
         return (responseData, status)
     }
 }

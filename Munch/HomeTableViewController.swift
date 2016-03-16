@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import SwiftyJSON
+
 
 class HomeTableViewController: CoreDataTableViewController {
     
@@ -23,6 +25,8 @@ class HomeTableViewController: CoreDataTableViewController {
     }
     
     private var currentSort = "Nearby"
+
+
     
     override func viewWillAppear(animated: Bool) {
         //self.navigationController?.navigationBarHidden = true
@@ -39,11 +43,14 @@ class HomeTableViewController: CoreDataTableViewController {
         self.navigationItem.titleView = Util.getLogoTitle()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         sortMech.tintColor = Util.Colors.Green
-        distanceButton.layer.cornerRadius = 8.0;
+        distanceButton.layer.cornerRadius = 8.0
         distanceButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5.0, 0, 5.0)
         distanceButton.titleLabel!.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Tertiary))
         distanceButton.titleLabel!.tintColor = Util.Colors.LightGray
-
+        
+        //Cuz my shit aint no bitch
+        let _ = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: Selector("fetchPromotions"), userInfo: nil, repeats: true)
+        
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -57,15 +64,42 @@ class HomeTableViewController: CoreDataTableViewController {
         currentSort = sender.titleForSegmentAtIndex(sender.selectedSegmentIndex)!
         refresh()
     }
+
+    
+    private func processPromotions(response: JSON) -> [Promotion] {
+        var promotions = [Promotion]()
+        for item in response {
+            let promo_id = item.1["id"].int!
+            let restaurant = item.1["restaurant"]
+            //Maybe I should delete promotions at some point...nahhhh
+            managedObjectContext?.performBlockAndWait {
+                let restaurant = Restaurant.createRestaurant(inManagedObjectContext: self.managedObjectContext!, hours: restaurant["hours"].string!, phone_number: restaurant["phone_number"].string!, name: restaurant["name"].string!, address: restaurant["address"].string!, id: restaurant["id"].int!)
+                let dateFormatter: NSDateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                let promotion = Promotion.createPromotion(inManagedObjectContext: self.managedObjectContext!, id: promo_id, promo: item.1["text"].string!, repetition: item.1["repetition"].int!, retail_value: Float(item.1["retail_value"].number!), expiry: dateFormatter.dateFromString(item.1["expiration"].string!)!, restaurant: restaurant!)
+                promotions.append(promotion!)
+            }
+        }
+        return promotions
+    }
+    
+    func fetchPromotions() {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            let (listResponse, listStatus) = HttpService.doRequest("/api/promotion/list_promotions/", method: "GET", data: nil, flag: true, synchronous: true)
+            dispatch_async(dispatch_get_main_queue()) {
+                if listStatus {
+                    self.promotions = self.processPromotions(listResponse!)
+                }
+            }
+        }
+    }
     
     private func refresh() {
-        managedObjectContext?.performBlockAndWait {
-            self.promotions = Promotion.openPromotions(inManagedObjectContext: self.managedObjectContext!, sort: self.currentSort, distance: self.currentDistance)
-        }
-        let url = "/api/promotion/list_promotions/"
-        let method = "GET"
-        let jsonResponse = HttpService.doRequest(url, method: method, data: nil, flag: true)
-        //serializeJSON(jsonResponse) -- need to put the JSON into promotion objects here
+//  Yeah fuck that shit we aint seeding with promotions no more
+//        managedObjectContext?.performBlockAndWait {
+//            self.promotions = Promotion.openPromotions(inManagedObjectContext: self.managedObjectContext!, sort: self.currentSort, distance: self.currentDistance)
+//        }
+        fetchPromotions()
         tableView.reloadData()
     }
     

@@ -52,11 +52,8 @@ public class DataHelper {
         ]
         for restaurant in restaurants {
             let newRestaurant = NSEntityDescription.insertNewObjectForEntityForName("Restaurant", inManagedObjectContext: context) as! Restaurant
-            newRestaurant.hours = restaurant.hours
-            newRestaurant.phone_number = restaurant.phone_number
-            newRestaurant.distance = restaurant.distance
-            newRestaurant.name = restaurant.name
-            newRestaurant.address = restaurant.address
+
+            
         }
         do {
             try context.save()
