@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-//        let dataHelper = DataHelper(context: managedObjectContext)
-//        dataHelper.seedDataStore()
+        let dataHelper = DataHelper(context: managedObjectContext)
+        dataHelper.seedDataStore()
         self.window?.tintColor = Colors.Green
 
         //print functions to make sure database is seeding correctly

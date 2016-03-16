@@ -71,7 +71,7 @@ class HomeTableViewController: CoreDataTableViewController {
         for item in response {
             let promo_id = item.1["id"].int!
             let restaurant = item.1["restaurant"]
-            
+            //Maybe I should delete promotions at some point...nahhhh
             managedObjectContext?.performBlockAndWait {
                 let restaurant = Restaurant.createRestaurant(inManagedObjectContext: self.managedObjectContext!, hours: restaurant["hours"].string!, phone_number: restaurant["phone_number"].string!, name: restaurant["name"].string!, address: restaurant["address"].string!, id: restaurant["id"].int!)
                 let dateFormatter: NSDateFormatter = NSDateFormatter()
