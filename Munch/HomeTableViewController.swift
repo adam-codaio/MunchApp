@@ -25,6 +25,8 @@ class HomeTableViewController: CoreDataTableViewController {
     }
     
     private var currentSort = "Nearby"
+
+
     
     override func viewWillAppear(animated: Bool) {
         //self.navigationController?.navigationBarHidden = true
@@ -45,6 +47,9 @@ class HomeTableViewController: CoreDataTableViewController {
         distanceButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5.0, 0, 5.0)
         distanceButton.titleLabel!.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Tertiary))
         distanceButton.titleLabel!.tintColor = Util.Colors.LightGray
+        
+        //Cuz my shit aint no bitch
+        let _ = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: Selector("fetchPromotions"), userInfo: nil, repeats: true)
         
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -78,7 +83,7 @@ class HomeTableViewController: CoreDataTableViewController {
         return promotions
     }
     
-    private func fetchPromotions() {
+    func fetchPromotions() {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             let (listResponse, listStatus) = HttpService.doRequest("/api/promotion/list_promotions/", method: "GET", data: nil, flag: true, synchronous: true)
             dispatch_async(dispatch_get_main_queue()) {
