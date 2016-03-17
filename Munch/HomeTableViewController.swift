@@ -8,10 +8,11 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 import SwiftyJSON
 
 
-class HomeTableViewController: CoreDataTableViewController {
+class HomeTableViewController: CoreDataTableViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var sortMech: UISegmentedControl!
     @IBOutlet weak var distanceButton: UIButton!
@@ -25,11 +26,23 @@ class HomeTableViewController: CoreDataTableViewController {
     }
     
     private var currentSort = "Nearby"
-
-
+    
+    //Location variables
+    private var coordinate = CLLocation() {
+        didSet {
+            recomputeDistances()
+        }
+    }
+    private let locationManager = CLLocationManager()
+    private let geocoder = CLGeocoder()
     
     override func viewWillAppear(animated: Bool) {
         //self.navigationController?.navigationBarHidden = true
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.distanceFilter = kCLLocationAccuracyHundredMeters
+        locationManager.startUpdatingLocation()
         refresh()
     }
     
@@ -47,9 +60,10 @@ class HomeTableViewController: CoreDataTableViewController {
         distanceButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5.0, 0, 5.0)
         distanceButton.titleLabel!.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Tertiary))
         distanceButton.titleLabel!.tintColor = Util.Colors.LightGray
+
         
         //Cuz my shit aint no bitch
-        let _ = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: Selector("fetchPromotions"), userInfo: nil, repeats: true)
+        let _ = NSTimer.scheduledTimerWithTimeInterval(20.0, target: self, selector: Selector("fetchPromotions"), userInfo: nil, repeats: true)
         
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -64,23 +78,47 @@ class HomeTableViewController: CoreDataTableViewController {
         currentSort = sender.titleForSegmentAtIndex(sender.selectedSegmentIndex)!
         refresh()
     }
+    
+    private let meterConversion = 0.000621371192
+    
+    private func computeDistance(latitude: Double, longitude: Double) -> Double {
+        let restaurantLocation = CLLocation(latitude: Double(latitude), longitude: Double(longitude))
+        let distanceMeters = restaurantLocation.distanceFromLocation(self.coordinate)
+        return roundToOneDecimal(distanceMeters * meterConversion)
+    }
+    
+    private func recomputeDistances() {
+        for promotion in promotions {
+            promotion.restaurant?.distance = computeDistance(Double((promotion.restaurant?.latitude)!), longitude: Double((promotion.restaurant?.longitude)!))
+        }
+        do {
+            try managedObjectContext!.save()
+        } catch _ {
+        }
+        tableView.reloadData()
+    }
+
 
     
-    private func processPromotions(response: JSON) -> [Promotion] {
+    private func processResponses(response: JSON) {
         var promotions = [Promotion]()
         for item in response {
             let promo_id = item.1["id"].int!
             let restaurant = item.1["restaurant"]
-            //Maybe I should delete promotions at some point...nahhhh
             managedObjectContext?.performBlockAndWait {
-                let restaurant = Restaurant.createRestaurant(inManagedObjectContext: self.managedObjectContext!, hours: restaurant["hours"].string!, phone_number: restaurant["phone_number"].string!, name: restaurant["name"].string!, address: restaurant["address"].string!, id: restaurant["id"].int!)
+                let latitude = Double(restaurant["latitude"].number!)
+                let longitude = Double(restaurant["longitude"].number!)
+                let distance = self.computeDistance(latitude, longitude: longitude)
+
+                let restaurant = Restaurant.createRestaurant(inManagedObjectContext: self.managedObjectContext!, hours: restaurant["hours"].string!, phone_number: restaurant["phone_number"].string!, name: restaurant["name"].string!, address: restaurant["address"].string!, latitude: latitude, longitude: longitude, distance: distance, id: restaurant["id"].int!)
                 let dateFormatter: NSDateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-                let promotion = Promotion.createPromotion(inManagedObjectContext: self.managedObjectContext!, id: promo_id, promo: item.1["text"].string!, repetition: item.1["repetition"].int!, retail_value: Float(item.1["retail_value"].number!), expiry: dateFormatter.dateFromString(item.1["expiration"].string!)!, restaurant: restaurant!)
-                promotions.append(promotion!)
+                self.managedObjectContext?.performBlockAndWait {
+                    let promotion = Promotion.createPromotion(inManagedObjectContext: self.managedObjectContext!, id: promo_id, promo: item.1["text"].string!, repetition: item.1["repetition"].int!, retail_value: Float(item.1["retail_value"].number!), expiry: dateFormatter.dateFromString(item.1["expiration"].string!)!, restaurant: restaurant!)
+                    promotions.append(promotion!)
+                }
             }
         }
-        return promotions
     }
     
     func fetchPromotions() {
@@ -88,17 +126,23 @@ class HomeTableViewController: CoreDataTableViewController {
             let (listResponse, listStatus) = HttpService.doRequest("/api/promotion/list_promotions/", method: "GET", data: nil, flag: true, synchronous: true)
             dispatch_async(dispatch_get_main_queue()) {
                 if listStatus {
-                    self.promotions = self.processPromotions(listResponse!)
+                    self.processResponses(listResponse!)
+                    do {
+                        try self.managedObjectContext!.save()
+                    } catch _ {
+                    }
+                    self.managedObjectContext?.performBlockAndWait {
+                        self.promotions = Promotion.openPromotions(inManagedObjectContext: self.managedObjectContext!, sort: self.currentSort, distance: self.currentDistance)
+                    }
                 }
             }
         }
     }
     
     private func refresh() {
-//  Yeah fuck that shit we aint seeding with promotions no more
-//        managedObjectContext?.performBlockAndWait {
-//            self.promotions = Promotion.openPromotions(inManagedObjectContext: self.managedObjectContext!, sort: self.currentSort, distance: self.currentDistance)
-//        }
+        managedObjectContext?.performBlockAndWait {
+            self.promotions = Promotion.openPromotions(inManagedObjectContext: self.managedObjectContext!, sort: self.currentSort, distance: self.currentDistance)
+        }
         fetchPromotions()
         tableView.reloadData()
     }
@@ -282,6 +326,16 @@ class HomeTableViewController: CoreDataTableViewController {
             restaurantvc.allPromotions = allPromotions
             restaurantvc.context = managedObjectContext
         }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if locations.count != 0 {
+            coordinate = locations[0]
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print(error)
     }
 
 }

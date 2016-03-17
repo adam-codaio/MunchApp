@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        let dataHelper = DataHelper(context: managedObjectContext)
-        dataHelper.seedDataStore()
+//        let dataHelper = DataHelper(context: managedObjectContext)
+//        dataHelper.seedDataStore()
         self.window?.tintColor = Colors.Green
 
         //print functions to make sure database is seeding correctly
@@ -86,10 +86,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
-        do {
-            try NSFileManager.defaultManager().removeItemAtURL(url)
-        } catch _ {
-        }
+        
+//        commenting this out means it will save previous promotions to load initial stuff
+//        do {
+//            try NSFileManager.defaultManager().removeItemAtURL(url)
+//        } catch _ {
+//        }
         
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
