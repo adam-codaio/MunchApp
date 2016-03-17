@@ -55,9 +55,9 @@ class ActivityGraphView: UIView {
             return
         }
         
-        print ("attempting to graph")
-        print(data)
-        print(labels)
+//        print ("attempting to graph")
+//        print(data)
+//        print(labels)
         
         let upper = CGFloat((data.maxElement()!/4)+1)*4.0
         

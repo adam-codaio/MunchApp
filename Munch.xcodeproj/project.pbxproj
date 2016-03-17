@@ -34,6 +34,7 @@
 		D3D847561C0E886F00820ABF /* RestaurantClaimsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D847551C0E886F00820ABF /* RestaurantClaimsTableViewCell.swift */; };
 		D3D8475A1C0EE1E800820ABF /* CurrentClaimsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D847591C0EE1E800820ABF /* CurrentClaimsTableViewCell.swift */; };
 		D3D8475C1C0EE1F700820ABF /* PastClaimsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8475B1C0EE1F700820ABF /* PastClaimsTableViewCell.swift */; };
+		F6308B331C9A6A4700C1B833 /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6308B321C9A6A4700C1B833 /* MoreTableViewController.swift */; };
 		F682DF1F1C12023E00643045 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DF1E1C12023E00643045 /* ActivityViewController.swift */; };
 		F682DF211C1202B400643045 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DF201C1202B400643045 /* ActivityView.swift */; };
 		F682DF231C12211300643045 /* ActivityGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F682DF221C12211300643045 /* ActivityGraphView.swift */; };
@@ -79,6 +80,7 @@
 		D3D847591C0EE1E800820ABF /* CurrentClaimsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentClaimsTableViewCell.swift; sourceTree = "<group>"; };
 		D3D8475B1C0EE1F700820ABF /* PastClaimsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PastClaimsTableViewCell.swift; sourceTree = "<group>"; };
 		EE15452539435725879EF5B1 /* Pods_Munch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Munch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6308B321C9A6A4700C1B833 /* MoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreTableViewController.swift; sourceTree = "<group>"; };
 		F682DF1E1C12023E00643045 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		F682DF201C1202B400643045 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		F682DF221C12211300643045 /* ActivityGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityGraphView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				D3D847551C0E886F00820ABF /* RestaurantClaimsTableViewCell.swift */,
 				D3B1E2B21BF7EC4300AFDFD2 /* ViewController.swift */,
 				D3B1E2B41BF7EC4300AFDFD2 /* Main.storyboard */,
+				F6308B321C9A6A4700C1B833 /* MoreTableViewController.swift */,
 				F6E70CF61BFF4C5C00CADA39 /* RestaurantTableViewController.swift */,
 				F6E70CEE1BFF329900CADA39 /* MainNavigationController.swift */,
 				F6E70CD91BFEA7AA00CADA39 /* MainTabBarController.swift */,
@@ -337,6 +340,7 @@
 				D3D847541C0E803100820ABF /* LinedView.swift in Sources */,
 				D352352D1C9135D500089528 /* LoginViewController.swift in Sources */,
 				F6E70CDA1BFEA7AA00CADA39 /* MainTabBarController.swift in Sources */,
+				F6308B331C9A6A4700C1B833 /* MoreTableViewController.swift in Sources */,
 				F6E70CEF1BFF329900CADA39 /* MainNavigationController.swift in Sources */,
 				D390BEDA1C9964BE0004E024 /* UserClaim+CoreDataProperties.swift in Sources */,
 				F682DF231C12211300643045 /* ActivityGraphView.swift in Sources */,

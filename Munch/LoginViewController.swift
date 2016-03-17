@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var passwordField2: UITextField!
     @IBOutlet weak var textView: UIView!
+    @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var nameHeight: NSLayoutConstraint!
     @IBOutlet weak var passwordHeight2: NSLayoutConstraint!
@@ -33,15 +34,8 @@ class LoginViewController: UIViewController {
             field.leftView = padding
             field.leftViewMode = .Always
         }
-        for field in [nameField, passwordField] {
-            field.borderStyle = .None
-            field.layer.borderColor = Util.Colors.LightGray.CGColor
-            field.layer.borderWidth = 1
-        }
-        for field in [emailField, passwordField2] {
-            field.borderStyle = .None
-        }
         
+        setupFields()
         
         textView.layer.cornerRadius = 5
         textView.layer.masksToBounds = true
@@ -54,12 +48,30 @@ class LoginViewController: UIViewController {
         if loginMode && NSUserDefaults.standardUserDefaults().boolForKey("rememberMe") {
             emailField.text = NSUserDefaults.standardUserDefaults().stringForKey("email")
         }
+        
+        self.navigationController?.navigationBarHidden = true
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("stayLoggedIn") {
+            //transition to home view
+            navigateToHome();
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
-        //if NSUserDefaults.standardUserDefaults().boolForKey("stayLoggedIn")
-        //transition to home view
-        super.viewWillAppear(animated)
+        super.viewWillAppear(true)
+        errorLabel = true
+    }
+    
+    private func setupFields() {
+        for field in [nameField, passwordField] {
+            field.borderStyle = .None
+            field.layer.borderColor = Util.Colors.LightGray.CGColor
+            field.layer.borderWidth = 1
+        }
+        for field in [emailField, passwordField2] {
+            field.borderStyle = .None
+            field.layer.borderWidth = 0
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,7 +81,12 @@ class LoginViewController: UIViewController {
     
     private let Keychain = KeychainWrapper()
     
+    private func navigateToHome() {
+        performSegueWithIdentifier("GoToHome", sender: self)
+    }
+    
     private func setupForMode() {
+        self.view.layoutIfNeeded()
         if loginMode {
             submitButton.setTitle("Login", forState: .Normal)
             toggleButton.setTitle("Don't have an account?", forState: .Normal)
@@ -116,6 +133,8 @@ class LoginViewController: UIViewController {
         loginMode = !loginMode
         setupForMode()
         clearFields()
+        setupFields()
+        errorLabel.text = ""
     }
     
     @IBAction func submit(sender: AnyObject) {
@@ -150,6 +169,26 @@ class LoginViewController: UIViewController {
         }
     }
     
+    private func presentError(errorFields: [UITextField], errorString: String) {
+        setupFields()
+        // Not currently using the errorfields
+//        for field in errorFields {
+//            field.layer.borderWidth = 1
+//            field.layer.borderColor = Util.Colors.ErrorRed.CGColor
+//        }
+        //self.textView.layer.borderColor = Util.Colors.ErrorRed.CGColor
+        
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.05
+        animation.repeatCount = 2
+        animation.autoreverses = true
+        animation.fromValue = NSValue(CGPoint: CGPointMake(textView.center.x - 5, textView.center.y))
+        animation.toValue = NSValue(CGPoint: CGPointMake(textView.center.x + 5, textView.center.y))
+        textView.layer.addAnimation(animation, forKey: "position")
+
+        errorLabel.text = errorString
+    }
+    
     private func login() {
         let email = (emailField?.text)!
         let password = (passwordField?.text)!
@@ -161,9 +200,11 @@ class LoginViewController: UIViewController {
                 if result {
                     print("log in success!")
                     //transition to home view
+                    self.navigateToHome()
                 } else {
                     //alert of some kind
                     print("log in failed! \(error)")
+                    self.presentError([self.emailField, self.passwordField], errorString: error ?? "")
                 }
             }
         }
@@ -172,8 +213,22 @@ class LoginViewController: UIViewController {
     private func register() {
         let email = (emailField?.text)!
         let password = (passwordField?.text)!
+        let password2 = (passwordField2?.text)!
         let name = (nameField?.text)!
         let data = ["email": email, "password": password, "name": name, "is_customer": "t"]
+        
+        // Check for errors
+        if (email.characters.count == 0) {
+            presentError([emailField], errorString: "E-mail is required!")
+            return
+        } else if (password.characters.count == 0){
+            presentError([passwordField], errorString: "Password is required!")
+            return
+        } else if (password != password2) {
+            presentError([passwordField, passwordField2], errorString: "Passwords do not match!")
+            return
+        }
+        
         //Start spinner
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             let (registerResponse, registerStatus) = HttpService.doRequest("/api/user/", method: "POST", data: data, flag: false, synchronous: true)
@@ -185,8 +240,10 @@ class LoginViewController: UIViewController {
                     if result {
                         print("registration success!")
                         //transition to next view
+                        self.navigateToHome()
                     } else {
                         print("authentication failed! \(error)")
+                        self.presentError([self.emailField, self.passwordField], errorString: error ?? "")
                     }
                 }
             } else {
@@ -194,6 +251,7 @@ class LoginViewController: UIViewController {
                     ///End spinner
                     //alert of some kind -- because invalid email address or duplicate email address
                     print("registering account failed. \(registerResponse)")
+                    self.presentError([self.emailField], errorString: "Invalid e-mail address!")
                 }
             }
         }
