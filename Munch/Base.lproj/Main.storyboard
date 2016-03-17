@@ -65,7 +65,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0Eh-ZJ-7k2">
                                     <rect key="frame" x="132" y="8" width="340" height="28"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NA-m3-lHx">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NA-m3-lHx">
                                             <rect key="frame" x="0.0" y="0.0" width="124" height="28"/>
                                             <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title=" Set Distance" image="down">
@@ -75,7 +75,7 @@
                                                 <action selector="setLocation:" destination="yDk-Zc-a59" eventType="touchUpInside" id="cj2-s3-YSQ"/>
                                             </connections>
                                         </button>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0I0-dY-Uaf">
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0I0-dY-Uaf">
                                             <rect key="frame" x="129" y="0.0" width="211" height="29"/>
                                             <segments>
                                                 <segment title="Nearby"/>
@@ -523,8 +523,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="munch_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="BrI-Rh-hbm">
-                                <rect key="frame" x="205" y="120" width="190" height="50"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="munch_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="BrI-Rh-hbm">
+                                <rect key="frame" x="205" y="164" width="190" height="50"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uka-hC-LBT">
                                 <rect key="frame" x="250" y="467" width="100" height="33"/>
@@ -616,14 +616,17 @@
                                     <constraint firstAttribute="bottom" secondItem="qym-NK-N4w" secondAttribute="bottom" id="iVJ-7c-L3m"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMk-1b-etw">
-                                <rect key="frame" x="256.5" y="383" width="87" height="23.5"/>
-                                <color key="backgroundColor" red="1" green="0.65955394882291896" blue="0.6256171375980818" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
-                                <color key="textColor" red="0.9739188762626263" green="0.20654150317187517" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
-                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="scaleToFill" text="Login Error" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PaD-IP-Use">
+                                <rect key="frame" x="160" y="383" width="280" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.65955394879999996" blue="0.62561713760000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="3qy-7z-Fu7"/>
+                                    <constraint firstAttribute="width" constant="280" id="X6K-Lv-Thr"/>
+                                </constraints>
+                                <color key="textColor" red="0.97254901959999995" green="0.20784313730000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.25098039220000001" green="0.72941176470000002" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -631,13 +634,13 @@
                             <constraint firstItem="w9Q-eJ-6NZ" firstAttribute="top" secondItem="uka-hC-LBT" secondAttribute="bottom" constant="10" id="Iub-rU-PXW"/>
                             <constraint firstItem="RLm-O7-Tok" firstAttribute="top" secondItem="BrI-Rh-hbm" secondAttribute="bottom" constant="100" id="LZ7-XK-LIg"/>
                             <constraint firstItem="Bwf-uX-Fmr" firstAttribute="top" secondItem="uka-hC-LBT" secondAttribute="bottom" constant="100" id="Nxz-xd-leB"/>
-                            <constraint firstItem="pMk-1b-etw" firstAttribute="top" secondItem="RLm-O7-Tok" secondAttribute="bottom" constant="15" id="RbY-ZS-oW4"/>
                             <constraint firstItem="uka-hC-LBT" firstAttribute="top" secondItem="RLm-O7-Tok" secondAttribute="bottom" constant="100" id="Vmn-Eg-YQc"/>
-                            <constraint firstItem="pMk-1b-etw" firstAttribute="centerX" secondItem="Axl-g1-Reu" secondAttribute="centerX" id="XgI-IT-CsM"/>
                             <constraint firstItem="BrI-Rh-hbm" firstAttribute="top" secondItem="qww-qs-T7o" secondAttribute="bottom" constant="100" id="ZcF-bZ-REw"/>
                             <constraint firstItem="BrI-Rh-hbm" firstAttribute="centerX" secondItem="Axl-g1-Reu" secondAttribute="centerX" id="ZfG-ci-ldZ"/>
+                            <constraint firstItem="PaD-IP-Use" firstAttribute="top" secondItem="XMW-AJ-KpV" secondAttribute="bottom" constant="15" id="asl-8n-IqY"/>
                             <constraint firstItem="RLm-O7-Tok" firstAttribute="centerY" secondItem="Axl-g1-Reu" secondAttribute="centerY" id="hsb-FV-ua4"/>
                             <constraint firstItem="w9Q-eJ-6NZ" firstAttribute="centerX" secondItem="Axl-g1-Reu" secondAttribute="centerX" id="kmJ-cf-thg"/>
+                            <constraint firstItem="PaD-IP-Use" firstAttribute="centerX" secondItem="Axl-g1-Reu" secondAttribute="centerX" id="wxc-kh-aZP"/>
                             <constraint firstItem="RLm-O7-Tok" firstAttribute="centerX" secondItem="Axl-g1-Reu" secondAttribute="centerX" id="zYB-5g-Tpu"/>
                         </constraints>
                         <variation key="default">
@@ -650,7 +653,7 @@
                     <navigationItem key="navigationItem" id="dbu-kp-lp1"/>
                     <connections>
                         <outlet property="emailField" destination="hfA-bV-Hbv" id="BRU-Hf-LT4"/>
-                        <outlet property="errorLabel" destination="pMk-1b-etw" id="1rW-gf-Dv6"/>
+                        <outlet property="errorView" destination="PaD-IP-Use" id="KEK-bG-Fv8"/>
                         <outlet property="nameField" destination="DlY-wP-Ehk" id="Qlg-eV-kVy"/>
                         <outlet property="nameHeight" destination="dl6-o8-soE" id="9y4-qE-OGR"/>
                         <outlet property="passwordField" destination="tQi-gt-jol" id="NBX-bM-hPz"/>

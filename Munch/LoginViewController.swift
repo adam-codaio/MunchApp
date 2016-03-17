@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var passwordField2: UITextField!
     @IBOutlet weak var textView: UIView!
-    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var errorView: UITextView!
     
     @IBOutlet weak var nameHeight: NSLayoutConstraint!
     @IBOutlet weak var passwordHeight2: NSLayoutConstraint!
@@ -36,6 +36,11 @@ class LoginViewController: UIViewController {
         }
         
         setupFields()
+        
+        errorView.layer.cornerRadius = 5
+        errorView.layer.masksToBounds = true
+        errorView.layer.borderColor = Util.Colors.ErrorRed.CGColor
+        errorView.layer.borderWidth = 1
         
         textView.layer.cornerRadius = 5
         textView.layer.masksToBounds = true
@@ -59,7 +64,13 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        errorLabel = true
+        clearFields()
+        
+        if loginMode && NSUserDefaults.standardUserDefaults().boolForKey("rememberMe") {
+            emailField.text = NSUserDefaults.standardUserDefaults().stringForKey("email")
+        }
+        
+        errorView.hidden = true
     }
     
     private func setupFields() {
@@ -130,11 +141,15 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func toggleMode(sender: AnyObject) {
+        switchMode()
+    }
+    
+    private func switchMode() {
         loginMode = !loginMode
         setupForMode()
         clearFields()
         setupFields()
-        errorLabel.text = ""
+        errorView.hidden = true
     }
     
     @IBAction func submit(sender: AnyObject) {
@@ -186,7 +201,8 @@ class LoginViewController: UIViewController {
         animation.toValue = NSValue(CGPoint: CGPointMake(textView.center.x + 5, textView.center.y))
         textView.layer.addAnimation(animation, forKey: "position")
 
-        errorLabel.text = errorString
+        errorView.text = errorString
+        errorView.hidden = false
     }
     
     private func login() {
@@ -240,6 +256,8 @@ class LoginViewController: UIViewController {
                     if result {
                         print("registration success!")
                         //transition to next view
+                        // switch to login mode for when they come back out
+                        self.switchMode()
                         self.navigateToHome()
                     } else {
                         print("authentication failed! \(error)")
