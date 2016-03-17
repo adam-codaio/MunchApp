@@ -108,12 +108,13 @@ class HomeTableViewController: CoreDataTableViewController, CLLocationManagerDel
                 let latitude = Double(restaurant["latitude"].number!)
                 let longitude = Double(restaurant["longitude"].number!)
                 let distance = self.computeDistance(latitude, longitude: longitude)
+                let deleted = item.1["deleted"].bool!
 
                 let restaurant = Restaurant.createRestaurant(inManagedObjectContext: self.managedObjectContext!, hours: restaurant["hours"].string!, phone_number: restaurant["phone_number"].string!, name: restaurant["name"].string!, address: restaurant["address"].string!, latitude: latitude, longitude: longitude, distance: distance, id: restaurant["id"].int!)
                 let dateFormatter: NSDateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
                 self.managedObjectContext?.performBlockAndWait {
-                    let promotion = Promotion.createPromotion(inManagedObjectContext: self.managedObjectContext!, id: promo_id, promo: item.1["text"].string!, repetition: item.1["repetition"].int!, retail_value: Float(item.1["retail_value"].number!), expiry: dateFormatter.dateFromString(item.1["expiration"].string!)!, restaurant: restaurant!)
+                    let promotion = Promotion.createPromotion(inManagedObjectContext: self.managedObjectContext!, id: promo_id, promo: item.1["text"].string!, repetition: item.1["repetition"].int!, retail_value: Float(item.1["retail_value"].number!), expiry: dateFormatter.dateFromString(item.1["expiration"].string!)!, rating: Float(item.1["rating"].number!), num_claims: item.1["num_claims"].int!, deleted: deleted, restaurant: restaurant!)
                     promotions.append(promotion!)
                 }
             }

@@ -3,7 +3,10 @@
     <entity name="Promotion" representedClassName=".Promotion" syncable="YES">
         <attribute name="expiry" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="num_claims" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="promo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="removed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="repetition" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="retail_value" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="restaurant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="promotions" inverseEntity="Restaurant" syncable="YES"/>
@@ -31,7 +34,7 @@
         <relationship name="promotion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Promotion" inverseName="userClaims" inverseEntity="Promotion" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Promotion" positionX="-306" positionY="-81" width="128" height="73"/>
+        <element name="Promotion" positionX="-306" positionY="-81" width="128" height="195"/>
         <element name="Restaurant" positionX="-72" positionY="-99" width="128" height="180"/>
         <element name="User" positionX="90" positionY="-34" width="128" height="75"/>
         <element name="UserClaim" positionX="-126" positionY="171" width="128" height="105"/>

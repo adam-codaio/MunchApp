@@ -88,10 +88,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
         
 //        commenting this out means it will save previous promotions to load initial stuff
-        do {
-            try NSFileManager.defaultManager().removeItemAtURL(url)
-        } catch _ {
-        }
+//        do {
+//            try NSFileManager.defaultManager().removeItemAtURL(url)
+//        } catch _ {
+//        }
         
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
