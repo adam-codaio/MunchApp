@@ -32,14 +32,10 @@ class Promotion: NSManagedObject {
     }
     
     class func claimPromotion(inManagedObjectContext context: NSManagedObjectContext, promotion: Promotion) -> String {
-        let userRequest = NSFetchRequest(entityName: "User")
-        //Because i'm lzy
-        let user = (try? context.executeFetchRequest(userRequest))?.first as? User
         if let userClaim = NSEntityDescription.insertNewObjectForEntityForName("UserClaim", inManagedObjectContext: context) as? UserClaim {
             userClaim.claim_time = NSDate(timeIntervalSinceNow: 0)
             userClaim.is_redeemed = false
             userClaim.promotion = promotion
-            userClaim.user = user
             return "Success"
         }
         return "Fail"

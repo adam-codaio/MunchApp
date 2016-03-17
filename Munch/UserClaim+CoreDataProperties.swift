@@ -17,6 +17,5 @@ extension UserClaim {
     @NSManaged var claim_time: NSDate?
     @NSManaged var is_redeemed: NSNumber?
     @NSManaged var promotion: Promotion?
-    @NSManaged var user: User?
 
 }

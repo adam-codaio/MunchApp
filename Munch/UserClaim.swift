@@ -13,11 +13,7 @@ import CoreData
 class UserClaim: NSManagedObject {
 
     class func allClaims(inManagedObjectContext context: NSManagedObjectContext) -> [UserClaim] {
-        let userRequest = NSFetchRequest(entityName: "User")
-        //Because i'm lzy
-        let user = (try? context.executeFetchRequest(userRequest))?.first as? User
         let claimRequest = NSFetchRequest(entityName: "UserClaim")
-        claimRequest.predicate = NSPredicate(format: "user=%@", user!)
         if let userClaims = (try? context.executeFetchRequest(claimRequest)) as? [UserClaim] {
             return userClaims
         }
@@ -25,14 +21,10 @@ class UserClaim: NSManagedObject {
     }
     
     class func redeemClaim(inManagedObjectContext context: NSManagedObjectContext, promotion: Promotion) {
-        let userRequest = NSFetchRequest(entityName: "User")
-        //Because i'm lzy
-        let user = (try? context.executeFetchRequest(userRequest))?.first as? User
         let claimRequest = NSFetchRequest(entityName: "UserClaim")
-        claimRequest.predicate = NSPredicate(format: "user=%@ and promotion=%@", user!, promotion)
+        claimRequest.predicate = NSPredicate(format: "promotion=%@", promotion)
         if let userClaim = (try? context.executeFetchRequest(claimRequest))?.first as? UserClaim {
             userClaim.setValue(true, forKey: "is_redeemed")
         }
-
     }
 }

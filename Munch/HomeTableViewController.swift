@@ -98,8 +98,7 @@ class HomeTableViewController: CoreDataTableViewController, CLLocationManagerDel
         tableView.reloadData()
     }
 
-
-    
+    //TODO remove instances not in this batch
     private func processResponses(response: JSON) {
         var promotions = [Promotion]()
         for item in response {

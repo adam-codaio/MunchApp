@@ -148,7 +148,6 @@ public class DataHelper {
             let newClaim = NSEntityDescription.insertNewObjectForEntityForName("UserClaim", inManagedObjectContext: context) as! UserClaim
             newClaim.claim_time = claim.claim_time
             newClaim.is_redeemed = claim.is_redeemed
-            newClaim.user = claim.user
             newClaim.promotion = claim.promotion
         }
         do {
@@ -202,7 +201,7 @@ public class DataHelper {
         let allUserClaims = (try! context.executeFetchRequest(fetchRequest)) as! [UserClaim]
         
         for userClaim in allUserClaims {
-            print("UserClaim Promotion ID: \(userClaim.promotion!.id)\nrestaurant: \(userClaim.promotion!.restaurant!.name)\nuser: \(userClaim.user?.name)\nis_redeemed: \(userClaim.is_redeemed)\ntime: \(userClaim.claim_time) \n-------\n", terminator: "")
+            print("UserClaim Promotion ID: \(userClaim.promotion!.id)\nrestaurant: \(userClaim.promotion!.restaurant!.name)\nis_redeemed: \(userClaim.is_redeemed)\ntime: \(userClaim.claim_time) \n-------\n", terminator: "")
         }
     }
 }

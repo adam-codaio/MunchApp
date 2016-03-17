@@ -217,11 +217,9 @@ class RestaurantTableViewController: CoreDataTableViewController {
         
         if let claimCell = cell as? RestaurantClaimsTableViewCell {
             
-            let userRequest = NSFetchRequest(entityName: "User")
-            let user = (try? context!.executeFetchRequest(userRequest))?.first as? User
             let currPromotion = allPromotions![indexPath.row]
             let userClaimRequest = NSFetchRequest(entityName: "UserClaim")
-            userClaimRequest.predicate = NSPredicate(format: "user=%@ and promotion=%@", user!, currPromotion)
+            userClaimRequest.predicate = NSPredicate(format: "promotion=%@",  currPromotion)
             let userClaims = (try? context!.executeFetchRequest(userClaimRequest)) as? [UserClaim]
             claimCell.claimed = userClaims!.count != 0
             
