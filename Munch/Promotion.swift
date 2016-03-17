@@ -31,14 +31,13 @@ class Promotion: NSManagedObject {
         return []
     }
     
-    class func claimPromotion(inManagedObjectContext context: NSManagedObjectContext, promotion: Promotion) -> String {
+    class func claimPromotion(inManagedObjectContext context: NSManagedObjectContext, promotion: Promotion, id: Int) {
         if let userClaim = NSEntityDescription.insertNewObjectForEntityForName("UserClaim", inManagedObjectContext: context) as? UserClaim {
+            userClaim.id = id
             userClaim.claim_time = NSDate(timeIntervalSinceNow: 0)
             userClaim.is_redeemed = false
             userClaim.promotion = promotion
-            return "Success"
         }
-        return "Fail"
     }
 
     class func createPromotion(inManagedObjectContext context: NSManagedObjectContext, id: Int, promo: String, repetition: Int, retail_value: Float, expiry: NSDate, restaurant: Restaurant) -> Promotion? {

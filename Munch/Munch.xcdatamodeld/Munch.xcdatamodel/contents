@@ -26,6 +26,7 @@
     </entity>
     <entity name="UserClaim" representedClassName=".UserClaim" syncable="YES">
         <attribute name="claim_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="is_redeemed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="promotion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Promotion" inverseName="userClaims" inverseEntity="Promotion" syncable="YES"/>
     </entity>
@@ -33,6 +34,6 @@
         <element name="Promotion" positionX="-306" positionY="-81" width="128" height="73"/>
         <element name="Restaurant" positionX="-72" positionY="-99" width="128" height="180"/>
         <element name="User" positionX="90" positionY="-34" width="128" height="75"/>
-        <element name="UserClaim" positionX="-126" positionY="171" width="128" height="90"/>
+        <element name="UserClaim" positionX="-126" positionY="171" width="128" height="105"/>
     </elements>
 </model>

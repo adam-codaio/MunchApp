@@ -158,13 +158,18 @@ class RestaurantTableViewController: CoreDataTableViewController {
     }
     
     private func confirmClaim(promotion: Promotion) {
-        context?.performBlockAndWait {
-            //This returns a message on success or failure
-            //TODO: check whether the promotion can still be claimed
-            let message = Promotion.claimPromotion(inManagedObjectContext: self.context!, promotion: promotion)
-            if message == "Success" {
-                self.tableView.reloadData()
+        let data = ["promotion_id": String(promotion.id!)]
+        let (claimRequest, claimStatus) = HttpService.doRequest("/api/claim/", method: "POST", data: data, flag: true, synchronous: true)
+
+        if claimStatus {
+            let id = claimRequest!["id"].int!
+            context?.performBlockAndWait {
+                Promotion.claimPromotion(inManagedObjectContext: self.context!, promotion: promotion, id: id)
             }
+            self.tableView.reloadData()
+        } else {
+            //TODO: check whether the promotion can still be claimed alert that you cant claim that shit
+            return
         }
         
         let alert = UIAlertController(
