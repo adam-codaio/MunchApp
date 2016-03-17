@@ -30,7 +30,21 @@ class RedeemClaimViewController: UIViewController {
     }
     
     func redeem(sender: UIImageView) {
-        UserClaim.redeemClaim(inManagedObjectContext: AppDelegate.managedObjectContext!, promotion: (data?.promotion)!)
+        let postData = ["is_redeemed": String(true)]
+        let (_, redeemStatus) = HttpService.doRequest("/api/claim/" + String(data!.id!) + "/", method: "PUT", data: postData, flag: true, synchronous: true)
+        
+        if redeemStatus {
+            AppDelegate.managedObjectContext?.performBlockAndWait {
+                UserClaim.redeemClaim(inManagedObjectContext: AppDelegate.managedObjectContext!, promotion: (self.data?.promotion)!)
+                do {
+                    try AppDelegate.managedObjectContext!.save()
+                } catch _ {
+                }
+            }
+        } else {
+            //TODO: alert if could not redeem
+            return
+        }
         self.navigationController?.popViewControllerAnimated(true)
     }
 }
