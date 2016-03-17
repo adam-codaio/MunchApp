@@ -14,6 +14,8 @@
         <attribute name="distance" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="hours" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone_number" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="promotions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Promotion" inverseName="restaurant" inverseEntity="Promotion" syncable="YES"/>
@@ -21,18 +23,17 @@
     <entity name="User" representedClassName=".User" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rating" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="userClaims" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UserClaim" inverseName="user" inverseEntity="UserClaim" syncable="YES"/>
     </entity>
     <entity name="UserClaim" representedClassName=".UserClaim" syncable="YES">
         <attribute name="claim_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="is_redeemed" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="promotion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Promotion" inverseName="userClaims" inverseEntity="Promotion" syncable="YES"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="userClaims" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>
         <element name="Promotion" positionX="-306" positionY="-81" width="128" height="73"/>
-        <element name="Restaurant" positionX="-72" positionY="-99" width="128" height="150"/>
-        <element name="User" positionX="90" positionY="-34" width="128" height="88"/>
-        <element name="UserClaim" positionX="-126" positionY="171" width="128" height="73"/>
+        <element name="Restaurant" positionX="-72" positionY="-99" width="128" height="180"/>
+        <element name="User" positionX="90" positionY="-34" width="128" height="75"/>
+        <element name="UserClaim" positionX="-126" positionY="171" width="128" height="105"/>
     </elements>
 </model>

@@ -20,6 +20,8 @@ extension Restaurant {
     @NSManaged var id: NSNumber?
     @NSManaged var name: String?
     @NSManaged var phone_number: String?
+    @NSManaged var latitude: NSNumber?
+    @NSManaged var longitude: NSNumber?
     @NSManaged var promotions: NSSet?
 
 }

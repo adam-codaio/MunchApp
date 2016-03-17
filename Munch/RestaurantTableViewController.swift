@@ -158,13 +158,18 @@ class RestaurantTableViewController: CoreDataTableViewController {
     }
     
     private func confirmClaim(promotion: Promotion) {
-        context?.performBlockAndWait {
-            //This returns a message on success or failure
-            //TODO: check whether the promotion can still be claimed
-            let message = Promotion.claimPromotion(inManagedObjectContext: self.context!, promotion: promotion)
-            if message == "Success" {
-                self.tableView.reloadData()
+        let data = ["promotion_id": String(promotion.id!)]
+        let (claimRequest, claimStatus) = HttpService.doRequest("/api/claim/", method: "POST", data: data, flag: true, synchronous: true)
+
+        if claimStatus {
+            let id = claimRequest!["id"].int!
+            context?.performBlockAndWait {
+                Promotion.claimPromotion(inManagedObjectContext: self.context!, promotion: promotion, id: id)
             }
+            self.tableView.reloadData()
+        } else {
+            //TODO: check whether the promotion can still be claimed alert that you cant claim that shit
+            return
         }
         
         let alert = UIAlertController(
@@ -217,11 +222,9 @@ class RestaurantTableViewController: CoreDataTableViewController {
         
         if let claimCell = cell as? RestaurantClaimsTableViewCell {
             
-            let userRequest = NSFetchRequest(entityName: "User")
-            let user = (try? context!.executeFetchRequest(userRequest))?.first as? User
             let currPromotion = allPromotions![indexPath.row]
             let userClaimRequest = NSFetchRequest(entityName: "UserClaim")
-            userClaimRequest.predicate = NSPredicate(format: "user=%@ and promotion=%@", user!, currPromotion)
+            userClaimRequest.predicate = NSPredicate(format: "promotion=%@",  currPromotion)
             let userClaims = (try? context!.executeFetchRequest(userClaimRequest)) as? [UserClaim]
             claimCell.claimed = userClaims!.count != 0
             
