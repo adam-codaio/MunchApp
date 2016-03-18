@@ -50,8 +50,15 @@ class CurrentClaimsTableViewCell: UITableViewCell {
         redeem.layer.borderColor = Util.Colors.LightGray.CGColor
         redeem.layer.borderWidth = 1
         
-        splash.image = UIImage(named: (data?.promotion?.restaurant?.name)!)
         
+        
+        if let image = UIImage(named: (data?.promotion?.restaurant?.name)!) {
+            splash.image = image
+            //image
+        } else {
+            splash.image = UIImage(named: "default")
+        }
+                
         if (splash != nil && !addedBackground) {
             let bg = UIView(frame: splash!.bounds)
             bg.backgroundColor = UIColor.blackColor()

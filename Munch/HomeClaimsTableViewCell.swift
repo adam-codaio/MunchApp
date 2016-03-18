@@ -33,7 +33,13 @@ class HomeClaimsTableViewCell: UITableViewCell {
         promotion.text = data?.promo!.uppercaseString
         promotion.font = UIFont(name: Util.FontStyles.Secondary, size: CGFloat(Util.FontSizes.Secondary))
         
-        splash.image = UIImage(named: data!.restaurant!.name!)
+        
+        if let image = UIImage(named: data!.restaurant!.name!) {
+            splash.image = image
+            //image
+        } else {
+            splash.image = UIImage(named: "default")
+        }
         
         if (!addedBackground) {
             let bg = UIView(frame: splash.bounds)

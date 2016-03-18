@@ -182,7 +182,7 @@ class LoginViewController: UIViewController {
                 return (false, tokenResponse!["detail"].string!)
             }
         } else {
-            return (false, authResponse!["detail"].string!)
+            return (false, "")
         }
     }
     
