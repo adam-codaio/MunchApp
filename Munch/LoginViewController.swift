@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private var loginMode = true
     private var prevHeight: CGFloat = 0.0
@@ -53,6 +53,11 @@ class LoginViewController: UIViewController {
         if loginMode && NSUserDefaults.standardUserDefaults().boolForKey("rememberMe") {
             emailField.text = NSUserDefaults.standardUserDefaults().stringForKey("email")
         }
+        
+        emailField.delegate = self
+        nameField.delegate = self
+        passwordField.delegate = self
+        passwordField2.delegate = self
         
         self.navigationController?.navigationBarHidden = true
         
@@ -275,6 +280,11 @@ class LoginViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 
