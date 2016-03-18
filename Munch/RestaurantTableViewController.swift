@@ -146,7 +146,7 @@ class RestaurantTableViewController: CoreDataTableViewController {
         let one = subview.subviews.first!.subviews.first!
         one.backgroundColor = UIColor.whiteColor()
         let actions = one.subviews[2]
-        actions.backgroundColor = UIColor(hex: 0xF4F5F7)
+        actions.backgroundColor = Util.Colors.LightGray
         
         
         presentViewController(alert, animated: true, completion: nil)
@@ -200,7 +200,7 @@ class RestaurantTableViewController: CoreDataTableViewController {
         let one = subview.subviews.first!.subviews.first!
         one.backgroundColor = UIColor.whiteColor()
         let actions = one.subviews[2]
-        actions.backgroundColor = UIColor(hex: 0xF4F5F7)
+        actions.backgroundColor = Util.Colors.LightGray
         
         presentViewController(alert, animated: true, completion: nil)
     }

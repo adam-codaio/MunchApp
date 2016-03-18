@@ -83,6 +83,7 @@ class Util {
         static let Gray = UIColor(hex:0xA3A3A3)
         static let SelectedTabGray = UIColor(hex:0xEAEAEA)
         static let ErrorRed = UIColor(hex: 0xF83500)
+        static let SaveGreen = UIColor(hex: 0x7ED452)
     }
     
     struct FontSizes {

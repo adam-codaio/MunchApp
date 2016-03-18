@@ -12,31 +12,74 @@ import Stripe
 class PaymentViewController: UIViewController, STPPaymentCardTextFieldDelegate {
     
     let paymentTextField = STPPaymentCardTextField()
-    var submitButton = UIButton()
     var data: UserClaim?
 
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var subtotalLabel: UILabel!
+    @IBOutlet weak var discountLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+    
+    private var messageFrame = UIView()
+    private var activityIndicator = UIActivityIndicatorView()
+    private var strLabel = UILabel()
+    private let f = NSNumberFormatter()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         paymentTextField.frame = CGRectMake(15, 15, CGRectGetWidth(self.view.frame) - 30, 44)
         paymentTextField.delegate = self
         view.addSubview(paymentTextField)
-        submitButton = UIButton(type: UIButtonType.System)
-        submitButton.frame = CGRectMake(15, 100, 100, 44)
-        submitButton.enabled = false
-        submitButton.setTitle("Submit", forState: UIControlState.Normal)
-        submitButton.addTarget(self, action: "submitCard:", forControlEvents: UIControlEvents.TouchUpInside)
+        toggleButton(false)
+        submitButton.layer.cornerRadius = 5
         view.addSubview(submitButton)
+        
+        self.navigationItem.title = "Order Summary"
+        
+        f.minimumFractionDigits = 2
+        f.maximumFractionDigits = 2
+        let discount = data!.promotion!.retail_value!
+        subtotalLabel.text = "$" + f.stringFromNumber(Float(discount) * 4.0)!
+        discountLabel.text = "$" + f.stringFromNumber(discount)!
+        totalLabel.text = "$" + f.stringFromNumber(Float(discount) * 3.0)!
+        
+    }
+    
+    private func toggleButton(enable: Bool) {
+        if enable {
+            submitButton.backgroundColor = Util.Colors.SaveGreen
+            submitButton.tintColor = UIColor.whiteColor()
+        } else {
+            submitButton.backgroundColor = Util.Colors.DarkGray
+        }
+        
+        submitButton.enabled = enable
     }
     
     func paymentCardTextFieldDidChange(textField: STPPaymentCardTextField) {
-        submitButton.enabled = textField.valid
+        toggleButton(textField.valid)
     }
     
-
+    private func progressBarDisplayer(msg:String, _ indicator:Bool ) {
+        strLabel = UILabel(frame: CGRect(x: 50, y: 0, width: 200, height: 50))
+        strLabel.text = msg
+        strLabel.textColor = UIColor.whiteColor()
+        messageFrame = UIView(frame: CGRect(x: view.frame.midX - 90, y: view.frame.midY - 100 , width: 180, height: 50))
+        messageFrame.layer.cornerRadius = 15
+        messageFrame.backgroundColor = UIColor(white: 0, alpha: 0.7)
+        if indicator {
+            activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .White)
+            activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            activityIndicator.startAnimating()
+            messageFrame.addSubview(activityIndicator)
+        }
+        messageFrame.addSubview(strLabel)
+        view.addSubview(messageFrame)
+    }
     
-    @IBAction func submitCard(sender: AnyObject?) {
+    @IBAction func submitCard(sender: AnyObject) {
         let card = paymentTextField.cardParams
-        
+        progressBarDisplayer("Redeeming...", true)
         STPAPIClient.sharedClient().createTokenWithCard(card) { token, error in
             guard let stripeToken = token else {
                 NSLog("Error creating token: %@", error!.localizedDescription);
@@ -61,7 +104,29 @@ class PaymentViewController: UIViewController, STPPaymentCardTextFieldDelegate {
                         }
                     }
                     //alert here or back when you're at other view controller? sorry im too tired for this shit.
-                    self.navigationController?.popViewControllerAnimated(true)
+                    self.messageFrame.removeFromSuperview()
+                    
+                    let alert = UIAlertController(
+                        title: "Redeemed!",
+                        message: "You were charged $" + self.f.stringFromNumber(self.data!.promotion!.retail_value!)!,
+                        preferredStyle: UIAlertControllerStyle.Alert
+                    )
+                    
+                    alert.addAction(UIAlertAction(
+                        title: "Continue",
+                        style: .Default)
+                        { [weak weakSelf = self] (action: UIAlertAction) -> Void in
+                            weakSelf?.navigationController?.popToRootViewControllerAnimated(true)
+                        }
+                    )
+                    
+                    let subview = alert.view.subviews.first! as UIView
+                    let one = subview.subviews.first!.subviews.first!
+                    one.backgroundColor = UIColor.whiteColor()
+                    let actions = one.subviews[2]
+                    actions.backgroundColor = Util.Colors.LightGray
+                    
+                    self.presentViewController(alert, animated: true, completion: nil)
                 } else {
                     //credit card declined
                     return

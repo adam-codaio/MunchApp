@@ -143,9 +143,9 @@
 		D3B1E2AF1BF7EC4300AFDFD2 /* Munch */ = {
 			isa = PBXGroup;
 			children = (
+				F62CB5D81C11976C00D7326A /* CoreData */,
 				D37A94D01C9BFB8A00A34BA7 /* PaymentViewController.swift */,
 				D32C4BDE1C9A6ADD00BD62C4 /* default.gpx */,
-				F62CB5D81C11976C00D7326A /* CoreData */,
 				D3D847531C0E803100820ABF /* LinedView.swift */,
 				D3D847591C0EE1E800820ABF /* CurrentClaimsTableViewCell.swift */,
 				D3D8475B1C0EE1F700820ABF /* PastClaimsTableViewCell.swift */,
