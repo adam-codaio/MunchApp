@@ -175,6 +175,7 @@ class LoginViewController: UIViewController {
                 //only storing access token
                 self.Keychain.mySetObject(access_token, forKey: kSecValueData)
                 self.Keychain.writeToKeychain()
+                NSUserDefaults.standardUserDefaults().setValue(email, forKey: "email")
                 return (true, nil)
             } else {
                 return (false, tokenResponse!["detail"].string!)
@@ -249,7 +250,6 @@ class LoginViewController: UIViewController {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) {
             let (registerResponse, registerStatus) = HttpService.doRequest("/api/user/", method: "POST", data: data, flag: false, synchronous: true)
             if registerStatus {
-                NSUserDefaults.standardUserDefaults().setValue(email, forKey: "email")
                 let (result, error) = self.authenticate(email, password: password)
                 dispatch_async(dispatch_get_main_queue()) {
                     //End spinner
