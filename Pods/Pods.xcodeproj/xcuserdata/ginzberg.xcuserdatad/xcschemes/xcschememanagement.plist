@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Stripe.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>B3F35889AC6715C46133BBB813996AD0</key>
+		<key>871DFE4B2562390A910B2401E24AA8C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FF27D00F53B9B9C6B8ECA1F3FC85395F</key>
+		<key>A479E3FA449368BAE978D6EC6CB65CE5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E37F91E974DE06DB2C9D772418CDFC5C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

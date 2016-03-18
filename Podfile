@@ -3,5 +3,6 @@ use_frameworks!
 
 target 'Munch' do
     pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+    pod 'Stripe'
 end
 
