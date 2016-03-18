@@ -166,6 +166,8 @@ class LoginViewController: UIViewController {
         let (authResponse, authStatus) = HttpService.doRequest("/api/auth/", method: "POST", data: data, flag: false, synchronous: true)
         if authStatus {
             let client_id = authResponse!["client_id"].string!
+            NSUserDefaults.standardUserDefaults().setInteger(authResponse!["id"].int!, forKey: "id")
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "hasPaid")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "stayLoggedIn")
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "rememberMe")
             let data = ["grant_type": "password", "username": email, "password": password, "client_id": client_id]

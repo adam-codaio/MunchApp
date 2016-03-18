@@ -51,6 +51,7 @@ class PaymentViewController: UIViewController, STPPaymentCardTextFieldDelegate {
                 let postData = ["description": description, "amount": amount, "stripeToken": String(stripeToken)]
                 let (_, paymentStatus) = HttpService.doRequest("/api/pay/", method: "POST", data: postData, flag: true, synchronous:true)
                 if paymentStatus {
+                    NSUserDefaults.standardUserDefaults().setBool(true, forKey: "hasPaid")
                     print("payment charged")
                     AppDelegate.managedObjectContext?.performBlockAndWait {
                         UserClaim.redeemClaim(inManagedObjectContext: AppDelegate.managedObjectContext!, promotion: (self.data?.promotion)!)
