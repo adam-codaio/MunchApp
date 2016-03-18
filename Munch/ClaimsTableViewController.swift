@@ -26,6 +26,7 @@ class ClaimsTableViewController: CoreDataTableViewController {
     }
     
     private func refresh() {
+        //Should be fetching these from the server to allow user to log in from multiple devices
         managedObjectContext?.performBlockAndWait {
             let allClaims = UserClaim.allClaims(inManagedObjectContext: self.managedObjectContext!)
             let now = NSDate(timeIntervalSinceNow: 0)

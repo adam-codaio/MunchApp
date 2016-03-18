@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let dataHelper = DataHelper(context: managedObjectContext)
 //        dataHelper.seedDataStore()
         self.window?.tintColor = Colors.Green
+        Stripe.setDefaultPublishableKey("pk_test_2Oi7pF0SBKrb3x1O5I5bk9SM")
 
         //print functions to make sure database is seeding correctly
 //        dataHelper.printAllRestaurants()
@@ -88,10 +90,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
         
 //        commenting this out means it will save previous promotions to load initial stuff
-        do {
-            try NSFileManager.defaultManager().removeItemAtURL(url)
-        } catch _ {
-        }
+//        do {
+//            try NSFileManager.defaultManager().removeItemAtURL(url)
+//        } catch _ {
+//        }
         
         var failureReason = "There was an error creating or loading the application's saved data."
         do {

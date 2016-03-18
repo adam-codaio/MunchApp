@@ -165,6 +165,10 @@ class RestaurantTableViewController: CoreDataTableViewController {
             let id = claimRequest!["id"].int!
             context?.performBlockAndWait {
                 Promotion.claimPromotion(inManagedObjectContext: self.context!, promotion: promotion, id: id)
+                do {
+                    try self.context!.save()
+                } catch _ {
+                }
             }
             self.tableView.reloadData()
         } else {

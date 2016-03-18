@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Stripe.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,7 +22,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>871DFE4B2562390A910B2401E24AA8C8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A479E3FA449368BAE978D6EC6CB65CE5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B3F35889AC6715C46133BBB813996AD0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E37F91E974DE06DB2C9D772418CDFC5C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
