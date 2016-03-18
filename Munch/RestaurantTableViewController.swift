@@ -35,7 +35,12 @@ class RestaurantTableViewController: CoreDataTableViewController {
     private var addedBackground = false
     
     private func populateData() {
-        splash?.image = UIImage(named: promotion!.restaurant!.name!)
+        if let image = UIImage(named: promotion!.restaurant!.name!) {
+            splash?.image = image
+            //image
+        } else {
+            splash?.image = UIImage(named: "default")
+        }
         splash?.superview?.sendSubviewToBack(splash!)
         
         if (splash != nil && !addedBackground) {

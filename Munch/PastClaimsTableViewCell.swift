@@ -46,7 +46,12 @@ class PastClaimsTableViewCell: UITableViewCell {
 //        redeem.backgroundColor = Colors.Green
 //        redeem.layer.cornerRadius = 6.0
         
-        splash.image = UIImage(named: (data?.promotion?.restaurant?.name)!)?.convertToGrayScale()
+        if let image = UIImage(named: (data?.promotion?.restaurant?.name)!) {
+            splash?.image = image.convertToGrayScale()
+            //image
+        } else {
+            splash?.image = UIImage(named: "default")?.convertToGrayScale()
+        }
     }
 }
 

@@ -41,7 +41,12 @@ class RedeemView: UIView {
         scan.font = UIFont(name: Util.FontStyles.Tertiary, size: CGFloat(Util.FontSizes.Primary))
         scan.textColor = Util.Colors.DarkGray
 
-        splash.image = UIImage(named: (data?.promotion?.restaurant?.name)!)
+        if let image = UIImage(named: (data?.promotion?.restaurant?.name)!) {
+            splash?.image = image
+            //image
+        } else {
+            splash?.image = UIImage(named: "default")
+        }
         
         if (splash != nil) {
             splash.superview?.sendSubviewToBack(splash!)
