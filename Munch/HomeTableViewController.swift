@@ -63,7 +63,7 @@ class HomeTableViewController: CoreDataTableViewController, CLLocationManagerDel
 
         
         //Cuz my shit aint no bitch
-        let _ = NSTimer.scheduledTimerWithTimeInterval(20.0, target: self, selector: Selector("fetchPromotions"), userInfo: nil, repeats: true)
+        let _ = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: Selector("fetchPromotions"), userInfo: nil, repeats: true)
         
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.

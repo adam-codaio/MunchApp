@@ -22,6 +22,7 @@ class RedeemClaimViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.titleView = Util.getLogoTitle()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         updateView()
         let tapGesture = UITapGestureRecognizer(target: self, action: "redeem:")
         tapGesture.numberOfTapsRequired = 2
@@ -30,21 +31,13 @@ class RedeemClaimViewController: UIViewController {
     }
     
     func redeem(sender: UIImageView) {
-        let postData = ["is_redeemed": String(true)]
-        let (_, redeemStatus) = HttpService.doRequest("/api/claim/" + String(data!.id!) + "/", method: "PUT", data: postData, flag: true, synchronous: true)
-        
-        if redeemStatus {
-            AppDelegate.managedObjectContext?.performBlockAndWait {
-                UserClaim.redeemClaim(inManagedObjectContext: AppDelegate.managedObjectContext!, promotion: (self.data?.promotion)!)
-                do {
-                    try AppDelegate.managedObjectContext!.save()
-                } catch _ {
-                }
-            }
-        } else {
-            //TODO: alert if could not redeem
-            return
+        performSegueWithIdentifier("PaymentSegue", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destinationvc: UIViewController? = segue.destinationViewController
+        if let paymentvc = destinationvc as? PaymentViewController {
+            paymentvc.data = data
         }
-        self.navigationController?.popViewControllerAnimated(true)
     }
 }

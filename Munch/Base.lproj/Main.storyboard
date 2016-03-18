@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FYa-9E-gSo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FYa-9E-gSo">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -63,10 +63,10 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0Eh-ZJ-7k2">
-                                    <rect key="frame" x="132" y="8" width="340" height="28"/>
+                                    <rect key="frame" x="132" y="8" width="349" height="28"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NA-m3-lHx">
-                                            <rect key="frame" x="0.0" y="0.0" width="124" height="28"/>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NA-m3-lHx">
+                                            <rect key="frame" x="0.0" y="0.0" width="133" height="28"/>
                                             <color key="backgroundColor" red="0.95686274510000002" green="0.96078431369999995" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title=" Set Distance" image="down">
                                                 <color key="titleColor" red="0.5490196078431373" green="0.52549019607843139" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
@@ -75,8 +75,8 @@
                                                 <action selector="setLocation:" destination="yDk-Zc-a59" eventType="touchUpInside" id="cj2-s3-YSQ"/>
                                             </connections>
                                         </button>
-                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0I0-dY-Uaf">
-                                            <rect key="frame" x="129" y="0.0" width="211" height="29"/>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0I0-dY-Uaf">
+                                            <rect key="frame" x="138" y="0.0" width="211" height="29"/>
                                             <segments>
                                                 <segment title="Nearby"/>
                                                 <segment title="Recommended"/>
@@ -505,11 +505,30 @@
                     <connections>
                         <outlet property="qrcode" destination="9Ik-1w-lm3" id="nv6-4t-1Dg"/>
                         <outlet property="redeemView" destination="KSS-1f-MbR" id="8sA-cR-JgR"/>
+                        <segue destination="Nux-PQ-KwE" kind="show" identifier="PaymentSegue" id="Ozs-bB-MUI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4j6-Sr-YD4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2760" y="694"/>
+        </scene>
+        <!--Payment View Controller-->
+        <scene sceneID="nlS-1j-95n">
+            <objects>
+                <viewController id="Nux-PQ-KwE" customClass="PaymentViewController" customModule="Munch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bNc-d5-GWs"/>
+                        <viewControllerLayoutGuide type="bottom" id="uV2-oQ-xv9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zhv-Uv-uy9">
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7K0-XF-Bd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2760" y="1497"/>
         </scene>
         <!--Login-->
         <scene sceneID="ofF-nd-Ffj">
@@ -1191,7 +1210,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="hH0-Hs-dKO">
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Account" id="pAc-7h-hd9">
                                 <cells>
@@ -1206,7 +1225,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>

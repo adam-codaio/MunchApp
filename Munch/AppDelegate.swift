@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let dataHelper = DataHelper(context: managedObjectContext)
 //        dataHelper.seedDataStore()
         self.window?.tintColor = Colors.Green
+        Stripe.setDefaultPublishableKey("pk_test_2Oi7pF0SBKrb3x1O5I5bk9SM")
 
         //print functions to make sure database is seeding correctly
 //        dataHelper.printAllRestaurants()
